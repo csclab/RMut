@@ -1,0 +1,190 @@
+#' An R package for investigating different types of mutations in network dynamics analyses.
+#'
+#' The RMut package provides some categories of useful functions for examining
+#' dynamics of biological networks based on many kinds of mutations.
+#' The package also computes some node/edge-based structural characteristics of the networks.
+#'
+#' This package provides useful functions for intensely analyzing dynamics of biological networks and
+#' also random networks based on different kinds of mutations.
+#' For those analyses, the package utilizes a Boolean network model with synchronous updating scheme.
+#' The package also examines some node/edge-based structural characteristics of the networks.
+#' In summary, there are four main types of functions in the package, Setup functions, Data handling functions,
+#' Dynamics-related functions and Structure-related functions, as follows:
+#'
+#' \strong{Setup functions}
+#'
+#' Core algorithms of dynamics analyses and feedback/feed-forward loops search were processed in parallel using an OpenCL
+#' parallel computing platform, which is an open-source library designed to run on any modern central processing units (CPUs)
+#' or graphics processing units (GPUs). Thus, the package can be used on any computer equipped with multi-core CPUs and/or GPUs
+#' that can support the OpenCL library. The \code{\link{showOpencl}} function shows installed OpenCL platforms and its
+#' corresponding CPU/GPU devices. \code{\link{setOpencl}} enables OpenCL computation by selecting a CPU/GPU device and
+#' utilizing all of its cores for further computation.
+#'
+#' \strong{Data handling functions}
+#'
+#' Networks can be loaded in two ways using RMut: the \code{\link{loadNetwork}} function creates a network from
+#' a Tab-separated values text file. Otherwise, the package provides some example networks that could be simply
+#' loaded by \code{\link{data}} command. Furthermore, random networks of four generation models could be generated
+#' by using the \code{\link{createRBNs}} function.
+#'
+#' Via \code{\link{output}}, all examined attributes of the networks will be exported to CSV files.
+#'
+#' \strong{Dynamics-related functions}
+#'
+#' The \code{\link{findAttractors}} function identifies attractors in a network, and the resulted transition network could be exported
+#' by the function \code{\link{output}}. Then, those resulted files could be further loaded and analyzed by other softwares with
+#' powerful visualization functions like Cytoscape. In addition, the package also provides two other functions to manually
+#' investigate the network dynamics: \code{\link{perturb}} and \code{\link{restore}}. The \code{\link{perturb}} function
+#' makes perturbations on a set of node/edge groups in the examined network. \code{\link{restore}} puts a set of
+#' node/edge groups in the examined network back to its normal condition. Hence, we can manually compare the converged
+#' attractors before and after perturbations by utilizing those three functions.
+#'
+#' The \code{\link{calSensitivity}} function computes sensitivity values of node/edge groups in the examined networks.
+#' We can use embedded mutations in the package or define our own mutations.
+#' Multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values
+#' for each group.
+#'
+#' \strong{Structure-related functions}
+#'
+#' Via \code{\link{findFBLs}} and \code{\link{findFFLs}}, the package supports methods of searching feedback/feed-forward loops,
+#' respectively, for all nodes/edges in the examined networks.
+#'
+#' The \code{\link{calCentrality}} function calculates node-/edge-based centralities of the examined networks such as Degree, In-/Out-Degree,
+#' Closeness, Betweenness, Stress, Eigenvector, Edge Degree and Edge Betweenness.
+#'
+#'
+#' @author Hung-Cuong Trinh, Yung-Keun Kwon
+#'
+#' @examples
+#' ######################################
+#' # Example 1: single network analyses #
+#' ######################################
+#'
+#' # setup OpenCL
+#' showOpencl()
+#' setOpencl("cpu")
+#'
+#' # load example network
+#' data(amrn)
+#'
+#' ### Calculate sensitivity values based on various types of mutations, and structural measures ###
+#' # generate all possible initial-states each containing 10 Boolean nodes
+#' set1 <- generateStates(10, "all")
+#' print(set1)
+#'
+#' # generate all possible groups each containing a single node in the AMRN network
+#' amrn <- generateGroups(amrn, "all", 1, 0)
+#' amrn <- calSensitivity(amrn, set1, 1, "knockout")
+#' print(amrn$Group_1)
+#'
+#' # generate all possible groups each containing a single edge in the AMRN network
+#' amrn <- generateGroups(amrn, "all", 0, 1)
+#' amrn <- calSensitivity(amrn, set1, 2, "edge removal")
+#' print(amrn$Group_2)
+#'
+#' # generate all possible groups each containing a new edge (the edge did not exist in the AMRN network)
+#' amrn <- generateGroups(amrn, "all", 0, 1, TRUE)
+#' amrn <- calSensitivity(amrn, set1, 3, "edge addition")
+#' print(amrn$Group_3)
+#'
+#' # employ a user-defined mutation
+#' amrn <- calSensitivity(amrn, set1, 1, "D:\\dyna\\mod\\MyMutation.java")
+#' print(amrn$Group_1)
+#'
+#' # search feedback/feed-forward loops
+#' amrn <- findFBLs(amrn, maxLength = 10)
+#' amrn <- findFFLs(amrn)
+#'
+#' # calculate node-/edge-based centralities
+#' amrn <- calCentrality(amrn)
+#'
+#' # export all results to CSV files
+#' output(amrn)
+#'
+#'
+#' ### Identify attractor cycles ###
+#' # generate a set of random Nested Canalyzing rules
+#' generateRule(amrn, 2)
+#'
+#' # generate a specific initial-state for the AMRN network
+#' state1 <- generateState(amrn, "1110011011")
+#'
+#' # find the original transition network (before making perturbations)
+#' transNet <- findAttractors(amrn, state1)
+#' print(transNet)
+#' output(transNet)
+#'
+#'
+#' ### Perturb and restore a node/edge group
+#' # generate a group of two nodes and two edges in the AMRN network
+#' amrn <- generateGroup(amrn, nodes = "AG, SUP", edges = "UFO (1) PI, LUG (-1) PI")
+#' print(amrn$Group_4)
+#'
+#' # perturb the group with overexpression mutation,
+#' #  in this case only two nodes (AG, SUP) of the group are affected by the mutation.
+#' perturb(amrn, 4, "overexpression")
+#'
+#' # continuously perturb the group with edge-removal mutation,
+#' #  in this case only two edges of the group are removed by the mutation.
+#' perturb(amrn, 4, "edge removal")
+#'
+#' # continuously perturb the group with "state flip" mutation,
+#' #  thus only two nodes (AG, SUP) of the group are affected by the mutation.
+#' perturb(amrn, 4, "state flip")
+#'
+#' # find the perturbed transition network
+#' perturbed_transNet <- findAttractors(amrn, state1)
+#' print(perturbed_transNet)
+#'
+#' # restore the group and initial-state from previous mutations
+#' restore(amrn, 4)
+#'
+#' # find again the original transition network, it should be same with the "transNet" network
+#' origin_transNet <- findAttractors(amrn, state1)
+#' print(origin_transNet)
+#'
+#'
+#'
+#' ##################################
+#' # Example 2: Batch-mode analyses #
+#' ##################################
+#'
+#' # generate all possible initial-states each containing 10 Boolean nodes
+#' set1 <- generateStates(10, "all")
+#'
+#' ### generate random networks based on BA model ###
+#' ba_rbns <- createRBNs("BA_RBN_", 2, "BA", 10, 17)
+#'
+#' # for each random network, generate all possible groups each containing a single node
+#' ba_rbns <- generateGroups(ba_rbns, "all", 1, 0)
+#'
+#' # for each random network, calculate the sensitivity values of all nodes against "knockout" mutation
+#' ba_rbns <- calSensitivity(ba_rbns, set1, 1, "knockout")
+#'
+#' # for each random network, calculate structural measures of all nodes/edges
+#' ba_rbns <- findFBLs(ba_rbns, maxLength = 10)
+#' ba_rbns <- findFFLs(ba_rbns)
+#' ba_rbns <- calCentrality(ba_rbns)
+#'
+#' print(ba_rbns)
+#' output(ba_rbns)
+#'
+#' ### generate random networks based on "Shuffle 2" model ###
+#' amrn_rbns <- createRBNs("AMRN_RBN_", 2, "shuffle 2", referedNetwork = amrn)
+#'
+#' # for each random network, generate all possible groups each containing a single edge
+#' amrn_rbns <- generateGroups(amrn_rbns, "all", 0, 1)
+#'
+#' # for each random network, calculate the sensitivity values of all edges against "remove" mutation
+#' amrn_rbns <- calSensitivity(amrn_rbns, set1, 1, "edge removal")
+#'
+#' # for each random network, calculate structural measures of all nodes/edges
+#' amrn_rbns <- findFBLs(amrn_rbns, maxLength = 10)
+#' amrn_rbns <- findFFLs(amrn_rbns)
+#' amrn_rbns <- calCentrality(amrn_rbns)
+#'
+#' print(amrn_rbns)
+#' output(amrn_rbns)
+#' @docType package
+#' @name RMut-package
+NULL
