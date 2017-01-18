@@ -3,9 +3,8 @@ title: "RMut: R package for Boolean sensitivity analysis about various types of 
 author: "Hung-Cuong Trinh, Yung-Keun Kwon"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: true
-    number_sections: true
+  md_document:
+    variant: markdown_github
 vignette: >
   %\VignetteIndexEntry{RMut\: R package for Boolean sensitivity analysis about various types of mutations}
   %\VignetteEngine{knitr::rmarkdown}
@@ -15,11 +14,11 @@ vignette: >
 
 # Setup guide
 
-To run and utilize all functions of \texttt{RMut} package, three following installations should be conducted in sequence:
+To run and utilize all functions of _RMut_ package, three following installations should be conducted in sequence:
 
 ## Java SE Development Kit
 
-Core algorithms of \texttt{RMut} package were written in Java, thus a Java SE Development Kit (JDK) is required to run the package.
+Core algorithms of _RMut_ package were written in Java, thus a Java SE Development Kit (JDK) is required to run the package.
 The JDK is available at:
 
 [http://www.oracle.com/technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
@@ -28,11 +27,11 @@ The version of JDK should be greater than or equal to 8.
 
 ## RMut package
 
-The \texttt{RMut} package should be properly installed into the R environment by typing the following command into the R console:
+The _RMut_ package should be properly installed into the R environment by typing the following command into the R console:
 
 _> install.packages("RMut")_
 
-Though all of core algorithms written in Java, the \texttt{rJava} package must be additionally installed in the R environment as well. 
+Though all of core algorithms written in Java, the _rJava_ package must be additionally installed in the R environment as well. 
 Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
 
 _> library(RMut)_
@@ -62,12 +61,12 @@ In order to utilize the full computing power of multi-core central processing un
     
     Figure 1 shows some important setup steps (SDK version v3.0). As shown in the figure, we could install the SDK from Internet connection directly and select _Complete_ setup type.
     
-    ![AMD APP SDK installation guide](amd_sdk.tif)
+    ![AMD APP SDK installation guide](https://github.com/csclab/RMut/blob/master/vignettes/amd_sdk.png)
     
     
-After installation, OpenCL information can be outputed via the function \texttt{showOpencl}. Then we can enable OpenCL computation on a CPU/GPU device via the function \texttt{setOpencl}:
+After installation, OpenCL information can be outputed via the function _showOpencl_. Then we can enable OpenCL computation on a CPU/GPU device via the function _setOpencl_:
 
-```{r, eval=FALSE, include=FALSE}
+```{r}
 library(RMut)
 showOpencl()
 setOpencl("gpu")
@@ -79,12 +78,12 @@ The above functions show installed OpenCL platforms with their corresponding CPU
 
 Networks can be loaded in two ways using RMut:
 
-## \texttt{loadNetwork} function
+## _loadNetwork_ function
 
-The \texttt{loadNetwork} function creates a network from a Tab-separated values text file. The file format contains three columns: 
+The _loadNetwork_ function creates a network from a Tab-separated values text file. The file format contains three columns: 
 
-- \texttt{source} and \texttt{target}: are gene/protein identifiers that are used to define nodes
-- \texttt{interaction type}: labels the edges connecting each pair of nodes
+- _source_ and _target_: are gene/protein identifiers that are used to define nodes
+- _interaction type_: labels the edges connecting each pair of nodes
 
 The function returned a network object which contains:
   
@@ -99,28 +98,28 @@ amrn <- loadNetwork("/data-raw/networks/AMRN.sif")
 print(amrn)
 ```
 
-  Finally, the loaded network object \texttt{amrn} has five components:
+  Finally, the loaded network object _amrn_ has five components:
   
-* \texttt{name}: a string variable represents the network identifier, _AMRN.sif_ in this case.
-* \texttt{nodes}: a data frame which initially contains one column for node identifiers. 
+* _name_: a string variable represents the network identifier, _AMRN.sif_ in this case.
+* _nodes_: a data frame which initially contains one column for node identifiers. 
 
     In this example network, there exists 10 nodes. Additional columns for other node-based attributes would be inserted later.
     
-* \texttt{edges}: a data frame which initially contains one column for edge identifiers. 
+* _edges_: a data frame which initially contains one column for edge identifiers. 
 
     In this example, there exists 22 edges. Additional columns for other edge-based attributes would be inserted later.
     
-* \texttt{network}: a data frame which initially contains one column for the network identifier (\texttt{AMRN.sif} in this case). 
+* _network_: a data frame which initially contains one column for the network identifier (_AMRN.sif_ in this case). 
 
     Additional columns for other network-based attributes would be inserted later, such as total number of feedback/feed-forward loops.
     
-* \texttt{transitionNetwork}: a Boolean variable denotes whether the network is a transition network or not, in this case the value is \texttt{FALSE}.
+* _transitionNetwork_: a Boolean variable denotes whether the network is a transition network or not, in this case the value is _FALSE_.
 
-    The \texttt{findAttractors} function returns a transition network object in which the \texttt{transitionNetwork} variable has a value \texttt{TRUE}. For all other cases, the variable has a value \texttt{FALSE}.
+    The _findAttractors_ function returns a transition network object in which the _transitionNetwork_ variable has a value _TRUE_. For all other cases, the variable has a value _FALSE_.
   
-## \texttt{data} function
+## _data_ function
 
-In addition, the package provides some example networks that could be simply loaded by \texttt{data} command. For ex.,
+In addition, the package provides some example networks that could be simply loaded by _data_ command. For ex.,
 
 ```{r}
 library(RMut)
@@ -129,16 +128,16 @@ data(amrn)
 
 The package supplied four example datasets from small-scale to large-scale real biological networks:
 
-* \texttt{amrn}
+* _amrn_
 
     The Arabidopsis morphogenesis regulatory network (AMRN) with 10 nodes and 22 links.
-* \texttt{cdrn}
+* _cdrn_
 
     The cell differentiation regulatory network (CDRN) with 9 nodes and 15 links.
-* \texttt{ccsn}
+* _ccsn_
 
     The canonical cell signaling network (CCSN) with 771 nodes and 1633 links.
-* \texttt{hsn}
+* _hsn_
 
     The large-scale human signaling network (HSN) with 1192 nodes and 3102 links.
 
@@ -148,11 +147,11 @@ The package utilizes a Boolean network model with synchronous updating scheme, a
 
 ## Sensitivity analyses
 
-Via \texttt{calSensitivity} function, this package computes nodal/edgetic sensitivity against many types of mutations in terms of Boolean dynamics. We classified ten well-known mutations into two types (refer to RMut paper for more details): 
+Via _calSensitivity_ function, this package computes nodal/edgetic sensitivity against many types of mutations in terms of Boolean dynamics. We classified ten well-known mutations into two types (refer to RMut paper for more details): 
 
-* \texttt{Node-based} mutations: state-flip, rule-flip, outcome-shuffle, knockout and overexpression
+* _Node-based_ mutations: state-flip, rule-flip, outcome-shuffle, knockout and overexpression
 
-* \texttt{Edgetic} mutations: edge-removal, edge-attenuation, edge-addition, edge-sign-switch, and edge-reverse
+* _Edgetic_ mutations: edge-removal, edge-attenuation, edge-addition, edge-sign-switch, and edge-reverse
 
 In addition, we note that multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values for each node/edge. Here, we show an example of some sensitivity types:
 
@@ -179,11 +178,11 @@ amrn <- calSensitivity(amrn, set1, 3, "edge addition")
 print(amrn$Group_3)
 ```
 
-As shown above, we firstly need to generate a set of initial-states by the function \texttt{generateStates}. Then by the function \texttt{generateGroups}, we continue to generate three sets of node/edge groups whose their sensitivity would be calculated. Finally, the sensitivity values are stored in the same data frame of node/edge groups. The data frame has one column for group identifiers (lists of nodes/edges), and some next columns containing their sensitivity values according to each set of random update-rules. For example, the mutation \texttt{rule-flip} used two sets of Nested Canalyzing rules, thus resulted in two corresponding sets of sensitivity values.
+As shown above, we firstly need to generate a set of initial-states by the function _generateStates_. Then by the function _generateGroups_, we continue to generate three sets of node/edge groups whose their sensitivity would be calculated. Finally, the sensitivity values are stored in the same data frame of node/edge groups. The data frame has one column for group identifiers (lists of nodes/edges), and some next columns containing their sensitivity values according to each set of random update-rules. For example, the mutation _rule-flip_ used two sets of Nested Canalyzing rules, thus resulted in two corresponding sets of sensitivity values.
 
 ## Attractor cycles identification
 
-Via \texttt{findAttractors} function, the landscape of the network state transitions along with attractor cycles would be identified. The returned transition network object has same structures with the normal network object resulted from \texttt{loadNetwork} function (see section "\texttt{loadNetwork} function"). An example is demonstrated as follows:
+Via _findAttractors_ function, the landscape of the network state transitions along with attractor cycles would be identified. The returned transition network object has same structures with the normal network object resulted from _loadNetwork_ function (see section "_loadNetwork_ function"). An example is demonstrated as follows:
 
 ```{r}
 library(RMut)
@@ -204,24 +203,24 @@ head(transNet$edges)
 output(transNet)
 ```
 
-As shown in the example, there exists some different points inside two nodes/edges's data frames of the \texttt{transNet} object compared to those of normal network objects:
+As shown in the example, there exists some different points inside two nodes/edges's data frames of the _transNet_ object compared to those of normal network objects:
 
-* \texttt{nodes}: 
+* _nodes_: 
 
-    The first column is also used for node identifiers, but in this case they represent _states_ of the analyzed network \texttt{amrn}. There exists 1024 nodes which are equivalent to 1024 network states of \texttt{amrn}. 
+    The first column is also used for node identifiers, but in this case they represent _states_ of the analyzed network _amrn_. There exists 1024 nodes which are equivalent to 1024 network states of _amrn_. 
     
     Additional columns are described as follows:
-    * \texttt{Attractor}: value _1_ denotes the network state belongs to an attractor, otherwises _0_.
-    * \texttt{NetworkState}: specifies the network state of the node.
+    * _Attractor_: value _1_ denotes the network state belongs to an attractor, otherwises _0_.
+    * _NetworkState_: specifies the network state of the node.
     
-* \texttt{edges}: 
+* _edges_: 
 
-    The first column is also used for edge identifiers, but in this case they represent _transition links_ of the analyzed network \texttt{amrn}. Each edge identifier has a string _(1)_ which denotes a directed link between two node identifiers. There exists 1024 edges which are equivalent to 1024 transition links of \texttt{amrn}. 
+    The first column is also used for edge identifiers, but in this case they represent _transition links_ of the analyzed network _amrn_. Each edge identifier has a string _(1)_ which denotes a directed link between two node identifiers. There exists 1024 edges which are equivalent to 1024 transition links of _amrn_. 
     
     Additional columns are described as follows:
-    * \texttt{Attractor}: value _1_ means that the transition link connects two network states of an attractor, otherwises _0_.
+    * _Attractor_: value _1_ means that the transition link connects two network states of an attractor, otherwises _0_.
     
-We take the node \texttt{N6} as an example. Its corresponding network state is _0000000101_ which represents Boolean values of all nodes in alphabetical order of the analyzed network \texttt{amrn}:
+We take the node _N6_ as an example. Its corresponding network state is _0000000101_ which represents Boolean values of all nodes in alphabetical order of the analyzed network _amrn_:
 
 ```{r, echo=FALSE}
 library(RMut)
@@ -243,35 +242,35 @@ for(i in 1:length(a)) {
 }
 ```
 
-Moreover, the \texttt{Attractor} value _1_ means that \texttt{N6} belongs to an attractor. And the data frame \texttt{edges} also shows a transition link \texttt{N6 (1) N6} with \texttt{Attractor} value 1. It means that \texttt{N6 $\rightarrow$ N6} is a fixed point attractor.
+Moreover, the _Attractor_ value _1_ means that _N6_ belongs to an attractor. And the data frame _edges_ also shows a transition link _N6 (1) N6_ with _Attractor_ value 1. It means that _N6 (1) N6_ is a fixed point attractor.
 
-Finally, the resulted transition network could be exported by the function \texttt{output} (see section "\texttt{Export results}"). Three CSV files were outputed for the transition network itself and nodes/edges attributes with the following names: \texttt{AMRN\_trans.sif}, \texttt{AMRN\_trans\_out\_nodes.csv} and \texttt{AMRN\_trans\_out\_edges.csv}, respectively. Then, those resulted files could be further loaded and analyzed by other softwares with powerful visualization functions like Cytoscape. For more information on Cytoscape, please refer to [http://www.cytoscape.org/](http://www.cytoscape.org/). In this tutorial, we used Cytoscape version 3.4.0.
+Finally, the resulted transition network could be exported by the function _output_ (see section "_Export results_"). Three CSV files were outputed for the transition network itself and nodes/edges attributes with the following names: _AMRN\_trans.sif_, _AMRN\_trans\_out\_nodes.csv_ and _AMRN\_trans\_out\_edges.csv_, respectively. Then, those resulted files could be further loaded and analyzed by other softwares with powerful visualization functions like Cytoscape. For more information on Cytoscape, please refer to [http://www.cytoscape.org/](http://www.cytoscape.org/). In this tutorial, we used Cytoscape version 3.4.0.
 
 The transition network is written as a SIF file (*.__sif__). The SIF file could be loaded to Cytoscape with the following menu:
 
-\texttt{File | Import | Network | File...} or using the shortcut keys \texttt{Ctrl/Cmd + L} (_Figure 2(a)_)
+_File | Import | Network | File..._ or using the shortcut keys _Ctrl/Cmd + L_ (_Figure 2(a)_)
 
-![Import network (a) and nodes/edges attributes (b) in Cytoscape software](transition_menu.tif)
+![Import network (a) and nodes/edges attributes (b) in Cytoscape software](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu.png)
 
-In next steps, we import two CSV files of nodes/edges attributes via \texttt{File | Import | Table | File...} menu (_Figure 2(b)_). For the nodes attributes file, we should select \texttt{String} data type for the column \texttt{NetworkState} (_Figure 3_). For the edges attributes file, we must select \texttt{Edge Table Columns} in the drop-down list beside the text \texttt{Import Data as:} (_Figure 4_).
+In next steps, we import two CSV files of nodes/edges attributes via _File | Import | Table | File..._ menu (_Figure 2(b)_). For the nodes attributes file, we should select _String_ data type for the column _NetworkState_ (_Figure 3_). For the edges attributes file, we must select _Edge Table Columns_ in the drop-down list beside the text _Import Data as:_ (_Figure 4_).
 
-![Nodes attributes importing dialog](transition_menu_attr_node.bmp)
+![Nodes attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_node.png)
 
-![Edges attributes importing dialog](transition_menu_attr_edge.bmp)
+![Edges attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_edge.png)
 
-After importing, we select \texttt{Style} panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in \texttt{Fill Color} property for the nodes that belong to an attractor (_Figure 5(a)_). Regards to edge style, select _Red_ color in \texttt{Stroke Color} property and change \texttt{Width} property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 5(b)_). 
+After importing, we select _Style_ panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in _Fill Color_ property for the nodes that belong to an attractor (_Figure 5(a)_). Regards to edge style, select _Red_ color in _Stroke Color_ property and change _Width_ property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 5(b)_). 
 
-![Nodes (a) and edges (b) style modification](style_node_edge.tif)
+![Nodes (a) and edges (b) style modification](https://github.com/csclab/RMut/blob/master/vignettes/style_node_edge.png)
 
 As a result, _Figure 6_ shows the modified transition network with clearer indication of attractor cycles.
 
-![The transition network of AMRN](amrn_attractors.tif)
+![The transition network of AMRN](https://github.com/csclab/RMut/blob/master/vignettes/amrn_attractors.png)
 
 # Structural characteristics computation
 
 ## Feedback/Feed-forward loops search
 
-Via \texttt{findFBLs} and \texttt{findFFLs}, the package supports methods of searching feedback/feed-forward loops (FBLs/FFLs), respectively, for all nodes/edges in a network. The following is an example R code for the search:
+Via _findFBLs_ and _findFFLs_, the package supports methods of searching feedback/feed-forward loops (FBLs/FFLs), respectively, for all nodes/edges in a network. The following is an example R code for the search:
 
 ```{r}
 library(RMut)
@@ -287,21 +286,21 @@ print(amrn$network)
 
 In the above output, some abbreviations in the two nodes/edges data frames are explained as follows (refer to the literature [3-4] in the References section for more details):
 
-* \texttt{NuFBL}: number of feedback loops involving the node/edge
+* _NuFBL_: number of feedback loops involving the node/edge
 
-* \texttt{NuPosFBL}, \texttt{NuNegFBL}: number of positive and negative feedback loops, respectively, involving the node/edge
+* _NuPosFBL_, _NuNegFBL_: number of positive and negative feedback loops, respectively, involving the node/edge
 
-* \texttt{NuFFL}: number of feed-forward loops involving the node/edge
+* _NuFFL_: number of feed-forward loops involving the node/edge
 
-* \texttt{NuFFL\_A}, \texttt{NuFFL\_B} and \texttt{NuFFL\_C}: number of feed-forward loops with role A, B and C, respectively, involving the node
+* _NuFFL\_A_, _NuFFL\_B_ and _NuFFL\_C_: number of feed-forward loops with role A, B and C, respectively, involving the node
 
-* \texttt{NuFFL\_AB}, \texttt{NuFFL\_BC} and \texttt{NuFFL\_AC}: number of feed-forward loops with role AB, BC and AC, respectively, involving the edge
+* _NuFFL\_AB_, _NuFFL\_BC_ and _NuFFL\_AC_: number of feed-forward loops with role AB, BC and AC, respectively, involving the edge
 
-In the \texttt{network} data frame, \texttt{NuFBL}, \texttt{NuPosFBL}, \texttt{NuNegFBL}, \texttt{NuFFL}, \texttt{NuCoFFL} and \texttt{NuInCoFFL} denote total numbers of FBLs, positive/negative FBLs, FFLs and coherent/incoherent FFLs in the network, respectively.
+In the _network_ data frame, _NuFBL_, _NuPosFBL_, _NuNegFBL_, _NuFFL_, _NuCoFFL_ and _NuInCoFFL_ denote total numbers of FBLs, positive/negative FBLs, FFLs and coherent/incoherent FFLs in the network, respectively.
 
 ## Centrality measures computation
 
-The \texttt{calCentrality} function calculates node-/edge-based centralities of a network such as Degree, In-/Out-Degree, Closeness, Betweenness, Stress, Eigenvector, Edge Degree and Edge Betweenness. An example is demonstrated as follows:
+The _calCentrality_ function calculates node-/edge-based centralities of a network such as Degree, In-/Out-Degree, Closeness, Betweenness, Stress, Eigenvector, Edge Degree and Edge Betweenness. An example is demonstrated as follows:
 
 ```{r}
 library(RMut)
@@ -315,7 +314,7 @@ print(amrn$edges)
 
 # Export results
 
-Via \texttt{output} function, all examined attributes of the networks and their nodes/edges will be exported to CSV files. The structure of these networks are also exported as Tab-separated values text files (.SIF extension). The following is an example R code for the output:
+Via _output_ function, all examined attributes of the networks and their nodes/edges will be exported to CSV files. The structure of these networks are also exported as Tab-separated values text files (.SIF extension). The following is an example R code for the output:
 
 ```{r}
 library(RMut)
@@ -341,7 +340,7 @@ output(amrn)
 
 # Batch-mode analysis
 
-The methods of dynamics and structure analysis described in the above sections (except the \texttt{findAttractors} function due to memory limitation) could also be applied to a set of networks, not limited to a single network. The RMut package provides the \texttt{createRBNs} function to generate a set of random networks using a generation model from among four models (refer to the literature in the References section for more details):
+The methods of dynamics and structure analysis described in the above sections (except the _findAttractors_ function due to memory limitation) could also be applied to a set of networks, not limited to a single network. The RMut package provides the _createRBNs_ function to generate a set of random networks using a generation model from among four models (refer to the literature in the References section for more details):
 
 * Barabasi-Albert (BA) model [1]
 
@@ -351,7 +350,7 @@ The methods of dynamics and structure analysis described in the above sections (
 
 Here, we show two examples of generating a set of random networks and analyzing dynamics-related sensitivity and structural characteristic of those networks:
 
-\texttt{Example 1}
+_Example 1_
 
 ```{r}
 # Example 1: generate random networks based on BA model #
@@ -379,7 +378,7 @@ print(ba_rbns)
 output(ba_rbns)
 ```
 
-\texttt{Example 2}
+_Example 2_
 
 ```{r}
 # Example 2: generate random networks based on "Shuffle 2" model #
