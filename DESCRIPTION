@@ -1,0 +1,15 @@
+Package: RMut
+Type: Package
+Title: RMut: a collective framework for mutations analysis in network dynamics
+Version: 0.1.0
+Author: Hung-Cuong Trinh, Yung-Keun Kwon
+Maintainer: Hung-Cuong Trinh <hungcuong1986@gmail.com>
+Description: Provides functions for intensely analyzing dynamics of biological networks and also random networks based on different kinds of mutations.
+License: What license is it under?
+LazyData: TRUE
+Depends:
+    rJava (>= 0.9-8)
+RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
