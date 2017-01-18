@@ -27,11 +27,13 @@ The version of JDK should be greater than or equal to 8.
 
 ## RMut package
 
-The _RMut_ package should be properly installed into the R environment by typing the following command into the R console:
+The _RMut_ package should be properly installed into the R environment by typing the following commands into the R console:
 
-_> install.packages("RMut")_
+_> install.packages("rJava")_
 
-Though all of core algorithms written in Java, the _rJava_ package must be additionally installed in the R environment as well. 
+_> devtools::install\_github("csclab/RMut", args="--no-multiarch")_
+
+Though all of core algorithms written in Java, the _rJava_ package must be firstly installed in the R environment as well. 
 Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
 
 _> library(RMut)_
