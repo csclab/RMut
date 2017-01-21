@@ -33,19 +33,28 @@
 #' calSensitivity(networks, stateSet, groupSet, mutateMethod = "rule flip",
 #'                mutationTime = 1000L, numRuleSets = 1)
 #' @examples
-#' data(amrn)
-#' # Generate all possible initial-states each containing 10 Boolean nodes
-#' set1 <- generateStates(10, "all")
-#' print(set1)
+#' # load an example network, the large-scale human signaling network
+#' data(hsn)
 #'
-#' # Generate all possible groups each containing a single node in the AMRN network
-#' amrn <- generateGroups(amrn, "all", 1, 0)
-#' amrn <- calSensitivity(amrn, set1, 1, "knockout")
-#' print(amrn$Group_1)
+#' # setup OpenCL for parallel computation
+#' setOpencl("gpu")
 #'
-#' # Employ a user-defined mutation
-#' amrn <- calSensitivity(amrn, set1, 1, "D:\\dyna\\mod\\MyMutation.java")
-#' print(amrn$Group_1)
+#' # generate 1000 random initial-states
+#' states <- generateStates(hsn, 1000)
+#' print(states)
+#'
+#' # generate all possible groups each containing a single node in the HSN network
+#' hsn <- generateGroups(hsn, "all", 1, 0)
+#'
+#' # calculate sensitivity values of all nodes against the knockout mutation
+#' hsn <- calSensitivity(hsn, states, 1, "knockout")
+#'
+#' # calculate sensitivity values against a user-defined mutation
+#' hsn <- calSensitivity(hsn, states, 1, "D:\\mod\\UserMutation.java")
+#'
+#' # view the calculated sensitivity values and export all results to files
+#' print(hsn$Group_1)
+#' output(hsn)
 
 calSensitivity <- function(networks, stateSet, groupSet, mutateMethod = "rule flip",
                            mutationTime = 1000L, numRuleSets = 1) {

@@ -199,7 +199,7 @@ isListNetworks <- function(networks) {
 #' @export
 #' @seealso \code{\link{calSensitivity}}, \code{\link{findAttractors}}
 #' @name generateStates
-#' @param numNodes Number of nodes in each initial-state
+#' @param numNodes Number of nodes in each initial-state or a network object
 #' @param numStates Number of random initial-states to be generated. If set to "all", all possible initial-states would be generated. For the large networks, we should use a specific value becaused of memory limitation.
 #' @return An identifier for accessing the generated initial-states. The identifier would be used as a parameter of the functions of calculating sensitivity and finding attractors.
 #' @usage
@@ -214,8 +214,15 @@ isListNetworks <- function(networks) {
 #' print(set2)
 
 generateStates <- function(numNodes, numStates) {
+  if(is.data.frame(numNodes)) {
+    numNodes <- loadInbuiltNetwork(numNodes)
+  }
+  if(isSingleNetwork(numNodes)) {
+    numNodes <- numNodes$name
+  }
+
   netData <- .jnew("mod.jmut.core.comp.NetData")
-  infos <- .jcall(netData, "Ljava/lang/String;", "generateInitialStates", as.integer(numNodes), as.character(numStates))
+  infos <- .jcall(netData, "Ljava/lang/String;", "generateInitialStates", as.character(numNodes), as.character(numStates))
 
   if(is.jnull(infos)) {
     printGeneralError()

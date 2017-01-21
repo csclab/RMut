@@ -7,7 +7,7 @@
 generateStates(numNodes, numStates)
 }
 \arguments{
-\item{numNodes}{Number of nodes in each initial-state}
+\item{numNodes}{Number of nodes in each initial-state or a network object}
 
 \item{numStates}{Number of random initial-states to be generated. If set to "all", all possible initial-states would be generated. For the large networks, we should use a specific value becaused of memory limitation.}
 }
