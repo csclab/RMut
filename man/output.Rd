@@ -27,7 +27,7 @@ set1 <- generateStates(10, "all")
 
 # Generate all possible groups each containing a single node in the AMRN network
 amrn <- generateGroups(amrn, "all", 1, 0)
-amrn <- calSensitivity(amrn, set1, 1, "knockout")
+amrn <- calSensitivity(amrn, set1, "knockout")
 
 output(amrn)
 }

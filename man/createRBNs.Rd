@@ -47,7 +47,7 @@ ba_rbns <- createRBNs("BA_RBN_", 2, "BA", 10, 17)
 ba_rbns <- generateGroups(ba_rbns, "all", 1, 0)
 
 # For each random network, calculate sensitivity values of all nodes against "knockout" mutation
-ba_rbns <- calSensitivity(ba_rbns, set1, 1, "knockout")
+ba_rbns <- calSensitivity(ba_rbns, set1, "knockout")
 
 # For each random network, calculate structural measures of all nodes/edges
 ba_rbns <- findFBLs(ba_rbns, maxLength = 10)

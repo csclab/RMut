@@ -24,14 +24,14 @@
 #' @name calSensitivity
 #' @param networks A network or a set of networks used for the calculation
 #' @param stateSet The identifier for accessing a set of initial-states
-#' @param groupSet The indexing number of node/edge groups for whose sensitivity values are calculated
 #' @param mutateMethod The method of mutation to be performed, default is "rule flip"
+#' @param groupSet The indexing number of node/edge groups for whose sensitivity values are calculated. Default is 0 which specify the latest generated groups.
 #' @param mutationTime The period of time in which the mutation occurs, default is 1000
 #' @param numRuleSets Number of random Nested Canalyzing Function sets, default is 1
 #' @return The updated network objects including sensitivity values of the examined node/edge groups.
 #' @usage
-#' calSensitivity(networks, stateSet, groupSet, mutateMethod = "rule flip",
-#'                mutationTime = 1000L, numRuleSets = 1)
+#' calSensitivity(networks, stateSet, mutateMethod = "rule flip",
+#'                groupSet = 0, mutationTime = 1000L, numRuleSets = 1)
 #' @examples
 #' # load an example network, the large-scale human signaling network
 #' data(hsn)
@@ -47,16 +47,16 @@
 #' hsn <- generateGroups(hsn, "all", 1, 0)
 #'
 #' # calculate sensitivity values of all nodes against the knockout mutation
-#' hsn <- calSensitivity(hsn, states, 1, "knockout")
+#' hsn <- calSensitivity(hsn, states, "knockout")
 #'
 #' # calculate sensitivity values against a user-defined mutation
-#' hsn <- calSensitivity(hsn, states, 1, "D:\\mod\\UserMutation.java")
+#' hsn <- calSensitivity(hsn, states, "D:\\mod\\UserMutation.java")
 #'
 #' # view the calculated sensitivity values and export all results to files
-#' print(hsn$Group_1)
+#' printSensitivity(hsn)
 #' output(hsn)
 
-calSensitivity <- function(networks, stateSet, groupSet, mutateMethod = "rule flip",
+calSensitivity <- function(networks, stateSet, mutateMethod = "rule flip", groupSet = 0,
                            mutationTime = 1000L, numRuleSets = 1) {
   if(is.data.frame(networks)) {
     networks <- loadInbuiltNetwork(networks)
@@ -82,6 +82,14 @@ calSensitivity1 <- function(network, stateSet, groupSet, mutateMethod = "rule fl
                             mutationTime = 1000L, numRules = 1) {
   if(is.data.frame(network)) {
     network <- loadInbuiltNetwork(network)
+  }
+
+  if(groupSet == 0) {
+    groupSet <- length(network) - 5
+    if(groupSet <= 0)   {
+      print("Please generate node/edge groups for the sensitivity calculation!")
+      return (network)
+    }
   }
 
   calc <- .jnew("mod.jmut.core.Calc")
@@ -446,7 +454,7 @@ calCentrality1 <- function(network) {
 #' ba_rbns <- generateGroups(ba_rbns, "all", 1, 0)
 #'
 #' # For each random network, calculate sensitivity values of all nodes against "knockout" mutation
-#' ba_rbns <- calSensitivity(ba_rbns, set1, 1, "knockout")
+#' ba_rbns <- calSensitivity(ba_rbns, set1, "knockout")
 #'
 #' # For each random network, calculate structural measures of all nodes/edges
 #' ba_rbns <- findFBLs(ba_rbns, maxLength = 10)

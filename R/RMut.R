@@ -74,21 +74,21 @@
 #'
 #' # generate all possible groups each containing a single node in the AMRN network
 #' amrn <- generateGroups(amrn, "all", 1, 0)
-#' amrn <- calSensitivity(amrn, set1, 1, "knockout")
+#' amrn <- calSensitivity(amrn, set1, "knockout")
 #' print(amrn$Group_1)
 #'
 #' # generate all possible groups each containing a single edge in the AMRN network
 #' amrn <- generateGroups(amrn, "all", 0, 1)
-#' amrn <- calSensitivity(amrn, set1, 2, "edge removal")
+#' amrn <- calSensitivity(amrn, set1, "edge removal")
 #' print(amrn$Group_2)
 #'
 #' # generate all possible groups each containing a new edge (the edge did not exist in the AMRN network)
 #' amrn <- generateGroups(amrn, "all", 0, 1, TRUE)
-#' amrn <- calSensitivity(amrn, set1, 3, "edge addition")
+#' amrn <- calSensitivity(amrn, set1, "edge addition")
 #' print(amrn$Group_3)
 #'
 #' # employ a user-defined mutation
-#' amrn <- calSensitivity(amrn, set1, 1, "D:\\dyna\\mod\\MyMutation.java")
+#' amrn <- calSensitivity(amrn, set1, "D:\\dyna\\mod\\MyMutation.java", 1)
 #' print(amrn$Group_1)
 #'
 #' # search feedback/feed-forward loops
@@ -159,7 +159,7 @@
 #' ba_rbns <- generateGroups(ba_rbns, "all", 1, 0)
 #'
 #' # for each random network, calculate the sensitivity values of all nodes against "knockout" mutation
-#' ba_rbns <- calSensitivity(ba_rbns, set1, 1, "knockout")
+#' ba_rbns <- calSensitivity(ba_rbns, set1, "knockout")
 #'
 #' # for each random network, calculate structural measures of all nodes/edges
 #' ba_rbns <- findFBLs(ba_rbns, maxLength = 10)
@@ -176,7 +176,7 @@
 #' amrn_rbns <- generateGroups(amrn_rbns, "all", 0, 1)
 #'
 #' # for each random network, calculate the sensitivity values of all edges against "remove" mutation
-#' amrn_rbns <- calSensitivity(amrn_rbns, set1, 1, "edge removal")
+#' amrn_rbns <- calSensitivity(amrn_rbns, set1, "edge removal")
 #'
 #' # for each random network, calculate structural measures of all nodes/edges
 #' amrn_rbns <- findFBLs(amrn_rbns, maxLength = 10)

@@ -164,6 +164,49 @@ printError <- function(errCode) {
 
 }
 
+#' Print out the sensitivity values of node/edge groups
+#'
+#' Print out the sensitivity values of node/edge groups in a network
+#'
+#' This function prints out the sensitivity values of node/edge groups in a specific network.
+#' And the parameter \code{groupSet}
+#' has same meaning as in the \code{\link{calSensitivity}} function.
+#'
+#' @export
+#' @seealso \code{\link{calSensitivity}}, \code{\link{generateStates}}, \code{\link{generateGroups}}, \code{\link{generateGroup}}, \code{\link{findFBLs}}, \code{\link{findFFLs}}, \code{\link{calCentrality}}, \code{\link{findAttractors}}
+#' @name printSensitivity
+#' @param network A network used for the outputting
+#' @param groupSet The indexing number of node/edge groups for whose sensitivity values are calculated. Default is 0 which specify the latest generated groups.
+#' @return None
+#' @usage
+#' printSensitivity(network, groupSet = 0)
+#' @examples
+#' data(amrn)
+#'
+#' # generate 1000 random initial-states
+#' states <- generateStates(amrn, 1000)
+#' print(states)
+#'
+#' # generate all possible groups each containing a single node in the HSN network
+#' amrn <- generateGroups(amrn, "all", 1, 0)
+#'
+#' # calculate sensitivity values of all nodes against the knockout mutation
+#' amrn <- calSensitivity(amrn, states, "knockout")
+#'
+#' # view the calculated sensitivity values and export all results to files
+#' printSensitivity(amrn)
+printSensitivity <- function(network, groupSet = 0) {
+  if(groupSet == 0) {
+    groupSet <- length(network) - 5
+    if(groupSet <= 0)   {
+      print("Please generate node/edge groups for the sensitivity calculation!")
+      return ()
+    }
+  }
+
+  print(network[[5 + groupSet]])
+}
+
 # Determine if the single network or not
 isSingleNetwork <- function(networks) {
   cnames <- class(networks)

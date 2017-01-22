@@ -4,17 +4,17 @@
 \alias{calSensitivity}
 \title{Compute sensitivity values of node/edge groups}
 \usage{
-calSensitivity(networks, stateSet, groupSet, mutateMethod = "rule flip",
-               mutationTime = 1000L, numRuleSets = 1)
+calSensitivity(networks, stateSet, mutateMethod = "rule flip",
+               groupSet = 0, mutationTime = 1000L, numRuleSets = 1)
 }
 \arguments{
 \item{networks}{A network or a set of networks used for the calculation}
 
 \item{stateSet}{The identifier for accessing a set of initial-states}
 
-\item{groupSet}{The indexing number of node/edge groups for whose sensitivity values are calculated}
-
 \item{mutateMethod}{The method of mutation to be performed, default is "rule flip"}
+
+\item{groupSet}{The indexing number of node/edge groups for whose sensitivity values are calculated. Default is 0 which specify the latest generated groups.}
 
 \item{mutationTime}{The period of time in which the mutation occurs, default is 1000}
 
@@ -58,13 +58,13 @@ print(states)
 hsn <- generateGroups(hsn, "all", 1, 0)
 
 # calculate sensitivity values of all nodes against the knockout mutation
-hsn <- calSensitivity(hsn, states, 1, "knockout")
+hsn <- calSensitivity(hsn, states, "knockout")
 
 # calculate sensitivity values against a user-defined mutation
-hsn <- calSensitivity(hsn, states, 1, "D:\\\\mod\\\\UserMutation.java")
+hsn <- calSensitivity(hsn, states, "D:\\\\mod\\\\UserMutation.java")
 
 # view the calculated sensitivity values and export all results to files
-print(hsn$Group_1)
+printSensitivity(hsn)
 output(hsn)
 }
 \seealso{
