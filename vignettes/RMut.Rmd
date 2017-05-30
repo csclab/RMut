@@ -98,9 +98,9 @@ The function returned a network object which contains:
 
   Here is an example:
   
-```{r, eval=FALSE, include=FALSE}
+```{r}
 library(RMut)
-amrn <- loadNetwork("/data-raw/networks/AMRN.sif")
+amrn <- loadNetwork("networks/AMRN.sif")
 print(amrn)
 ```
 

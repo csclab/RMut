@@ -1,0 +1,1633 @@
+PP2A	1	b-Arr
+PP2A	1	beta-Arr1
+PP2A	1	BAD
+PP2A	-1	Axin
+E3-HIF1a	1	HIF-1a-Ub
+Abl	1	Rad9
+Abl	-1	Crk
+Caveolin-1	1	Fyn
+Survivin	1	xIAP
+Survivin	1	Mitotic sp
+MEF2	1	c-jun
+Wnt	1	Fz
+MEK 1	1	ERK
+c-Raf1	1	MKK 1
+c-Raf1	1	MKK 2
+Smad3	1	Smad4
+SAP1	1	c-Fos
+IRAK4	1	IRAK4
+IRAK4	1	IRAK1
+IRAK4	1	PELI1
+IRAK4	1	IRAK2
+IRAK4	1	TRAF6
+IRAK4	1	PELI2
+IRAK4	1	PELI3
+ICAT	-1	b-catenin
+O2	1	PHD2
+OS-9	1	PHD2
+OS-9	-1	HIF-1alpha
+HPIV2 V	-1	STAT2
+GRK2	1	Smo
+GRK2	-1	AT1R
+GRK2	-1	Gaq
+LPAR	1	G13
+Graf	-1	Rho
+ERK	1	MLCK
+ERK	1	Calpain
+PDK1	1	PKCz
+PDK1	1	AKT/PKB
+PDK1	1	p70S6K
+PDK1	1	Akt
+PDK1	1	PKC
+PDK1	1	p90rsk
+4EBP-1	-1	eIF4E
+DcR3	-1	memFasL
+Mdm2	1	b-Arr
+p85beta	1	p110 Ia
+MKK6	1	p38delta
+MKK6	1	p38gamma
+MKK6	1	p38 MAPK
+MKK6	1	JNK
+MKK6	1	p38
+p85 PI3K	1	PI3K Ia
+A20	-1	IKK
+A20	-1	TRAF2
+A20	-1	TRAF6
+CD19	1	Vav
+CD19	1	p85 PI3K
+apopto	1	Casp-3
+DAG	1	PKC
+E4orf6	-1	BNIP3
+E4orf6	-1	Bik
+CryAA	-1	Bax
+CryAA	-1	Bcl-xS
+c-Fos	1	AP-1
+Ser Kinase	1	STAT
+APIP	-1	Apaf-1
+JNK 1	1	RNPK
+JNK 1	1	Shc
+JNK 1	1	p53
+JNK 1	1	ATF 2
+JNK 1	1	c-Jun
+JNK 1	1	NFAT 4
+JNK 1	-1	bcl-2
+R-Smad	1	RSmad/S4
+Smad4	1	R-Smad
+alpha2-AR	1	Inactive G
+Gi	1	Gai
+Gi	1	Gbg
+ZAP-70	1	SLP-76
+FGF	1	HSPG
+FGF	1	FGFR
+ERalpha	1	Genes
+IBP	1	Syk
+MKK 2	1	ERK 1
+MKK 2	1	ERK 2
+Svn-HBXIP	-1	Caspase-9
+Elk1	1	c-Fos
+Elk1	1	genes
+RIP140	-1	ERalpha
+Bak	1	Bak
+Bak	1	Cyt c
+Bak	1	cyt-c
+Bak	1	SMAC
+STAT1-P	1	genes
+PAR	1	G 12
+MKK5	1	ERK 5
+CTLA-4	-1	CD3
+PS1	1	Notch
+PS1	-1	b-catenin
+p38	1	AP-1
+p38	1	DNA-BP
+gamma PLC	1	Integrins
+aSMase	1	cyt-c
+EGF	1	EGFR
+cdc42	1	MEKK 1
+NAIP	-1	Caspase-9
+NAIP	-1	Caspase-7
+NAIP	-1	Caspase-3
+STAT3	1	STAT3-P
+Bcl-2	-1	Bax
+Bcl-2	-1	Bak
+Bcl-2	-1	Cyt c
+Bcl-2	-1	BAD
+Bcl-2	-1	Bid
+Bcl-2	-1	Bim
+Bcl-2	-1	Noxa
+Bcl-2	-1	Bik
+Bcl-2	-1	ITM2Bs
+Axin	-1	b-catenin
+LZK	1	MKK7
+LZK	1	MKK 4
+MYD88short	-1	MYD88
+MAPK 1,2	-1	IRS
+MAPK 1,2	1	RSK
+MAPK 1,2	1	elk-1
+MAPK 1,2	1	c-fos
+MAPK 1,2	1	CREB
+MAPK 1,2	1	Epi genes
+RSK	1	c-fos
+Syk	1	LAT
+Syk	1	SLP-76
+Syk	1	Vav
+Syk	1	Shc
+Syk	1	SHC
+Syk	1	SLP-65
+Syk	1	PLCg-2
+IRAK2	1	TRAF6
+Bcl-xL	-1	Bcl-G
+Bcl-xL	-1	Cyt c
+Bcl-xL	-1	BAD
+Bcl-xL	-1	Bid
+Bcl-xL	-1	Bim
+Bcl-xL	-1	Noxa
+Bcl-xL	-1	Bik
+Bcl-xL	-1	Bak
+Bcl-xL	-1	Bax
+Bcl-xL	-1	p53
+CypA	1	AIF
+Ins	1	IR
+CaMKII	1	TF
+CaMKII	1	CBP
+IRAK-M	-1	IRAK-4
+IRAK-M	-1	IRAK-1
+LRP2	1	Shh
+Tyk2	1	STAT2
+Tyk2	1	STAT1
+RasGAP1	-1	Ras
+Calpain	1	Bax
+Calpain	1	Bid
+Calpain	-1	Caspase-9
+Tpl-2	1	MKK 1
+Tpl-2	1	MKK 2
+TBK-1	1	IRF3
+ERK 1	1	MSK2
+ERK 1	1	cPLA2
+ERK 1	1	MNK1
+ERK 1	1	MNK2
+ERK 1	1	MSK1
+ERK 1	1	p90-Rsk
+ERK 1	1	Elk1
+NCoR	-1	CSL
+NCoR	-1	ERalpha
+NCoR	-1	PR-A
+TTP	-1	IL6
+TTP	-1	IL8
+TTP	-1	IkBa
+IkB-NFkB	1	NFkB-p50
+IkB-NFkB	1	NFkB-p65
+Casp-3	-1	PARP-1
+Casp-3	1	C8-p55/p53
+Casp-3	1	MEKK-1
+Casp-3	-1	ICAD
+Casp-3	1	ROCKI
+MKK 4	1	JNK 3
+MKK 4	1	JNK 1
+MKK 4	1	JNK 2
+MKK 4	1	p38beta
+MKK 4	1	p38alpha
+MKK 4	1	JNK
+SOCS	-1	IR
+SOCS	-1	IRS
+SOCS	-1	JAK1
+SOCS	-1	JAK
+SOCS	-1	Jak1
+SOCS	-1	JAK2
+p70S6K	1	S6
+p70S6K	-1	BAD
+DAP10	1	SLP-76
+DAP10	1	PLCgamma
+DAP10	1	Vav
+DAP10	1	PI3K Ia
+SHP-1	-1	SLP-76
+SHP-1	-1	Vav
+NO	-1	PHD2
+PP2C	1	BAD
+PP2C	-1	Axin
+Cdc2	1	BAD
+Brg-1	1	b-catenin
+GAB1	-1	MEKK 3
+GAB1	1	p85 PI3K
+sFasL	-1	Fas
+Puma	-1	Mcl-1
+Puma	-1	Bcl-w
+Puma	-1	Bcl-xL
+Puma	1	Bax
+Puma	-1	Bcl-2
+Puma	-1	Bfl-1
+Ras	1	c-Raf1
+Ras	1	B-Raf
+Ras	1	A-Raf
+Ras	1	Raf-1
+Ras	1	p110 gamma
+Ras	1	p110 Ia
+JNKK	1	JNK
+JNKK	1	JNK 1
+M2-R	1	Inactive G
+bAR	1	Inactive G
+DLC2	-1	Bmf
+Smad6	-1	ALK3
+Smad6	-1	ALK2
+Smad6	-1	ALK6
+Smad6	-1	ALK1
+Smad6	-1	Smad1
+RGS	-1	Gaq
+RGS	-1	Galphai/o
+RGS	-1	Gai
+RGS	-1	Gas
+G 12	1	Gbg
+G 12	1	G alpha 12
+SMAD4	1	LEF-1
+TPL2	1	MKK1
+proHB-EGF	1	EGFR
+ALK4	1	Smad2
+ALK4	1	Smad3
+HIF-1beta	1	HIF-1a/b
+FasD6	-1	memFasL
+IRF3	1	IFN genes
+STAT3-P	1	genes
+EGR2	1	BAD
+EGR2	1	BNIP3L
+EGR2	1	BNIP3
+APC	-1	b-catenin
+JNK1/2/3	1	JNK1/2/3
+JNK1/2/3	1	AP-1
+JNK1/2/3	1	ATF2
+JNK1/2/3	1	c-Jun
+JNK1/2/3	1	Elk1
+JNK1/2/3	1	SAP1
+p90rsk	-1	BAD
+GADD45	1	MEKK 4
+MAPK (ERK)	1	Actin
+MAPK (ERK)	1	CBP
+RSK2	-1	BAD
+SHARP	1	SMRT
+SHARP	1	NCoR
+SHARP	-1	CSL
+SHARP	-1	SRA
+p90-Rsk	1	eEF2K
+p90-Rsk	-1	BAD
+ARTS	-1	xIAP
+Cbl	-1	EGFR
+Cbl	-1	FGFR
+Cbl	-1	FRS2
+Cbl	-1	CD3
+Cbl	-1	ZAP-70
+Hsp70	-1	AIF
+Hsp70	-1	Apaf-1
+IRS-2	1	p85alpha
+IRS-2	1	p85beta
+Fas	1	SHP-1
+Fas	1	EGFR
+Fas	1	IL1a
+Fas	1	p100
+Fas	1	Daxx
+Fas	1	RIP
+Fas	1	FADD
+Gluc-R	1	Inactive G
+PhK	1	Gly Phosph
+PAR1	1	Dsh
+Crk	1	Abl
+Crk	1	DOCK180
+Crk	1	C3G
+MAPKAP-K3	1	SRF
+MAPKAP-K3	1	HSP 27
+AC	1	cAMP
+ISGF3	1	ISGs
+SODD	-1	TNF-R1
+MKP5	-1	JNK 3
+MKP5	-1	JNK 1
+MKP5	-1	JNK 2
+MKP5	-1	p38beta
+MKP5	-1	p38alpha
+MKP5	-1	p38delta
+MKP5	-1	p38gamma
+IFT172	1	Smo
+IFT172	1	Gli3
+PAC1	-1	ERK 1
+PAC1	-1	ERK 2
+A-Actinin	1	actin
+BNIP3	-1	Bcl-xL
+BNIP3	-1	Bcl-2
+BNIP3	-1	E1B 19-kDa
+BNIP3	-1	EBV-BHRF1
+HDAC	1	Gro
+HDAC	1	LEF-1
+HDAC	-1	RSmad/S4
+CK-19	-1	Caspase-9
+TRAF6	1	TAB1
+TRAF6	1	TAB2
+TRAF6	1	IRAK1
+TRAF6	1	TRAF6
+TRAF6	-1	HSP27
+TRAF6	1	TAB3
+TRAF6	1	MEKK3
+TRAF6	1	TAK1
+ATF2	1	MCP-1
+ATF2	1	AP-1
+PP1-alpha	1	BAD
+VASP	1	actin
+AND-34	1	Rap1
+AND-34	1	R-Ras
+AND-34	1	Ral
+HBX	-1	E3-HIF1a
+HBX	1	HIF-1a/b
+ATP	1	P2RX7
+BAR	-1	C8-p10+p18
+BAR	-1	C8-p55/p53
+p110 gamma	1	PI3,4,5P3
+p68	1	ERalpha
+p68	1	SRC-1
+rhoGEF	-1	Ga13
+rhoGEF	1	RhoA
+PIAS3	-1	STAT3-P
+IBR	1	SHP-1
+Bok	1	Cyt c
+MKP2	-1	ERK 1
+MKP2	-1	ERK 2
+MKP2	-1	JNK 3
+MKP2	-1	JNK 1
+MKP2	-1	JNK 2
+Caspase 6	1	Caspase-3
+Caspase 6	-1	Lamins
+JNK	1	c-Jun
+JNK	1	memFasL
+JNK	1	AP-1
+PI3,4,5P3	1	PKCz
+PI3,4,5P3	1	PDK1
+PI3,4,5P3	1	AKT/PKB
+PI3,4,5P3	1	Akt
+PI3,4,5P3	1	GAB1
+PI3,4,5P3	1	PLCgamma
+PI3,4,5P3	1	JNK
+PI3,4,5P3	1	GRP1
+PI3,4,5P3	1	PI3,4P2
+PI3,4,5P3	1	GAB
+PI3,4,5P3	1	DAPP1
+PI3,4,5P3	1	TEC/BTK
+PI3,4,5P3	1	Btk
+PI3,4,5P3	1	PLCg-2
+MYD88	1	IRAK4
+MYD88	1	IRAK1
+MYD88	1	TRAF6
+CSL	-1	genes
+MTA1	1	HDAC1
+MTA1	1	HIF-1alpha
+TR3	-1	Bcl-2
+HSP90	-1	Apaf-1
+HSP90	1	Survivin
+HSP90	1	HIF-1alpha
+cAR	1	GRK
+cAR	1	Ca++
+cAR	1	STAT
+cAR	1	ERK
+G13	1	Gbg
+G13	1	Ga13
+PGC-1	1	ERalpha
+PGC-1	1	SRC-1
+Rho	1	ROCK
+Rho	1	Actin
+IRAK-4	1	TRAF6
+ARD1	-1	HIF-1alpha
+CL	1	Bid
+PTMA	-1	PHAP1
+RhoA	1	Actin
+RhoA	1	Paxillin
+RhoA	1	FAK
+RhoA	1	JNK 1
+RhoA	1	PKC
+RhoA	1	ROCK
+RhoA	1	SRF
+RhoA	-1	IkBa
+RhoA	1	PLD
+FGFR	1	STAT
+FGFR	1	FRS2
+FGFR	1	Shc
+FGFR	1	PLCgamma
+IL1R Compl	1	IRAK1
+AR	1	Gq
+AR	1	Gi
+AR	1	Gs
+TNF-R1	1	JNKs
+TNF-R1	1	TRADD
+PTEN	-1	PI3,4,5P3
+PTEN	-1	PI3,4P2
+PTEN	-1	PI3K Ia
+ASK 1	1	MKK7
+ASK 1	1	MKK6
+ASK 1	1	MKK 4
+ASK 1	1	MKK3
+ASK 1	1	MKK4
+ASK 1	1	JNK
+ASK 1	1	JNKK
+CryAB	-1	Bax
+CryAB	-1	Bcl-xS
+CryAB	1	Caspase-3
+TSAP-6	1	BNIP3L
+IL-13	1	IL-13Ra1
+IL-13	1	IL-13Ra2
+Ptch1	-1	Smo
+Pin1	1	b-catenin
+E3 ligase	1	E3-HIF1a
+CREB	1	IRS-2
+GrB	1	Bid
+PHD2	-1	HIF-1alpha
+DLK	1	MKK7
+DLK	1	MKK 4
+TEC/BTK	1	Vav
+Ku70	-1	Bax
+Spry	-1	Grb2
+Rad9	-1	Bcl-xL
+Rad9	-1	Bcl-2
+SHP-2	1	Grb2
+SHP-2	1	MAPK
+ILPIP	1	xIAP
+C8-p43/41	1	C8-p10+p18
+DOCK180	1	Rac
+RGS-PX1	-1	Gas
+Cas	1	Crk
+Cas	1	AND-34
+Cas	1	C3G
+17-AAG	-1	HSP90
+CD47	1	BNIP3
+CD47	1	Fas
+PAK1	1	MEK
+PAK1	-1	BAD
+Caspase1	1	pro-IL1b
+Bid	1	Bax
+Bid	1	Bak
+Bid	-1	VDAC
+Bid	1	tBid
+PHAP1	1	Caspase-3
+CRAC	1	Ca++
+NF-kB	1	Genes
+NF-kB	1	NF-kB
+NF-kB	1	memFasL
+NF-kB	1	genes
+AChE	1	Apaf-1
+AChE	1	Cyt c
+FIH-1	-1	HIF-1alpha
+sIL1R2	-1	IL1b
+sIL1R2	-1	IL1a
+sIL1R2	-1	IL1RAP
+sIL1R2	-1	IL1R Compl
+PELI1	1	IRAK1
+PKCz	1	p70S6K
+PKCz	-1	FIH-1
+PKCz	-1	FADD
+Rac	1	GCK
+Rac	1	MEKK 4
+Rac	1	MEKK 1
+Rac	1	MLK 3
+Rac	1	MLK2
+Rac	1	MLK1
+Rac	1	PAK1
+Rac	1	Actin
+Rac	1	MLK-3
+Rac	1	PAK
+Rac	1	Raf-1
+Rac	1	STAT3
+VDAC2	-1	Bak
+Casper	-1	Caspase-8
+cyt-c	1	apopto
+FLASH	1	C8-p55/p53
+STAT	1	p21
+STAT	1	STAT dimer
+MEKK 3	1	MKK5
+MEKK 3	1	MKK7
+MEKK 3	1	MKK 4
+IL1RA	-1	IL1R1
+IL1RA	-1	IL1R Compl
+CIR	-1	CSL
+AT1R	1	Inactive G
+AT1R	1	JAK
+RPTK	1	SHC
+RPTK	1	Grb-2
+RPTK	1	IRS
+RPTK	1	GAB
+RPTK	1	p85
+RPTK	1	Grb2
+RPTK	1	gamma PLC
+Smad2	1	Smad4
+p38alpha	1	MAPKAP-K2
+p38alpha	1	MAPKAP-K3
+p38alpha	1	MNK1
+p38alpha	1	MNK2
+p38alpha	1	MSK2
+p38alpha	1	MSK1
+p38alpha	1	MEF2
+p38alpha	1	CHOP10
+p38alpha	1	Elk1
+p38alpha	-1	Ca++
+p38alpha	1	Epi genes
+Trx	-1	E3-HIF1a
+Trx	1	HIF-1a/b
+ALK1	1	Smad1
+ALK1	1	Smad8
+ALK1	1	Smad5
+Dkk	-1	LRP
+DEFCAP	1	Apaf-1
+DEFCAP	1	Caspase-9
+RhoGAP-B	-1	Rho
+PDE6g	-1	PDE6
+BMPRII	1	ALK3
+BMPRII	1	ALK2
+BMPRII	1	ALK6
+CARM1	1	CBP
+Csk	-1	Lyn
+Csk	-1	Lck
+SMAC	-1	xIAP
+SMAC	1	Survivin
+SMAC	-1	Livin
+SMAC	-1	c-IAP1/2
+Caspase-8	1	Bid
+Caspase-8	-1	RIP
+Caspase-8	1	Caspase-3
+NMT	1	Bid
+FOXO3a	1	Bim
+AKT/PKB	-1	IRS
+AKT/PKB	1	PDE3B
+AKT/PKB	-1	tsc-1/2
+AKT/PKB	-1	BAD
+AKT/PKB	-1	GSK-3
+AKT/PKB	-1	FKHR
+AKT/PKB	-1	FKHR/DAF16
+AKT/PKB	1	IKK
+IKK	1	NFkB-p105
+IKK	1	IkB-NFkB
+IKK	1	IkBa
+IKK	-1	IkBa
+beta-arr1	1	Dsh
+JAK	1	STAT
+JAK	1	STAT3
+SSAT2	1	VHL
+SSAT2	1	EloC
+SSAT2	1	E3-HIF1a
+DAX-1	-1	ERalpha
+JNK 3	1	RNPK
+JNK 3	1	Shc
+JNK 3	1	p53
+JNK 3	1	ATF 2
+JNK 3	1	c-Jun
+JNK 3	1	NFAT 4
+IFN a/b	1	IFNAR
+Cyt c	1	Apaf-1
+iCAD	-1	CAD
+N-WASP	1	Actin
+Lgs	1	b-catenin
+HDAC1	1	SMRT
+HDAC1	1	SHARP
+HDAC1	1	HIF-1alpha
+ROCK	-1	IRS
+ROCK	1	MLCK
+ROCK	-1	MLCP
+ROCK	1	NHE
+PIP2	1	IP3
+PIP2	1	DAG
+PI3K	1	AKT/PKB
+PI3K	1	p38alpha
+Gas1	1	Shh
+GCK	1	MEKK 1
+IL-4	1	IL-4Ra
+Jak1	1	STAT2
+Jak1	1	STAT1
+Jak1	1	SerKinase
+MLK 3	1	MKK7
+MLK 3	1	MKK 4
+Shh	-1	Ptch1
+MAPKKK	1	JNKK
+TRIF	1	IKKe
+TRIF	1	TBK-1
+Fyn	1	SHC
+Bax	1	Bax
+Bax	1	Bak
+Bax	1	Cyt c
+Bax	1	cyt-c
+Bax	1	SMAC
+IRAK1	1	IRAK1
+IRAK1	1	PELI1
+IRAK1	1	TRAF6
+IRAK1	1	PELI2
+IRAK1	1	PELI3
+IRAK1	1	TAK1-TAB
+IRAK1	1	TAB2
+IRAK1	1	IKK
+IRAK1	1	TAK1
+PTP	-1	JAK
+PTP	-1	STAT dimer
+PTP	-1	Tyk2
+PTP	-1	Jak1
+PTP	-1	STAT3-P
+PTP	-1	STAT1-P
+Rap1-GAP	-1	Rap1
+holoG	1	Gat2
+holoG	1	Gao
+holoG	1	Gbg
+Dally	1	Wnt
+Dally	1	Fz
+Hsp70/DJ-2	-1	Bax
+Nck	1	N-WASP
+NFkB-p105	1	TPL2
+TCF	-1	Genes
+MAPKAP-K2	1	SRF
+MAPKAP-K2	1	HSP 27
+PDE6	1	PDE6a
+alpha1-AR	1	Inactive G
+TAB2	1	TAK 1
+TAB2	1	TAK1
+MLK1	1	MKK7
+MLK1	1	MKK 4
+GRIP-1	1	ERalpha
+PTP1B	-1	IR
+BRG-1	1	ERalpha
+A-Raf	1	MKK 1
+p190RhoGAP	-1	Rho
+Nrdp1	-1	Apollon
+Receptor	1	JAK
+HIF-1alpha	-1	Bid
+HIF-1alpha	1	BNIP3L
+HIF-1alpha	1	Noxa
+HIF-1alpha	1	BNIP3
+HIF-1alpha	1	E3-HIF1a
+HIF-1alpha	1	HIF-1a/b
+LAD	1	MEKK 2
+JAK2	1	JAK1
+JAK2	1	STAT1
+JAK2	1	SerKinase
+IL-6R	1	JAK
+Activin	1	ActRIIA/B
+Furin	1	Notch
+TACE	1	Notch
+Smurf	-1	R-Smad
+SOS	1	Ras
+IFT88	1	Smo
+IFT88	1	Gli3
+BAD	-1	bcl-2
+BAD	-1	Bcl-w
+BAD	-1	Bcl-xL
+BAD	1	Bax
+BAD	-1	Bcl-2
+BAD	1	Bak
+HSPG	1	FGF
+HSPG	1	FGFR
+RAR	-1	b-catenin
+TGF-bR	1	R-Smad
+IL-4Ra	1	gammaC
+IL-4Ra	1	IL-13Ra1
+IL-4Ra	1	JAK1
+MEKK-1	1	JNK
+tBid	1	Bax
+tBid	1	Bak
+memFasL	1	Fas
+PRAJA	-1	ELF
+PRAJA	-1	Smad3
+TGFbRII	1	ALK1
+TGFbRII	1	ALK5
+Paxillin	1	ILK
+Paxillin	1	PKL/GIT
+Paxillin	1	Crk
+BNIP3L	-1	Bcl-xL
+BNIP3L	-1	Bcl-2
+BNIP3L	-1	E1B 19-kDa
+ALK3	1	Smad1
+ALK3	1	Smad8
+ALK3	1	Smad5
+ET-18-OCH3	1	Fas
+REF1	1	HIF-1a/b
+MKP3	-1	ERK 1
+MKP3	-1	ERK 2
+RasGRP	1	Ras
+Pygo	1	Lgs
+FLIP-L	1	TRAF2
+FLIP-L	1	DEDD1
+FLIP-L	-1	C8-p43/41
+beta-Arr2	1	Smo
+Grb2	1	Shc
+Grb2	1	SOS
+Grb2	1	Spry
+Grb2	1	Cbl
+Grb2	1	GAB1
+Bmf	-1	Mcl-1
+Bmf	-1	Bcl-w
+Bmf	-1	Bcl-xL
+Bmf	-1	Bcl-2
+Bmf	-1	Bfl-1
+Met	-1	Fas
+Arp2/3	1	actin
+Nucling	1	Apaf-1
+Caspase-9	1	Caspase-3
+STAT dimer	1	Genes
+Livin	-1	Caspase-9
+Livin	-1	Caspase-7
+Livin	-1	Caspase-3
+R-Ras	1	MLK-3
+LAT	1	PLCgamma
+SAP30	1	NCoR
+SAP30	1	CIR
+Mos	1	MKK 1
+Mos	1	MKK 2
+N-CSL-MAM	1	genes
+B-Raf	1	MKK 1
+B-Raf	1	MKK 2
+B-Raf	1	MEK
+B-Raf	1	MAPK 1,2
+WASP	1	Arp2/3
+IR	1	APS
+IR	1	Shc
+IR	1	IRS
+IR	1	IRS-2
+Sel-10	-1	N-CSL-MAM
+LPA	1	LPAR
+HN	-1	Bax
+HN	-1	Bid
+HN	-1	Bim
+P2RX7	1	IL1b
+Fas-Tyr-NO	-1	Fas
+Gat2	1	PDE6g
+FKHR/DAF16	1	FKHR/DAF16
+FKHR/DAF16	1	Genes
+MKK 1	1	ERK 1
+MKK 1	1	ERK 2
+MKK 1	1	MAPK 1,2
+MEK 2	1	ERK
+TAB3	1	TAK1
+DSL-Dl	1	Notch
+SHC	1	Grb-2
+SHC	1	Grb2
+SHC	1	SHIP
+PR-A	-1	ERalpha
+ALK2	1	Smad1
+ALK2	1	Smad8
+ALK2	1	Smad5
+M3/6	-1	JNK 3
+M3/6	-1	JNK 1
+M3/6	-1	JNK 2
+Disp1	1	Shh
+p110 PI3K	1	PI3,4,5P3
+Bfl-1	-1	Bax
+Bfl-1	-1	Bak
+Bfl-1	-1	Bok
+Bfl-1	-1	Bid
+Bfl-1	-1	Bik
+L-Ca++ Ch	1	Ca++
+UV	1	Fas
+p90RSK	1	eEF2K
+IGF-1	1	IGF-1R
+ROS	-1	PHD2
+ID1	-1	E3-HIF1a
+ID1	1	HIF-1a/b
+Lck	1	IBP
+Lck	1	DAP10
+Lck	1	CD3
+Lck	1	ZAP-70
+Gq	1	Gbg
+Gq	1	Gaq
+Gly Phosph	1	Glycogen
+TXA2 R	1	G13
+IL1b	1	IL1R1
+IL1b	1	IL1R2
+IL1b	1	IL1R Compl
+IL1b	1	IL1b
+Apaf-1	1	Caspase-9
+GSK-3	-1	eIF2B
+GSK-3	1	Axin
+GSK-3	-1	b-catenin
+Grb-2	1	SOS
+Grb-2	1	GAB
+MEKK3	1	IKK
+MEKK3	1	MKK7
+MEKK3	1	MKK4
+MEKK3	1	MKK3
+MEKK3	1	MKK6
+c-Met	1	STAT3
+Gas	1	AC
+Sox	-1	Genes
+Aven	-1	Apaf-1
+Rap1a	1	B-Raf
+ERK 2	1	MSK2
+ERK 2	1	cPLA2
+ERK 2	1	MNK1
+ERK 2	1	MNK2
+ERK 2	1	p90-Rsk
+ERK 2	1	Elk1
+DLC1	-1	Bim
+Itk	1	PLC g-1
+FLIP-S	-1	C8-p55/p53
+FLIP-S	1	ERK
+FLIP-S	-1	C10p54/p59
+MSK1	1	4EBP1
+MSK1	1	ATF1
+MSK1	1	CREB
+CtBP	1	CtIP
+CtBP	1	TCF
+CtBP	-1	RIP140
+Reptin52	-1	b-catenin
+G alpha 12	1	Src
+G alpha 12	1	MEK5
+G alpha 12	1	TEC/BTK
+G alpha 12	1	RasGAP1
+G alpha 12	1	RhoA
+G alpha 12	1	PLD
+AP-1	1	MCP-1
+AP-1	1	MKP1
+AP-1	1	IL1targets
+AP-1	1	IL6
+AP-1	1	COX2
+AP-1	1	IL8
+AP-1	1	IL1b gene
+AP-1	1	genes
+CycC:CDK8	1	MAM
+CycC:CDK8	-1	N-CSL-MAM
+Cripto	1	ALK7
+Cripto	1	ALK4
+PKL/GIT	1	PIX/COOL
+ZAK	1	MKK7
+ZAK	1	MKK 4
+TAK1	1	Akt
+TAK1	1	IKKbeta
+TAK1	1	JNK1
+TAK1	1	IKK
+TAK1	1	MKK7
+TAK1	1	MKK4
+TAK1	1	MKK3
+TAK1	1	MKK6
+TAK1	1	NLK
+TAK1	1	JNKK
+Gaq	1	PLC
+Gaq	1	PYK
+7TMR	1	Inactive G
+7TMR	1	b-Arr
+sIL1R1	-1	IL1b
+sIL1R1	-1	IL1RA
+sIL1R1	-1	IL1a
+sIL1R1	-1	IL1RAP
+sIL1R1	-1	IL1R Compl
+IFNAR	1	Tyk2
+IFNAR	1	Jak1
+Cby	-1	b-catenin
+IL-13Ra2	-1	IL-4Ra
+ERK1/2	1	ERK1/2
+ERK1/2	1	ATF2
+ERK1/2	1	Elk1
+ERK1/2	1	SAP1
+Cdc42	1	GCK
+Cdc42	1	MEKK 4
+Cdc42	1	MEKK 1
+Cdc42	1	MLK 3
+Cdc42	1	MLK2
+Cdc42	1	MLK1
+Cdc42	1	ACK
+Cdc42	1	WASP
+Cdc42	1	PAK
+IL-13Ra1	1	JAK2
+IL-13Ra1	1	Tyk2
+IL-13Ra1	1	IL-4Ra
+Apollon	-1	Omi
+Apollon	-1	Caspase-9
+Apollon	-1	SMAC
+Smad1	1	Smad4
+MEK5	1	ERK 5
+PIAS1	-1	STAT1-P
+Smad7	-1	ALK3
+Smad7	-1	ALK2
+Smad7	-1	ALK5
+Smad7	-1	ALK4
+b-catenin	1	b-catenin
+b-catenin	-1	HDAC
+b-catenin	1	CBP
+b-catenin	-1	TCF
+b-catenin	-1	LEF-1
+LRP	1	Wnt
+LRP	1	Fz
+LRP	-1	Axin
+D2-R	1	Inactive G
+Glycogen	1	Glucose
+E2	1	PELI1
+E2	1	TRAF6
+E2	1	PELI2
+E2	1	PELI3
+E2	1	ERa
+E2	1	ERalpha
+IL1b gene	1	IL1b mRNA
+cytokine	1	Receptor
+SHIP	-1	PI3,4,5P3
+SHIP	-1	IP3
+Rab23	-1	Gli2
+Rab23	1	Gli3
+PYK	1	PI3K beta
+PYK	1	PI3K
+PYK	1	RhoA
+Dsh	-1	GSK-3
+HSP72	-1	AIF
+Epac	1	Rap1
+Gro	1	TCF
+Gro	1	LEF-1
+MKK3	1	p38beta
+MKK3	1	p38alpha
+MKK3	1	p38delta
+MKK3	1	p38 MAPK
+MKK3	1	JNK
+MKK3	1	p38
+ActRIIA/B	1	ALK3
+ActRIIA/B	1	ALK2
+ActRIIA/B	1	ALK6
+ActRIIA/B	1	ALK4
+TOR	1	p70S6K
+TOR	-1	4EBP-1
+gammaC	1	JAK3
+RACK1	1	EloC
+RACK1	1	E3-HIF1a
+MLCK	1	RLC
+VDAC	1	Bax
+VDAC	1	Bak
+VDAC	1	Cyt c
+TXA2	1	TXA2 R
+C8-p55/p53	1	C2
+C8-p55/p53	1	DEDD1
+C8-p55/p53	1	C8-p43/41
+C8-p55/p53	1	C8-p10+p18
+Frat1	-1	GSK-3
+Genes	1	Axin
+Genes	1	beta-TrCP
+Genes	1	IGFBP-1
+Genes	1	c-IAP1/2
+Genes	1	IkBa
+Genes	-1	JNK
+Genes	1	I-Smad
+CD28	1	CD3
+SRC-1	1	ERalpha
+IRAKM	-1	IRAK1
+HSP27	-1	Cyt c
+HSP27	-1	Caspase-3
+HSP27	1	TRAF6
+HSP27	1	TAK1
+HSP27	-1	Daxx
+Nodal	1	ActRIIA/B
+Nodal	1	Cripto
+Nodal	1	ALK7
+Nodal	1	ALK4
+CtIP	1	SHARP
+Ga	1	Dsh
+Cathepsin	-1	Bax
+Ts-IAP	-1	Caspase-9
+MAPK	-1	SOS
+MAPK	1	p70S6K
+MAPK	1	MSK1
+MAPK	1	MSK2
+MAPK	1	p90RSK
+MAPK	-1	FRS2
+Par-4	-1	PKCz
+VDU2	-1	HIF-1a-Ub
+nkd	-1	Dsh
+IP3	1	IP3R
+IP3	1	Ca++
+IP3	1	Cn
+I-mf	-1	TCF
+E2F1	1	Bid
+E2F1	1	Puma
+E2F1	1	Noxa
+E2F1	1	Hrk
+E2F1	1	Bim
+IRAK-1	1	TRAF6
+MEKK 2	1	MKK5
+MEKK 2	1	MKK7
+MEKK 2	1	MKK 4
+IFN genes	1	IFN a/b
+Ub	-1	Bax
+Smad5	1	Smad4
+PELI3	1	IRAK1
+IL1R2	-1	IL1RAP
+IL1R2	-1	IL1R Compl
+Cn	1	NF-AT
+Cn	1	BAD
+PLC	-1	PIP2
+PLC	1	PIP2
+PLC	1	IP3
+PLC	1	DAG
+IRAK1c	-1	IRAK1
+IL-6	1	IL-6R
+NFkB-p50	1	MCP-1
+NFkB-p50	1	IkBa
+NFkB-p50	1	IL1targets
+NFkB-p50	1	IL6
+NFkB-p50	1	COX2
+NFkB-p50	1	IL8
+FRP	-1	Wnt
+FRP	-1	Fz
+p55gamma	1	p110 Ia
+p38 MAPK	-1	TAB1
+p38 MAPK	-1	TAB3
+p38 MAPK	1	p38 MAPK
+p38 MAPK	1	IL6
+p38 MAPK	1	MK2
+p38 MAPK	-1	KSRP
+p38 MAPK	1	IL8
+p38 MAPK	-1	p38 MAPK
+p38 MAPK	1	ATF2
+p38 MAPK	1	Elk1
+p38 MAPK	1	SAP1
+PI3K beta	1	PI3,4,5P3
+PI3K beta	1	PI3,4P2
+APS	1	c-cbl
+ICAD	-1	CAD
+TNF-R2	1	TRAF2
+Raf-1	1	MKK 1
+Raf-1	1	MEK
+Raf-1	1	MAPKK
+Raf-1	1	MEK 2
+Raf-1	1	MEK 1
+Raf-1	1	MAPK 1,2
+GRK	1	7TMR
+GRK	-1	bAR
+GRK	-1	alpha2-AR
+GRK	-1	D2-R
+GRK	-1	M2-R
+GRK	-1	AR
+SLP-65	1	Vav
+SLP-65	1	PLCg-2
+SLP-65	1	Grb2
+alphaKG	1	PHD2
+Vit C	1	PHD2
+BCR	1	Syk
+C10p22+p12	1	Casp-3
+KyoT2	-1	CSL
+TGFbfamily	1	TGF-bR
+p53	-1	Bcl-xL
+p53	1	Bax
+p53	-1	Bcl-2
+p53	1	Bak
+p53	1	Bid
+p53	1	Puma
+p53	1	Noxa
+p53	1	Bik
+p53	1	BNIP3L
+p53	1	Fas
+MLK-3	1	MKK 4
+MEKK 1	1	MKK7
+MEKK 1	1	MKK 4
+MEKK 1	1	JNKK
+MEKK 1	1	NHE
+p38delta	1	eEF2K
+IGF-1R	1	beta-Arr1
+Omi	-1	HAX-1
+Omi	-1	xIAP
+Omi	-1	Apollon
+ptx	-1	Gi
+SRA	1	ERalpha
+SRA	1	p68
+IP3R	1	Ca++
+IP3R	1	CRAC
+MNK2	1	eIF4E
+TAK 1	1	MKK7
+TAK 1	1	MKK 4
+TAK 1	1	MKK6
+TAK 1	1	MKK3
+PI3,4P2	1	PDK1
+PI3,4P2	1	Akt
+PI3,4P2	1	AKT/PKB
+PI3,4P2	1	DAPP1
+MK2	1	HSP27
+MK2	-1	TTP
+Cdon	1	Shh
+Caspase-3	-1	Mcl-1
+Caspase-3	-1	Bcl-xL
+Caspase-3	1	Bax
+Caspase-3	-1	Bcl-2
+Caspase-3	1	BAD
+Caspase-3	1	Bid
+Caspase-3	1	Bim
+Caspase-3	-1	Apaf-1
+Caspase-3	-1	xIAP
+Caspase-3	-1	PARP-1
+Caspase-3	1	Gelsolin
+Caspase-3	1	Gas2
+Caspase-3	1	Acinus
+Caspase-3	1	ROCKI
+Caspase-3	1	PAK2
+Caspase-3	-1	iCAD
+Caspase-3	-1	Rb
+Caspase-3	-1	FAK
+Caspase-3	-1	Fodrin
+Caspase-3	1	Caspase 6
+Caspase-3	-1	NDUFS1
+Caspase-3	-1	IKK
+NF-AT	1	Genes
+NF-AT	1	memFasL
+ERK 5	1	MEF2
+Fz	1	holoG
+Fz	1	beta-arr1
+Fz	1	Dsh
+Fz	1	Ga
+TGF-beta	1	TGFbRII
+SRC-3	1	ERalpha
+EGFR	1	RasGAP1
+EGFR	1	Grb2
+EGFR	1	ErbB2
+EGFR	1	Cbl
+EGFR	1	c-Src
+EGFR	1	Shc
+EGFR	1	ErbB3
+EGFR	1	PLCgamma
+EGFR	1	Vav
+EGFR	1	Nck
+EGFR	1	STAT
+EGFR	1	SHC
+EGFR	1	MAPK 1,2
+EGFR	1	p38alpha
+IRS	1	p55gamma
+IRS	1	JNKs
+IRS	1	p85alpha
+IRS	1	p85beta
+IRS	1	Grb2
+IRS	1	Shp2
+IRS	1	p85
+MLTKa/b	1	MKK7
+MLTKa/b	1	MKK 4
+GPCR	1	Inactive G
+beta-Arr1	1	PI3K Ia
+beta-Arr1	1	MAPK (ERK)
+p38beta	1	MAPKAP-K2
+p38beta	1	MAPKAP-K3
+p38beta	1	MNK1
+p38beta	1	MNK2
+p38beta	1	MSK2
+p38beta	1	MSK1
+p38beta	1	MEF2
+p38beta	1	CHOP10
+p38beta	1	Elk1
+Ryk	1	Fz
+Ryk	1	Dsh
+RTPK	1	Grb2
+RTPK	1	Shc
+RTPK	1	LAD
+RTPK	1	GAB1
+Ca++	1	CaMKII
+Ca++	1	Cn
+Ca++	1	TF
+Ca++	1	PKC
+Ca++	1	NF-AT
+ALK5	1	ELF
+ALK5	1	Smad2
+ALK5	1	Smad3
+Su(fu)	-1	Gli1
+Su(fu)	-1	Gli2
+Su(fu)	-1	b-catenin
+PDE3B	-1	cAMP
+c-Src	-1	GRK
+c-Src	1	Akt
+c-Src	1	MAPK (ERK)
+c-Src	1	STAT3
+Proteasome	-1	HIF-1a-Ub
+FADD	1	Caspase-8
+FADD	1	p100
+FADD	-1	MyD88
+FADD	1	aSMase
+FADD	1	DEDD1
+FADD	1	C8-p55/p53
+FADD	1	C10p54/p59
+dATP	1	Apaf-1
+EloC	1	E3 ligase
+ABIN2	1	TPL2
+GAB	1	p85
+SV5 V	-1	STAT1
+SMRT	-1	CSL
+SMRT	-1	ERb
+SMRT	-1	ERalpha
+SMRT	-1	PR-A
+Bcl-w	-1	BAD
+Bcl-w	-1	Bid
+Bcl-w	-1	Bim
+Bcl-w	-1	Bik
+Bcl-w	-1	Bak
+Bcl-w	-1	Bax
+CDK6	-1	Bcl-2
+ERK2	-1	Caspase-9
+Arl13b	1	Gli2
+MAP-1	-1	Bcl-xL
+MAP-1	-1	MAP-1
+ERb	-1	ERalpha
+xIAP	1	TAB1
+xIAP	1	TAK1
+xIAP	1	JNK1
+xIAP	-1	Caspase-9
+xIAP	-1	xIAP
+xIAP	-1	Caspase-7
+xIAP	-1	MURR1
+xIAP	1	Survivin
+xIAP	-1	Apoptosome
+xIAP	-1	SMAC
+xIAP	-1	Caspase-3
+xIAP	-1	apopto
+xIAP	-1	Casp-3
+p73	1	Puma
+Tollip	-1	IL1R1
+Tollip	-1	IRAK1
+Ga13	1	PYK
+Ga13	1	rhoGEF
+Ga13	1	ASK 1
+Ga13	1	radixin
+Ga13	1	cdc42
+Vav	1	Rac
+Vav	1	Rho
+Vav	1	RhoA
+HAT	1	MAM
+HAT	1	N-CSL-MAM
+Btk	1	PLCg-2
+Btk	-1	Fas
+cAMP	1	PKA
+cAMP	1	CNG
+cAMP	1	Epac
+ILK	1	AKT/PKB
+STAT2	1	IRF9
+STAT2	1	ISGF3
+CKI	1	Dsh
+CKI	-1	b-catenin
+Integrins	1	A-Actinin
+Integrins	1	RPTK
+Integrins	1	Caveolin-1
+Integrins	1	ILK
+Integrins	1	FAK
+Integrins	1	Paxillin
+Integrins	1	ACK
+PLC beta	1	PIP2
+TAB1	1	TAK 1
+TAB1	1	p38alpha
+TAB1	1	TAK1
+MyD88	1	IRAK-4
+MyD88	1	IRAK-1
+PARP-1	1	AIF
+PARP-1	1	NF-kB
+Duplin	-1	b-catenin
+Inactive G	1	Gbg
+Inactive G	1	Ga
+Inactive G	1	Gai
+Inactive G	1	Gas
+Inactive G	1	Gaq
+Inactive G	1	Galphai/o
+AIP	-1	Apaf-1
+b-ARR	-1	bAR
+b-ARR	1	AT1R
+b-ARR	-1	AR
+b-ARR	-1	JNK 3
+TRAP-220	1	ERalpha
+pro-IL1b	1	IL1b
+NLK	-1	TCF
+NLK	-1	LEF-1
+Idax	-1	Dsh
+V1-R	1	Inactive G
+DSL-JG	1	Notch
+SARA	1	TGF-bR
+SARA	1	R-Smad
+FAK	1	RPTK
+FAK	1	Grb2
+FAK	1	PI3K Ia
+FAK	1	gamma PLC
+FAK	1	Grb7
+FAK	1	Paxillin
+FAK	1	Src
+FAK	1	Cas
+FAK	1	ASAP1
+FAK	1	Graf
+IKKe	1	IRF3
+Noxa	-1	Mcl-1
+Noxa	-1	Bcl-xL
+Noxa	1	Bax
+Noxa	-1	Bcl-2
+Noxa	1	Bak
+Noxa	-1	Bfl-1
+IL1R1	1	IL1RAP
+IL1R1	1	MYD88
+IL1R1	1	IL1R Compl
+p85	1	p110 Ia
+thrombin	1	PAR
+KSRP	-1	IL6
+KSRP	-1	IL8
+ELF	1	Smad3
+ELF	1	Smad4
+HDAC7	1	HIF-1a/b
+TAK1-TAB	1	IKK
+IL1b mRNA	1	pro-IL1b
+Smo	-1	PKA
+Smo	1	Gli1
+Smo	1	Gli2
+p32	1	Hrk
+ALK6	1	Smad1
+ALK6	1	Smad8
+ALK6	1	Smad5
+PLC g-1	1	PIP2
+HDAC2	1	CIR
+JAK1	1	JAK2
+JAK1	1	JAK3
+JAK1	1	SHC
+JAK1	1	IRS
+JAK1	1	STAT6
+JNKs	-1	IRS
+JNKs	-1	IRS-2
+JNKs	-1	Mcl-1
+JNKs	1	BAD
+JNKs	1	Bid
+JNKs	1	Bmf
+JNKs	1	Bim
+JNKs	1	DNA-BP
+JAK3	1	JAK1
+MEKK 4	1	MKK7
+MEKK 4	1	MKK 4
+b-Arr	1	c-Src
+b-Arr	1	PDE
+b-Arr	-1	Ga
+b-Arr	1	IkBa
+b-Arr	1	Raf-1
+b-Arr	1	ASK 1
+b-Arr	1	RhoA
+b-Arr	1	JNK3
+b-Arr	1	p38 MAPK
+b-Arr	1	MAPK (ERK)
+IFNgamma	1	IFNgR
+ERa	1	ERalpha
+FAP-1	1	FADD
+FAP-1	1	C8-p55/p53
+Gbg	1	PLC
+Gbg	1	GRK
+Gbg	1	p101
+Gbg	-1	Ca-channel
+Gbg	1	proHB-EGF
+Gbg	-1	AC
+Gbg	1	AC
+Gbg	1	GIRK
+Gbg	1	PLC beta
+Gbg	1	PI3K beta
+Gbg	1	Ras
+Gbg	1	NCC
+Gbg	1	EGFR
+MEK	1	ERK
+MEK	1	MAPK (ERK)
+MEK	1	MAPK 1,2
+Smad8	1	Smad4
+p110 Ia	1	PI3,4,5P3
+p110 Ia	-1	p85
+p110 Ia	1	PI3P
+p110 Ia	1	PI3,4P2
+tsc-1/2	-1	TOR
+Mcl-1	-1	Cyt c
+Mcl-1	-1	Bim
+Mcl-1	-1	Bak
+Mcl-1	-1	Bax
+Mcl-1	-1	Bok
+C10p54/p59	1	C10p22+p12
+Lyn	1	BCR
+Lyn	1	CD19
+Lyn	1	SHC
+Lyn	1	Vav
+Lyn	1	p85 PI3K
+GRP1	1	ARF
+JNK 2	1	RNPK
+JNK 2	1	Shc
+JNK 2	1	p53
+JNK 2	1	ATF 2
+JNK 2	1	c-Jun
+JNK 2	1	NFAT 4
+p85alpha	1	p110 Ia
+PI3K Ia	1	Rac
+PI3K Ia	1	PI3,4,5P3
+PI3K Ia	1	c-Src
+PI3K Ia	1	AKT/PKB
+PI3K Ia	1	ILK
+VHL	1	EloC
+VHL	1	E3-HIF1a
+XAF-1	-1	xIAP
+beta-TrCP	-1	Gli1
+beta-TrCP	-1	Gli2
+beta-TrCP	1	Gli3
+beta-TrCP	-1	b-catenin
+WIF-1	-1	Wnt
+Akt	-1	FKHR/DAF16
+Akt	-1	BAD
+Akt	-1	Bax
+Akt	-1	Caspase-9
+Akt	1	xIAP
+Akt	-1	GSK-3
+ErbB3	1	p85 PI3K
+C3G	1	Rap1
+C3G	1	R-Ras
+MSK2	1	4EBP1
+MSK2	1	ATF1
+MSK2	1	CREB
+Hrk	-1	Bcl-w
+Hrk	-1	Bcl-xL
+Hrk	-1	Bcl-2
+Hrk	-1	Bfl-1
+PLCg-2	1	IP3
+PLCg-2	1	DAG
+C8-p10+p18	-1	RIP
+C8-p10+p18	1	Bid
+C8-p10+p18	1	Casp-3
+Bik	-1	Bcl-xL
+Bik	-1	Bcl-2
+Bik	-1	E1B 19-kDa
+Bik	-1	EBV-BHRF1
+IL1a	1	IL1R1
+IL1a	1	IL1R2
+IL1a	1	IL1R Compl
+IL1a	1	MCP1/IL8
+ERKs	1	Mcl-1
+ERKs	-1	Bim
+ERKs	1	Bcl-2
+ERKs	1	DNA-BP
+Hsp60/10	1	Caspase-3
+CBP	1	HIF-1a/b
+CBP	1	ERalpha
+CBP	1	GRIP-1
+CBP	1	SRC-3
+CBP	1	SRC-1
+CBP	1	RSmad/S4
+BOC	1	Shh
+IL1RAP	1	MYD88
+IL1RAP	1	IL1R Compl
+MLCP	-1	RLC
+Galphai/o	1	Gz-GAP
+Galphai/o	-1	AC
+Galphai/o	1	Rap1-GAP
+Galphai/o	1	Src
+NALP3-Infl	1	Caspase1
+RIP	1	IKK
+RIP	1	Ser-prot
+RIP	-1	PARP-1
+PrP	-1	Bax
+Caspase-2	1	Bid
+(i)IL1R1	-1	IL1R1
+PACAP	1	PAC1R
+PKC	1	TF
+PKC	-1	EGFR
+PKC	1	Raf-1
+PKC	1	Bcl-2
+PKC	1	Rad9
+PKC	-1	GSK-3
+PKC	1	PLD
+PKC	1	NHE
+PKC	1	NF-kB
+PKC	1	RasGRP
+PKC	1	Ca++
+PKC	1	PKD
+IFNgR	1	Jak1
+IFNgR	1	JAK2
+Rap1	1	B-Raf
+PDE6a	-1	cGMP
+CK2	-1	Bid
+CK2	1	Bik
+CK2	1	Dsh
+MKP4	-1	ERK 1
+MKP4	-1	ERK 2
+O-FucT-1	1	Notch
+PKA	1	Rap1a
+PKA	1	CREB
+PKA	-1	BAD
+PKA	-1	Gli1
+PKA	-1	Gli2
+PKA	1	Gli3
+PKA	1	L-Ca++ Ch
+PKA	1	PDE
+PKA	1	PhK
+PKA	1	Src
+PKA	-1	Raf-1
+PKA	1	B-Raf
+PKA	1	Raf-1
+PKA	1	p38alpha
+SHP	-1	ERalpha
+Bcl-b	-1	Bax
+MLK2	1	MKK7
+MLK2	1	MKK 4
+Bcl-xES	-1	Apaf-1
+Bcl-xES	-1	Bax
+IL-1R	1	TRAF6
+Talin	1	Integrins
+Hsp70/DJ-1	-1	Bax
+DREAM	-1	Hrk
+Pim-2	-1	BAD
+Kif3A	1	Smo
+Kif3A	1	Gli3
+PDE	-1	cAMP
+14-3-3	-1	Bax
+14-3-3	-1	BAD
+14-3-3	-1	FKHR/DAF16
+Src	1	C3G
+Src	1	FAK
+Src	1	Paxillin
+Src	1	Cas
+Src	1	ASAP1
+Src	1	p190RhoGAP
+Src	1	Stat3
+Src	1	JAK1
+Src	1	RhoA
+REA	-1	ERalpha
+Fe	1	PHD2
+NFkB-p65	1	MCP-1
+NFkB-p65	1	IkBa
+NFkB-p65	1	IL1targets
+NFkB-p65	1	IL6
+NFkB-p65	1	COX2
+NFkB-p65	1	IL8
+NFkB-p65	1	IL1b gene
+Bim	-1	Mcl-1
+Bim	-1	Bcl-w
+Bim	-1	Bcl-xL
+Bim	1	Bax
+Bim	-1	Bcl-2
+Bim	1	Bak
+Bim	-1	Bfl-1
+TRADD	1	RIP
+TRADD	1	FADD
+TRADD	1	TRAF2
+Gai	1	Src
+Gai	-1	AC
+Gai	1	B-Raf
+MKK7	1	JNK 3
+MKK7	1	JNK 1
+MKK7	1	JNK 2
+MKK7	1	JNK1/2/3
+c-Jun	1	Hrk
+c-Jun	1	Bim
+c-Jun	1	MCP-1
+c-Jun	1	AP-1
+c-Jun	1	c-Jun
+c-Jun	1	Genes
+MKK1	1	ERK1/2
+ASAP1	-1	ARF
+BI-1	-1	Bax
+c-IAP1/2	-1	Caspase-7
+c-IAP1/2	-1	SMAC
+c-IAP1/2	1	BCL-10
+c-IAP1/2	-1	Caspase-3
+c-IAP1/2	-1	Caspase-8
+STAT1	1	IRF9
+STAT1	1	ISGF3
+STAT1	1	STAT1-P
+PAC1R	1	Gaq
+PAC1R	1	Gas
+MKK4	1	JNK3
+MKK4	1	p38 MAPK
+MKK4	1	JNK1/2/3
+eRF3	-1	xIAP
+MNK1	1	eIF4E
+BMP	1	ActRIIA/B
+BMP	1	BMPRII
+BMP	1	ALK3
+BMP	1	ALK2
+BMP	1	ALK6
+Fringe	-1	Notch
+Fringe	1	Notch
+IkBa	-1	NF-kB
+IkBa	-1	IkB-NFkB
+IkBa	1	IkBa
+SerKinase	1	STAT3
+SerKinase	1	STAT1
+Shc	1	SOS
+Shc	1	Grb2
+Shc	1	SHIP
+FIST	-1	Daxx
+MAPKK	1	MAPK
+LEF-1	-1	Genes
+PIX/COOL	1	Cdc42
+PIX/COOL	1	Rac
+PIX/COOL	1	PAK
+Gs	1	Gbg
+Gs	1	Gas
+Cer	-1	Wnt
+PIAS	-1	STAT dimer
+ASC	1	Bax
+TNF	1	TNF-R1
+TNF	1	TNF-R2
+TRAP/Media	1	TRAP-220
+Daxx	1	ASK 1
+CD45	1	Lck
+MKP1	-1	p38beta
+MKP1	-1	p38alpha
+MKP1	-1	p38delta
+MKP1	-1	p38gamma
+MKP1	-1	ERK1/2
+MKP1	-1	p38 MAPK
+MKP1	-1	JNK1/2/3
+FRS2	1	SHP-2
+FRS2	1	Grb2
+Bcl-rambo	1	Cyt c
+TRAF2	1	c-IAP1/2
+TRAF2	1	TAK1
+TRAF2	1	MAPKKK
+TRAF2	1	NF-kB
+PELI2	1	IRAK1
+ErbB2	1	RasGAP1
+ErbB2	1	Grb7
+ErbB2	1	Grb2
+ErbB2	1	c-Src
+ErbB2	1	Shc
+ErbB2	1	PLCgamma
+v-Src	1	STAT3
+PAK	1	MEK
+PAK	1	MKK 4
+PAK	-1	MLCK
+I-Smad	-1	TGF-bR
+exposedIBM	-1	xIAP
+sIL1RAP	-1	IL1R Compl
+Pontin52	1	b-catenin
+PLCgamma	1	DAG
+PLCgamma	1	IP3
+PLCgamma	1	Ca++

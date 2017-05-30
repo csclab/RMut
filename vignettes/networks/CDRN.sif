@@ -1,0 +1,16 @@
+Erk	1	cyclin D1
+X	1	p27
+cyclin D1	-1	pRb
+p27	-1	cyclin D1
+p27	-1	cyclin E
+cyclin E	-1	pRb
+cyclin E	1	E2F
+pRb	-1	E2F
+E2F	1	cyclin E
+E2F	1	S phase genes
+pRb	-1	S phase genes
+S phase genes	1	Mitosis
+S phase genes	-1	Erk
+Mitosis	1	Mitosis
+Mitosis	-1	p27
+
