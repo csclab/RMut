@@ -38,6 +38,10 @@ Normally, the dependent package would be also installed by the above command. Ot
 
 _> library(RMut)_
 
+In addition, we could set the _Maximum Java heap size_ to a large value, for ex., 8GB (in case of large-scale networks analysis) via
+
+_> .jinit(parameters="-Xmx8000m")_
+
 ## OpenCL library
 
 In order to utilize the full computing power of multi-core central processing units (CPUs) and graphics processing units (GPUs), OpenCL drivers should be installed into your system. Here are necessary steps for a system with:
