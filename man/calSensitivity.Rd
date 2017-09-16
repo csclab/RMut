@@ -28,6 +28,8 @@ Computes sensitivity values of node/edge groups in a network or in a set of netw
 }
 \details{
 This function computes sensitivity values of node/edge groups in a specific network or in a set of networks.
+Two kinds of sensitivity measures are computed: macro-distance and bitwise-distance sensitivity measures.
+
 The calculation is based on a set of initial-states specified by an identifier \strong{\code{stateSet}}.
 The node/edge groups in each network are determined by an indexing number \strong{\code{groupSet}}.
 For example, the number \code{1} would point to the data frame of node/edge groups named \strong{\code{Group_1}}.

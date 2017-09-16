@@ -33,8 +33,7 @@ _> install.packages("rJava")_
 
 _> devtools::install\_github("csclab/RMut", args="--no-multiarch")_
 
-Though all of core algorithms written in Java, the _rJava_ package must be firstly installed in the R environment as well. 
-Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
+Though all of core algorithms written in Java, the _rJava_ package must be firstly installed in the R environment as well. Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
 
 _> library(RMut)_
 
@@ -159,7 +158,7 @@ Via _calSensitivity_ function, this package computes nodal/edgetic sensitivity a
 
 * _Edgetic_ mutations: edge-removal, edge-attenuation, edge-addition, edge-sign-switch, and edge-reverse
 
-In addition, we note that multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values for each node/edge. Here, we show an example of some sensitivity types:
+Two kinds of sensitivity measures are computed: macro-distance and bitwise-distance sensitivity measures. In addition, we note that multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values for each node/edge. Here, we show an example of some sensitivity types:
 
 ```{r}
 library(RMut)
@@ -184,7 +183,7 @@ amrn <- calSensitivity(amrn, set1, "edge addition")
 print(amrn$Group_3)
 ```
 
-As shown above, we firstly need to generate a set of initial-states by the function _generateStates_. Then by the function _generateGroups_, we continue to generate three sets of node/edge groups whose their sensitivity would be calculated. Finally, the sensitivity values are stored in the same data frame of node/edge groups. The data frame has one column for group identifiers (lists of nodes/edges), and some next columns containing their sensitivity values according to each set of random update-rules. For example, the mutation _rule-flip_ used two sets of Nested Canalyzing rules, thus resulted in two corresponding sets of sensitivity values.
+As shown above, we firstly need to generate a set of initial-states by the function _generateStates_. Then by the function _generateGroups_, we continue to generate three sets of node/edge groups whose their sensitivity would be calculated. Finally, the sensitivity values are stored in the same data frame of node/edge groups. The data frame has one column for group identifiers (lists of nodes/edges), and some next columns containing their sensitivity values according to each set of random update-rules. For example, the mutation _rule-flip_ used two sets of Nested Canalyzing rules, thus resulted in two corresponding sets of sensitivity values. RMut automatically generates a file of Boolean logics for each set, or uses existing files in the working directory of RMut. Here, two rule files "_AMRN\_rules\_0_" and "_AMRN\_rules\_1_" are generated. A user can manually create or modify these rule files before the calculation. In addition, the column names which contain the sequence "_macro_" or "_bitws_" denote the macro-distance and bitwise-distance sensitivity measures, respectively.
 
 ## Attractor cycles identification
 

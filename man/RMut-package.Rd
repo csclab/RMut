@@ -46,6 +46,7 @@ node/edge groups in the examined network back to its normal condition. Hence, we
 attractors before and after perturbations by utilizing those three functions.
 
 The \code{\link{calSensitivity}} function computes sensitivity values of node/edge groups in the examined networks.
+Two kinds of sensitivity measures are computed: macro-distance and bitwise-distance sensitivity measures.
 We can use embedded mutations in the package or define our own mutations.
 Multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values
 for each group.

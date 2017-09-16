@@ -4,7 +4,9 @@
 #' Computes sensitivity values of node/edge groups in a network or in a set of networks, and returns the network objects with newly calculated results.
 #'
 #' This function computes sensitivity values of node/edge groups in a specific network or in a set of networks.
-#' The calculation is based on a set of initial-states specified by an identifier \strong{\code{stateSet}}.
+#' Two kinds of sensitivity measures are computed: macro-distance and bitwise-distance sensitivity measures.
+#'
+#'    The calculation is based on a set of initial-states specified by an identifier \strong{\code{stateSet}}.
 #' The node/edge groups in each network are determined by an indexing number \strong{\code{groupSet}}.
 #' For example, the number \code{1} would point to the data frame of node/edge groups named \strong{\code{Group_1}}.
 #' For mutation settings, there exist some embedded mutations:
@@ -100,14 +102,18 @@ calSensitivity1 <- function(network, stateSet, groupSet, mutateMethod = "rule fl
     printGeneralError()
     return (network)
   }
-  sens <- extractInfos(sensResults, numRules, 0)
+  sens <- extractInfos(sensResults, numRules, numRules)
 
   for(i in 1:numRules) {
     columnName <- paste(mutateMethod, "_t", mutationTime, sep = "", collapse = "")
     columnName <- paste(columnName, "_r", i, sep = "", collapse = "")
     columnName <- gsub("\\s", "", columnName)
 
-    network[[5 + groupSet]][, columnName] <- unlist(sens[i + 2])
+    macroName <- paste(columnName, "_macro", sep = "", collapse = "")
+    bitwsName <- paste(columnName, "_bitws", sep = "", collapse = "")
+
+    network[[5 + groupSet]][, macroName] <- unlist(sens[i + 2])
+    network[[5 + groupSet]][, bitwsName] <- unlist(sens[i + 2 + numRules])
     #network$network[, columnName] <- mean(network$mutatedGroups[[columnName]])
   }
 
