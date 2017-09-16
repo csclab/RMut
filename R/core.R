@@ -1,4 +1,19 @@
 
+# Copyright 2017 Hung-Cuong Trinh and Yung-Keun Kwon
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
 #' Compute sensitivity values of node/edge groups
 #'
 #' Computes sensitivity values of node/edge groups in a network or in a set of networks, and returns the network objects with newly calculated results.

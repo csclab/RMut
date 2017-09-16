@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Hung-Cuong Trinh, Yung-Keun Kwon
 Maintainer: Hung-Cuong Trinh <hungcuong1986@gmail.com>
 Description: Provides functions for intensely analyzing dynamics of biological networks and also random networks based on different kinds of mutations.
-License: What license is it under?
+License: Apache License 2.0
 LazyData: TRUE
 Depends:
     rJava (>= 0.9-8)
