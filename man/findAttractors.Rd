@@ -38,4 +38,3 @@ output(transNet)
 \seealso{
 \code{\link{generateStates}}, \code{\link{generateState}}, \code{\link{generateRule}}, \code{\link{calSensitivity}}
 }
-

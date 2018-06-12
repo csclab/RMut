@@ -22,4 +22,3 @@ The canonical cell signaling network (CCSN) with 771 nodes and 1633 links.
 The network was obtained from \url{http://stke.sciencemag.org/}, and all the neutral interactions were excluded.
 }
 \keyword{datasets}
-

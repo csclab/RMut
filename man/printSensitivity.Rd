@@ -41,4 +41,3 @@ printSensitivity(amrn)
 \seealso{
 \code{\link{calSensitivity}}, \code{\link{generateStates}}, \code{\link{generateGroups}}, \code{\link{generateGroup}}, \code{\link{findFBLs}}, \code{\link{findFFLs}}, \code{\link{calCentrality}}, \code{\link{findAttractors}}
 }
-

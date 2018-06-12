@@ -30,4 +30,3 @@ print(state1)
 \seealso{
 \code{\link{calSensitivity}}, \code{\link{findAttractors}}
 }
-

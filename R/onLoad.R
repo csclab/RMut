@@ -17,5 +17,9 @@
 
 .onLoad <- function(libname, pkgname) {
   #.jinit(parameters="-Xmx8000m")
-  .jpackage(pkgname, lib.loc = libname)
+  #.jpackage(pkgname, lib.loc = libname)
+  print(pkgname)
+  print(libname)
+
+  RMut_libname <<- libname
 }

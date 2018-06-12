@@ -31,4 +31,3 @@ setOpencl("none")
 \seealso{
 \code{\link{showOpencl}}
 }
-

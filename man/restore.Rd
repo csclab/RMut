@@ -55,4 +55,3 @@ print(origin_transNet)
 \seealso{
 \code{\link{perturb}}, \code{\link{generateGroups}}, \code{\link{generateGroup}}, \code{\link{calSensitivity}}, \code{\link{findAttractors}}
 }
-

@@ -34,4 +34,3 @@ print(amrn$Group_1)
 \seealso{
 \code{\link{calSensitivity}}, \code{\link{perturb}}, \code{\link{restore}}
 }
-

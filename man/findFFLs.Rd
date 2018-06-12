@@ -33,4 +33,3 @@ print(amrn$network)
 \seealso{
 \code{\link{findFBLs}}, \code{\link{calCentrality}}, \code{\link{calSensitivity}}
 }
-

@@ -30,4 +30,3 @@ print(amrn)
 \seealso{
 \code{\link{output}}, \code{\link{createRBNs}}, \code{\link{calSensitivity}}
 }
-

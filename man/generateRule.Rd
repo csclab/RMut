@@ -37,4 +37,3 @@ print(att)
 \seealso{
 \code{\link{findAttractors}}, \code{\link{perturb}}, \code{\link{restore}}
 }
-

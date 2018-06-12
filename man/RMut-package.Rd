@@ -193,4 +193,3 @@ output(amrn_rbns)
 \author{
 Hung-Cuong Trinh, Yung-Keun Kwon
 }
-

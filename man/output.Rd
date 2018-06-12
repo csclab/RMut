@@ -34,4 +34,3 @@ output(amrn)
 \seealso{
 \code{\link{loadNetwork}}, \code{\link{createRBNs}}
 }
-

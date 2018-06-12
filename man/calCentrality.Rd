@@ -32,4 +32,3 @@ print(amrn$edges)
 \seealso{
 \code{\link{findFBLs}}, \code{\link{findFFLs}}, \code{\link{calSensitivity}}
 }
-

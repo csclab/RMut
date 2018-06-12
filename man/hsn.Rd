@@ -22,4 +22,3 @@ The large-scale human signaling network (HSN) with 1192 nodes and 3102 links.
 Based on the network, some general principles were provided for understanding protein evolution in the context of signaling networks.
 }
 \keyword{datasets}
-

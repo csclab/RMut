@@ -23,4 +23,3 @@ showOpencl()
 \seealso{
 \code{\link{setOpencl}}
 }
-

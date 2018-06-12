@@ -179,6 +179,10 @@ printError <- function(errCode) {
   else if(errCode == 3)
     print("The group of nodes/edges is not exist in the network!")
 
+  else if(errCode == 4)
+    print(paste("Fail to initialize the Java Virtual Machine! ",
+                "Please check the maximum amount of memory supported by your system.",
+                sep = "", collapse = ""))
 }
 
 #' Print out the sensitivity values of node/edge groups
@@ -675,3 +679,39 @@ generateRule <- function(network, ruleType = 0L) {
   return (errCode)
 }
 
+#' Initialize the Java Virtual Machine.
+#'
+#' \code{initJVM} initializes the Java Virtual Machine (JVM).
+#' This function must be called before any RMut functions can be used.
+#'
+#' This function initializes the JVM with a parameter of the maximum Java heap size \code{maxHeapSize}.
+#' The parameter is a string composed of a number and followed by a letter K, or M, or G
+#' (K indicates kilobytes, M indicates megabytes, G indicates gigabytes).
+#' @export
+#' @seealso \code{\link{setOpencl}}, \code{\link{showOpencl}}
+#' @name initJVM
+#' @param maxHeapSize The maximum Java heap size. Default is "1G" (means 1 gigabytes).
+#' @return TRUE denotes successful initialization, and FALSE indicates failure.
+#' @usage
+#' initJVM(maxHeapSize)
+#' @examples
+#' initJVM("1G")
+#'
+initJVM <- function(maxHeapSize = "1G") {
+  jvm_heap <- paste("-Xmx", maxHeapSize, sep = "", collapse = "")
+
+  ret <- .jinit(parameters=jvm_heap)
+  if(ret != 0) {
+    printError(4)
+    return (FALSE)
+  }
+
+  ret <- .jpackage("RMut", lib.loc = RMut_libname)
+  if(ret != TRUE) {
+    printError(4)
+    return (FALSE)
+  }
+
+  print("The Java Virtual Machine is successfully initialized!")
+  return (TRUE)
+}

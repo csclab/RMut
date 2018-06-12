@@ -34,4 +34,3 @@ print(set2)
 \seealso{
 \code{\link{calSensitivity}}, \code{\link{findAttractors}}
 }
-

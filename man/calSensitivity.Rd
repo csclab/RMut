@@ -72,4 +72,3 @@ output(hsn)
 \seealso{
 \code{\link{generateStates}}, \code{\link{generateState}}, \code{\link{generateGroups}}, \code{\link{generateGroup}}, \code{\link{findFBLs}}, \code{\link{findFFLs}}, \code{\link{calCentrality}}, \code{\link{findAttractors}}
 }
-

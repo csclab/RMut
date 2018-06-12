@@ -22,4 +22,3 @@ The Arabidopsis morphogenesis regulatory network (AMRN) with 10 nodes and 22 lin
 This regulatory network is known to robustly control the process of flower development.
 }
 \keyword{datasets}
-
