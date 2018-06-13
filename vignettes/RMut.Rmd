@@ -37,9 +37,9 @@ Though all of core algorithms written in Java, the _rJava_ package must be first
 
 _> library(RMut)_
 
-In addition, we could set the _Maximum Java heap size_ to a large value, for ex., 8GB (in case of large-scale networks analysis) via
+In addition, we must initialize the Java Virtual Machine (JVM) with a _Maximum Java heap size_ via the function _initJVM_. This function must be called before any RMut functions can be used. The following command will initialize the JVM with the maximum Java heap size of 8GB (in case of large-scale networks analysis, we could set the Java heap size to a larger value):
 
-_> .jinit(parameters="-Xmx8000m")_
+_> initJVM("8G")_
 
 ## OpenCL library
 
@@ -73,6 +73,8 @@ After installation, OpenCL information can be outputed via the function _showOpe
 
 ```{r}
 library(RMut)
+initJVM("8G")
+
 showOpencl()
 setOpencl("gpu")
 ```
@@ -98,7 +100,6 @@ The function returned a network object which contains:
   Here is an example:
   
 ```{r}
-library(RMut)
 amrn <- loadNetwork("networks/AMRN.sif")
 print(amrn)
 ```
@@ -127,7 +128,6 @@ print(amrn)
 In addition, the package provides some example networks that could be simply loaded by _data_ command. For ex.,
 
 ```{r}
-library(RMut)
 data(amrn)
 ```
 
@@ -161,7 +161,6 @@ Via _calSensitivity_ function, this package computes nodal/edgetic sensitivity a
 Two kinds of sensitivity measures are computed: macro-distance and bitwise-distance sensitivity measures. In addition, we note that multiple sets of random Nested Canalyzing rules could be specified, and thus resulted in multiple sensitivity values for each node/edge. Here, we show an example of some sensitivity types:
 
 ```{r}
-library(RMut)
 data(amrn)
 
 # generate all possible initial-states each containing 10 Boolean nodes
@@ -190,7 +189,6 @@ As shown above, we firstly need to generate a set of initial-states by the funct
 Via _findAttractors_ function, the landscape of the network state transitions along with attractor cycles would be identified. The returned transition network object has same structures with the normal network object resulted from _loadNetwork_ function (see section "_loadNetwork_ function"). An example is demonstrated as follows:
 
 ```{r}
-library(RMut)
 data(amrn)
 
 # generate all possible initial-states each containing 10 Boolean nodes
@@ -228,7 +226,6 @@ As shown in the example, there exists some different points inside two nodes/edg
 We take the node _N6_ as an example. Its corresponding network state is _0000000101_ which represents Boolean values of all nodes in alphabetical order of the analyzed network _amrn_:
 
 ```{r, echo=FALSE}
-library(RMut)
 data(amrn)
 amrn <- findFBLs(amrn)
 
@@ -278,7 +275,6 @@ As a result, _Figure 6_ shows the modified transition network with clearer indic
 Via _findFBLs_ and _findFFLs_, the package supports methods of searching feedback/feed-forward loops (FBLs/FFLs), respectively, for all nodes/edges in a network. The following is an example R code for the search:
 
 ```{r}
-library(RMut)
 data(amrn)
 
 # search feedback/feed-forward loops
@@ -308,7 +304,6 @@ In the _network_ data frame, _NuFBL_, _NuPosFBL_, _NuNegFBL_, _NuFFL_, _NuCoFFL_
 The _calCentrality_ function calculates node-/edge-based centralities of a network such as Degree, In-/Out-Degree, Closeness, Betweenness, Stress, Eigenvector, Edge Degree and Edge Betweenness. An example is demonstrated as follows:
 
 ```{r}
-library(RMut)
 data(amrn)
 
 # calculate node-/edge-based centralities
@@ -322,7 +317,6 @@ print(amrn$edges)
 Via _output_ function, all examined attributes of the networks and their nodes/edges will be exported to CSV files. The structure of these networks are also exported as Tab-separated values text files (.SIF extension). The following is an example R code for the output:
 
 ```{r}
-library(RMut)
 data(amrn)
 
 # generate all possible initial-states each containing 10 Boolean nodes
@@ -361,7 +355,6 @@ _Example 1_
 # Example 1: generate random networks based on BA model #
 #########################################################
 
-library(RMut)
 # generate all possible initial-states each containing 10 Boolean nodes
 set1 <- generateStates(10, "all")
 
@@ -389,7 +382,6 @@ _Example 2_
 # Example 2: generate random networks based on "Shuffle 2" model #
 ##################################################################
 
-library(RMut)
 data(amrn)
 
 # generate all possible initial-states each containing 10 Boolean nodes
