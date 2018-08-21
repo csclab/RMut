@@ -22,4 +22,5 @@
   #print(libname)
 
   RMut_libname <<- libname
+  print("Please firstly initialize the Java Virtual Machine by using the function 'initJVM(maxHeapSize)'.")
 }

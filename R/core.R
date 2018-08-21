@@ -31,6 +31,7 @@
 #' Users can also set the operational time of the mutation as determined by the parameter \strong{\code{mutationTime}}.
 #' Finally, synchronous updating scheme is used for calculating state transitions. Single or multiple sets of random update-rules are generated based on the
 #' parameter \code{numRuleSets}.
+#' A file containing user-defined rules could be specified by the parameter \code{ruleFile}.
 #'
 #'    For each network, the sensitivity values are stored in the same data frame of node/edge groups.
 #' The data frame has one column for group identifiers (lists of nodes/edges),
@@ -45,10 +46,11 @@
 #' @param groupSet The indexing number of node/edge groups for whose sensitivity values are calculated. Default is 0 which specify the latest generated groups.
 #' @param mutationTime The period of time in which the mutation occurs, default is 1000
 #' @param numRuleSets Number of random Nested Canalyzing Function sets, default is 1
+#' @param ruleFile The path points to a file containing user-defined Nested Canalyzing Function rules, default is NULL. In case the path is specified, the parameter \code{numRuleSets} is forced to 1.
 #' @return The updated network objects including sensitivity values of the examined node/edge groups.
 #' @usage
 #' calSensitivity(networks, stateSet, mutateMethod = "rule flip",
-#'                groupSet = 0, mutationTime = 1000L, numRuleSets = 1)
+#'                groupSet = 0, mutationTime = 1000L, numRuleSets = 1, ruleFile = NULL)
 #' @examples
 #' # load an example network, the large-scale human signaling network
 #' data(hsn)
@@ -66,27 +68,27 @@
 #' # calculate sensitivity values of all nodes against the knockout mutation
 #' hsn <- calSensitivity(hsn, states, "knockout")
 #'
-#' # calculate sensitivity values against a user-defined mutation
-#' hsn <- calSensitivity(hsn, states, "D:\\mod\\UserMutation.java")
+#' # calculate sensitivity values against a user-defined mutation, also use user-defined rules
+#' hsn <- calSensitivity(hsn, states, "D:\\mod\\UserMutation.java", ruleFile="D:\\mod\\UserNCF.txt")
 #'
 #' # view the calculated sensitivity values and export all results to files
 #' printSensitivity(hsn)
 #' output(hsn)
 
 calSensitivity <- function(networks, stateSet, mutateMethod = "rule flip", groupSet = 0,
-                           mutationTime = 1000L, numRuleSets = 1) {
+                           mutationTime = 1000L, numRuleSets = 1, ruleFile = NULL) {
   if(is.data.frame(networks)) {
     networks <- loadInbuiltNetwork(networks)
   }
 
   if(isSingleNetwork(networks)) {
-    networks <- calSensitivity1(networks, stateSet, groupSet, mutateMethod, mutationTime, numRuleSets)
+    networks <- calSensitivity1(networks, stateSet, groupSet, mutateMethod, mutationTime, numRuleSets, ruleFile)
     return (networks)
   }
   else if(isListNetworks(networks)) {
     numNetworks <- length(networks)
     for(i in 1:numNetworks) {
-      networks[[i]] <- calSensitivity1(networks[[i]], stateSet, groupSet, mutateMethod, mutationTime, numRuleSets)
+      networks[[i]] <- calSensitivity1(networks[[i]], stateSet, groupSet, mutateMethod, mutationTime, numRuleSets, ruleFile)
     }
 
     return (networks)
@@ -96,7 +98,7 @@ calSensitivity <- function(networks, stateSet, mutateMethod = "rule flip", group
 }
 
 calSensitivity1 <- function(network, stateSet, groupSet, mutateMethod = "rule flip",
-                            mutationTime = 1000L, numRules = 1) {
+                            mutationTime = 1000L, numRules = 1, ruleFile = NULL) {
   if(is.data.frame(network)) {
     network <- loadInbuiltNetwork(network)
   }
@@ -109,9 +111,20 @@ calSensitivity1 <- function(network, stateSet, groupSet, mutateMethod = "rule fl
     }
   }
 
+  if(! is.null(ruleFile)) {
+    numRules = 1
+    print("[calSensitivity] Applying user-defined Nested Canalyzing Function rules.")
+
+  } else {
+    ruleFile = "---"
+    #print("[calSensitivity] Applying random Nested Canalyzing Function rules.")
+  }
+
+  #init and call the corresponding JAVA function to Calculate sensitivity
   calc <- .jnew("mod.jmut.core.Calc")
   sensResults <- .jcall(calc, "[D", "calSensitivity", as.character(network$name), as.character(stateSet), as.integer(groupSet),
-                        as.character(mutateMethod), as.integer(mutationTime), as.integer(numRules))
+                        as.character(mutateMethod), as.integer(mutationTime), as.integer(numRules),
+                        as.character(ruleFile))
 
   if(is.jnull(sensResults)) {
     printGeneralError()

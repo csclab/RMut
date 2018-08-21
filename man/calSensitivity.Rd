@@ -5,7 +5,7 @@
 \title{Compute sensitivity values of node/edge groups}
 \usage{
 calSensitivity(networks, stateSet, mutateMethod = "rule flip",
-               groupSet = 0, mutationTime = 1000L, numRuleSets = 1)
+               groupSet = 0, mutationTime = 1000L, numRuleSets = 1, ruleFile = NULL)
 }
 \arguments{
 \item{networks}{A network or a set of networks used for the calculation}
@@ -19,6 +19,8 @@ calSensitivity(networks, stateSet, mutateMethod = "rule flip",
 \item{mutationTime}{The period of time in which the mutation occurs, default is 1000}
 
 \item{numRuleSets}{Number of random Nested Canalyzing Function sets, default is 1}
+
+\item{ruleFile}{The path points to a file containing user-defined Nested Canalyzing Function rules, default is NULL. In case the path is specified, the parameter \code{numRuleSets} is forced to 1.}
 }
 \value{
 The updated network objects including sensitivity values of the examined node/edge groups.
@@ -40,6 +42,7 @@ Besides, users can define their own mutation and apply here as shown in the belo
 Users can also set the operational time of the mutation as determined by the parameter \strong{\code{mutationTime}}.
 Finally, synchronous updating scheme is used for calculating state transitions. Single or multiple sets of random update-rules are generated based on the
 parameter \code{numRuleSets}.
+A file containing user-defined rules could be specified by the parameter \code{ruleFile}.
 
 For each network, the sensitivity values are stored in the same data frame of node/edge groups.
 The data frame has one column for group identifiers (lists of nodes/edges),
@@ -62,8 +65,8 @@ hsn <- generateGroups(hsn, "all", 1, 0)
 # calculate sensitivity values of all nodes against the knockout mutation
 hsn <- calSensitivity(hsn, states, "knockout")
 
-# calculate sensitivity values against a user-defined mutation
-hsn <- calSensitivity(hsn, states, "D:\\\\mod\\\\UserMutation.java")
+# calculate sensitivity values against a user-defined mutation, also use user-defined rules
+hsn <- calSensitivity(hsn, states, "D:\\\\mod\\\\UserMutation.java", ruleFile="D:\\\\mod\\\\UserNCF.txt")
 
 # view the calculated sensitivity values and export all results to files
 printSensitivity(hsn)
