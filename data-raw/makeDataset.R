@@ -3,7 +3,8 @@
 dataf <- c("D:\\Study\\BioInformatics\\BioDatabases\\SignalingNetws\\NetDS_netw\\AMRN - Flower morphogenesis in Arabidopsis.txt",
           "D:\\Study\\BioInformatics\\BioDatabases\\SignalingNetws\\NetDS_netw\\CDRN - Cell differentiation regulatory network.txt",
           "D:\\Study\\BioInformatics\\BioDatabases\\SignalingNetws\\NetDS_netw\\CCSN_reduced.sif",
-          "D:\\Study\\BioInformatics\\BioDatabases\\SignalingNetws\\WangLab\\HumanSignalingNet_v1_AHau_nonNeutral.sif")
+          "D:\\Study\\BioInformatics\\BioDatabases\\SignalingNetws\\WangLab\\HumanSignalingNet_v1_AHau_nonNeutral.sif",
+          "D:\\HCStore\\Projects\\R\\RMut\\vignettes\\networks\\CCHS.sif")
 
 makeData <- function(dataFile, dataName) {
   net <- read.table(dataFile, stringsAsFactors = FALSE, sep = "\t", col.names = c("Source", "Interaction", "Target"))
@@ -20,12 +21,14 @@ makeData <- function(dataFile, dataName) {
 
 #amrn <- makeData(dataf[1], "AMRN")
 #cdrn <- makeData(dataf[2], "CDRN")
-ccsn <- makeData(dataf[3], "CCSN")
-hsn <- makeData(dataf[4], "HSN")
+#ccsn <- makeData(dataf[3], "CCSN")
+#hsn <- makeData(dataf[4], "HSN")
+cchs <- makeData(dataf[5], "CCHS")
 
 #save(amrn, file = 'data/amrn.rdata', compress = 'xz')
 #devtools::use_data(amrn, overwrite = TRUE)
 #devtools::use_data(cdrn, overwrite = TRUE)
-devtools::use_data(ccsn, overwrite = TRUE)
-devtools::use_data(hsn, overwrite = TRUE)
+#devtools::use_data(ccsn, overwrite = TRUE)
+#devtools::use_data(hsn, overwrite = TRUE)
+devtools::use_data(cchs, overwrite = TRUE)
 

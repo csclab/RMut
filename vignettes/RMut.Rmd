@@ -27,13 +27,19 @@ The version of JDK should be greater than or equal to 8.
 
 ## RMut package
 
-The _RMut_ package should be properly installed into the R environment by typing the following commands into the R console:
+Firstly, the _devtools_ package must be installed by typing the following commands into the R console:
+
+_> install.packages("devtools")_
+
+More details about the _devtools_ package could be found in the website [https://github.com/r-lib/devtools](https://github.com/r-lib/devtools).
+
+Next, the _RMut_ package should be properly installed into the R environment by typing the following commands:
 
 _> install.packages("rJava")_
 
-_> devtools::install\_github("csclab/RMut", args="--no-multiarch")_
+_> devtools::install\_github("csclab/RMut", INSTALL\_opts="--no-multiarch")_
 
-Though all of core algorithms written in Java, the _rJava_ package must be firstly installed in the R environment as well. Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
+We note that the new version of _devtools_ package uses the keyword _INSTALL\_opts_ to specify additional installation options instead of the old keyword _args_. Though all of core algorithms written in Java, the _rJava_ package must be installed in the R environment before the _RMut_ installation. After installation, the RMut package can be loaded via
 
 _> library(RMut)_
 
@@ -139,12 +145,57 @@ The package supplied four example datasets from small-scale to large-scale real 
 * _cdrn_
 
     The cell differentiation regulatory network (CDRN) with 9 nodes and 15 links.
+* _cchs_
+
+    The cell cycle pathway of the species Homo sapiens (CCHS) with 161 nodes and 223 links.
 * _ccsn_
 
     The canonical cell signaling network (CCSN) with 771 nodes and 1633 links.
 * _hsn_
 
     The large-scale human signaling network (HSN) with 1192 nodes and 3102 links.
+    
+All original network files (Tab-separated values text files) could be downloaded in the folder _vignettes/networks_ of the RMut website [https://github.com/csclab/RMut](https://github.com/csclab/RMut).
+
+## WikiPathways network files conversion
+
+A user could retrieve pathways in WikiPathways database [https://www.wikipathways.org/index.php/WikiPathways](https://www.wikipathways.org) as a SIF file by wikiPathways plugin [http://apps.cytoscape.org/apps/wikipathways](wikipathways plugin) of the  Cytoscape software [https://cytoscape.org/](https://cytoscape.org/). The version of Cytoscape should be greater than or equal 3.6.1. 
+
+Firstly, the pathway could be loaded into Cytoscape by some steps indicated in the Figure 2 and 3. 
+
+![Import network from public databases](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_1.png)
+
+![Select and import a pathway from WikiPathways database](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_2.png)
+
+
+After that, we select the "Edge Table" tab and detach it for easy modification (Figure 4). 
+
+![Select and detach the "Edge Table" tab](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_3.png)
+
+
+There does not exist relationship types in the attribute or column _interaction_ (activation, inhibition, or neutral), thus we must update them based on some existing columns as follows:
+
+* _activation_ interaction (value is _1_)
+
+    In case at least one of the corresponding columns _WP.type_ or _Source Arrow Shape_ has the value "mim-conversion" or "Arrow".
+    
+* _inhibition_ interaction (value is _-1_)
+
+    In case at least one of the corresponding columns _WP.type_ or _Source Arrow Shape_ has the value "mim-inhibition" or "TBar".
+    
+* _neutral_ interaction (value is _0_)
+
+    In case both the corresponding columns _WP.type_ and _Source Arrow Shape_ has the value "Line", or the corresponding column _WP.type_ is empty.
+
+For each type of interaction, we select the rows or interactions that satisfy the above conditions, and then modify the values of the column _interaction_ as a way like Figure 5. 
+
+![Update relationship types in the attribute "interaction"](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_4_5.png)
+
+
+To repeat this step for other types, we deselect edges by clicking in the empty space of the network visualization panel. Finally,  we export the pathway to SIF file format by the following menu: _File | Export | Network..._ . We might need to remove wrong rows of interactions (missing the interaction type) in the SIF file by a spreadsheet software like Microsoft Excel (Figure 6).
+
+![Remove wrong rows of interactions which have not an interaction type)](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_6.png)
+
 
 # Dynamics analyses
 
@@ -250,21 +301,21 @@ Finally, the resulted transition network could be exported by the function _outp
 
 The transition network is written as a SIF file (*.__sif__). The SIF file could be loaded to Cytoscape with the following menu:
 
-_File | Import | Network | File..._ or using the shortcut keys _Ctrl/Cmd + L_ (_Figure 2(a)_)
+_File | Import | Network | File..._ or using the shortcut keys _Ctrl/Cmd + L_ (_Figure 7(a)_)
 
 ![Import network (a) and nodes/edges attributes (b) in Cytoscape software](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu.png)
 
-In next steps, we import two CSV files of nodes/edges attributes via _File | Import | Table | File..._ menu (_Figure 2(b)_). For the nodes attributes file, we should select _String_ data type for the column _NetworkState_ (_Figure 3_). For the edges attributes file, we must select _Edge Table Columns_ in the drop-down list beside the text _Import Data as:_ (_Figure 4_).
+In next steps, we import two CSV files of nodes/edges attributes via _File | Import | Table | File..._ menu (_Figure 7(b)_). For the nodes attributes file, we should select _String_ data type for the column _NetworkState_ (_Figure 8_). For the edges attributes file, we must select _Edge Table Columns_ in the drop-down list beside the text _Import Data as:_ (_Figure 9_).
 
 ![Nodes attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_node.png)
 
 ![Edges attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_edge.png)
 
-After importing, we select _Style_ panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in _Fill Color_ property for the nodes that belong to an attractor (_Figure 5(a)_). Regards to edge style, select _Red_ color in _Stroke Color_ property and change _Width_ property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 5(b)_). 
+After importing, we select _Style_ panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in _Fill Color_ property for the nodes that belong to an attractor (_Figure 10(a)_). Regards to edge style, select _Red_ color in _Stroke Color_ property and change _Width_ property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 10(b)_). 
 
 ![Nodes (a) and edges (b) style modification](https://github.com/csclab/RMut/blob/master/vignettes/style_node_edge.png)
 
-As a result, _Figure 6_ shows the modified transition network with clearer indication of attractor cycles.
+As a result, _Figure 11_ shows the modified transition network with clearer indication of attractor cycles.
 
 ![The transition network of AMRN](https://github.com/csclab/RMut/blob/master/vignettes/amrn_attractors.png)
 

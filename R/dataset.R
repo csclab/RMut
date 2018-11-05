@@ -50,6 +50,24 @@
 #' @source \url{http://www.ncbi.nlm.nih.gov/pubmed/11082279}
 "cdrn"
 
+#' Cell cycle pathway of the species Homo sapiens.
+#'
+#' The cell cycle pathway of the species Homo sapiens (CCHS) with 161 nodes and 223 links.
+#' The cell cycle is the series of events that takes place in a cell
+#' leading to its division and duplication (replication).
+#'
+#' @usage
+#' data(cchs)
+#' @format A data frame with 223 rows and 3 variables:
+#' \describe{
+#'   \item{\code{Source}}{the identifier of the source node}
+#'   \item{\code{Interaction}}{interaction type of the edge}
+#'   \item{\code{Target}}{the identifier of the target node}
+#'   ...
+#' }
+#' @source \url{https://www.ncbi.nlm.nih.gov/pubmed/9733515}
+"cchs"
+
 #' Canonical cell signaling network.
 #'
 #' The canonical cell signaling network (CCSN) with 771 nodes and 1633 links.

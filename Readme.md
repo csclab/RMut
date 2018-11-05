@@ -15,13 +15,19 @@ The version of JDK should be greater than or equal to 8.
 RMut package
 ------------
 
-The *RMut* package should be properly installed into the R environment by typing the following commands into the R console:
+Firstly, the *devtools* package must be installed by typing the following commands into the R console:
+
+*&gt; install.packages("devtools")*
+
+More details about the *devtools* package could be found in the website <https://github.com/r-lib/devtools>.
+
+Next, the *RMut* package should be properly installed into the R environment by typing the following commands:
 
 *&gt; install.packages("rJava")*
 
-*&gt; devtools::install\_github("csclab/RMut", args="--no-multiarch")*
+*&gt; devtools::install\_github("csclab/RMut", INSTALL\_opts="--no-multiarch")*
 
-Though all of core algorithms written in Java, the *rJava* package must be firstly installed in the R environment as well. Normally, the dependent package would be also installed by the above command. Otherwise, we should install it manually in a similar way to RMut. After installation, the RMut package can be loaded via
+We note that the new version of *devtools* package uses the keyword *INSTALL\_opts* to specify additional installation options instead of the old keyword *args*. Though all of core algorithms written in Java, the *rJava* package must be installed in the R environment before the *RMut* installation. After installation, the RMut package can be loaded via
 
 *&gt; library(RMut)*
 
@@ -63,6 +69,8 @@ library(RMut)
 ```
 
     ## Loading required package: rJava
+
+    ## [1] "Please firstly initialize the Java Virtual Machine by using the function 'initJVM(maxHeapSize)'."
 
 ``` r
 initJVM("8G")
@@ -213,12 +221,54 @@ The package supplied four example datasets from small-scale to large-scale real 
 -   *cdrn*
 
     The cell differentiation regulatory network (CDRN) with 9 nodes and 15 links.
+-   *cchs*
+
+    The cell cycle pathway of the species Homo sapiens (CCHS) with 161 nodes and 223 links.
 -   *ccsn*
 
     The canonical cell signaling network (CCSN) with 771 nodes and 1633 links.
 -   *hsn*
 
     The large-scale human signaling network (HSN) with 1192 nodes and 3102 links.
+
+All original network files (Tab-separated values text files) could be downloaded in the folder *vignettes/networks* of the RMut website <https://github.com/csclab/RMut>.
+
+WikiPathways network files conversion
+-------------------------------------
+
+A user could retrieve pathways in WikiPathways database [https://www.wikipathways.org/index.php/WikiPathways](https://www.wikipathways.org) as a SIF file by wikiPathways plugin [http://apps.cytoscape.org/apps/wikipathways](wikipathways%20plugin) of the Cytoscape software <https://cytoscape.org/>. The version of Cytoscape should be greater than or equal 3.6.1.
+
+Firstly, the pathway could be loaded into Cytoscape by some steps indicated in the Figure 2 and 3.
+
+![Import network from public databases](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_1.png)
+
+![Select and import a pathway from WikiPathways database](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_2.png)
+
+After that, we select the "Edge Table" tab and detach it for easy modification (Figure 4).
+
+![Select and detach the "Edge Table" tab](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_3.png)
+
+There does not exist relationship types in the attribute or column *interaction* (activation, inhibition, or neutral), thus we must update them based on some existing columns as follows:
+
+-   *activation* interaction (value is *1*)
+
+    In case at least one of the corresponding columns *WP.type* or *Source Arrow Shape* has the value "mim-conversion" or "Arrow".
+
+-   *inhibition* interaction (value is *-1*)
+
+    In case at least one of the corresponding columns *WP.type* or *Source Arrow Shape* has the value "mim-inhibition" or "TBar".
+
+-   *neutral* interaction (value is *0*)
+
+    In case both the corresponding columns *WP.type* and *Source Arrow Shape* has the value "Line", or the corresponding column *WP.type* is empty.
+
+For each type of interaction, we select the rows or interactions that satisfy the above conditions, and then modify the values of the column *interaction* as a way like Figure 5.
+
+![Update relationship types in the attribute "interaction"](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_4_5.png)
+
+To repeat this step for other types, we deselect edges by clicking in the empty space of the network visualization panel. Finally, we export the pathway to SIF file format by the following menu: *File | Export | Network...* . We might need to remove wrong rows of interactions (missing the interaction type) in the SIF file by a spreadsheet software like Microsoft Excel (Figure 6).
+
+![Remove wrong rows of interactions which have not an interaction type)](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_6.png)
 
 Dynamics analyses
 =================
@@ -254,27 +304,27 @@ print(amrn$Group_1)
 ```
 
     ##    GroupID ruleflip_t1000_r1_macro ruleflip_t1000_r1_bitws
-    ## 1       PI               0.7988281              0.10511068
-    ## 2       AG               1.0000000              0.12262370
-    ## 3      AP1               0.9687500              0.13518880
-    ## 4      LFY               0.9062500              0.16064453
-    ## 5      AP3               0.7617188              0.08886719
-    ## 6      SUP               0.0000000              0.00000000
-    ## 7      LUG               0.0000000              0.00000000
-    ## 8      UFO               0.0000000              0.00000000
-    ## 9     EMF1               0.0000000              0.00000000
-    ## 10    TFL1               0.4687500              0.05335286
+    ## 1     EMF1               0.0000000              0.00000000
+    ## 2      SUP               0.0000000              0.00000000
+    ## 3      LFY               0.9062500              0.16064453
+    ## 4      AP1               0.9687500              0.13518880
+    ## 5       AG               1.0000000              0.12262370
+    ## 6      UFO               0.0000000              0.00000000
+    ## 7      AP3               0.7617188              0.08886719
+    ## 8     TFL1               0.4687500              0.05335286
+    ## 9       PI               0.7988281              0.10511068
+    ## 10     LUG               0.0000000              0.00000000
     ##    ruleflip_t1000_r2_macro ruleflip_t1000_r2_bitws
-    ## 1                0.9707031              0.10488281
-    ## 2                1.0000000              0.12177734
-    ## 3                0.9687500              0.12900391
-    ## 4                0.9062500              0.14690755
-    ## 5                0.9707031              0.10488281
+    ## 1                0.0000000              0.00000000
+    ## 2                0.0000000              0.00000000
+    ## 3                0.9062500              0.14690755
+    ## 4                0.9687500              0.12900391
+    ## 5                1.0000000              0.12177734
     ## 6                0.0000000              0.00000000
-    ## 7                0.0000000              0.00000000
-    ## 8                0.0000000              0.00000000
-    ## 9                0.0000000              0.00000000
-    ## 10               0.4687500              0.05458984
+    ## 7                0.9707031              0.10488281
+    ## 8                0.4687500              0.05458984
+    ## 9                0.9707031              0.10488281
+    ## 10               0.0000000              0.00000000
 
 ``` r
 # generate all possible groups each containing a single edge in the AMRN network
@@ -289,28 +339,28 @@ print(amrn$Group_2)
 ```
 
     ##          GroupID edgeremoval_t1000_r1_macro edgeremoval_t1000_r1_bitws
-    ## 1     UFO (1) PI                 0.01757812                0.003222656
-    ## 2  TFL1 (-1) LFY                 0.12500000                0.015755208
-    ## 3  EMF1 (1) TFL1                 0.46875000                0.053352865
-    ## 4     AP3 (1) PI                 0.02539062                0.006152344
-    ## 5  EMF1 (-1) AP1                 0.00000000                0.000000000
-    ## 6    AP1 (-1) AG                 0.03125000                0.005794271
-    ## 7    LFY (1) AP1                 0.42187500                0.074804688
-    ## 8   SUP (-1) AP3                 0.01562500                0.003710938
-    ## 9  EMF1 (-1) LFY                 0.00000000                0.000000000
-    ## 10    LFY (1) AG                 0.14062500                0.014062500
-    ## 11     PI (1) PI                 0.00390625                0.000390625
-    ## 12 LFY (-1) TFL1                 0.00000000                0.000000000
-    ## 13    LFY (1) PI                 0.18164062                0.034375000
-    ## 14  TFL1 (-1) AG                 0.01269531                0.003808594
-    ## 15   LUG (-1) AG                 0.09375000                0.010188802
-    ## 16   AP3 (1) AP3                 0.00000000                0.000000000
-    ## 17    PI (1) AP3                 0.18945312                0.026269531
-    ## 18   SUP (-1) PI                 0.01757812                0.003222656
-    ## 19   LFY (1) AP3                 0.00390625                0.000390625
-    ## 20   UFO (1) AP3                 0.01562500                0.003710938
-    ## 21   AG (-1) AP1                 0.12500000                0.016178385
-    ## 22   AP1 (1) LFY                 0.46875000                0.075358073
+    ## 1    SUP (-1) PI                 0.01757812                0.003222656
+    ## 2  EMF1 (-1) AP1                 0.00000000                0.000000000
+    ## 3   SUP (-1) AP3                 0.01562500                0.003710938
+    ## 4   TFL1 (-1) AG                 0.01269531                0.003808594
+    ## 5     AP3 (1) PI                 0.02539062                0.006152344
+    ## 6     UFO (1) PI                 0.01757812                0.003222656
+    ## 7    UFO (1) AP3                 0.01562500                0.003710938
+    ## 8      PI (1) PI                 0.00390625                0.000390625
+    ## 9    AP1 (-1) AG                 0.03125000                0.005794271
+    ## 10   LFY (1) AP3                 0.00390625                0.000390625
+    ## 11   LUG (-1) AG                 0.09375000                0.010188802
+    ## 12   AP1 (1) LFY                 0.46875000                0.075358073
+    ## 13    LFY (1) AG                 0.14062500                0.014062500
+    ## 14   AP3 (1) AP3                 0.00000000                0.000000000
+    ## 15   LFY (1) AP1                 0.42187500                0.074804688
+    ## 16   AG (-1) AP1                 0.12500000                0.016178385
+    ## 17 EMF1 (1) TFL1                 0.46875000                0.053352865
+    ## 18    LFY (1) PI                 0.18164062                0.034375000
+    ## 19 TFL1 (-1) LFY                 0.12500000                0.015755208
+    ## 20    PI (1) AP3                 0.18945312                0.026269531
+    ## 21 EMF1 (-1) LFY                 0.00000000                0.000000000
+    ## 22 LFY (-1) TFL1                 0.00000000                0.000000000
 
 ``` r
 # generate all possible groups each containing a new edge (not exist in the AMRN network)
@@ -325,184 +375,184 @@ print(amrn$Group_3)
 ```
 
     ##            GroupID edgeaddition_t1000_r1_macro edgeaddition_t1000_r1_bitws
-    ## 1     LUG (-1) AP1                   0.4843750                 0.065820313
-    ## 2     LUG (-1) AP3                   0.9873047                 0.353027344
-    ## 3    LFY (-1) EMF1                   0.4687500                 0.116048177
-    ## 4       AG (1) AP3                   0.9873047                 0.353027344
-    ## 5      AP3 (1) SUP                   0.5371094                 0.069531250
-    ## 6     PI (-1) EMF1                   0.6191406                 0.116731771
-    ## 7      AG (-1) SUP                   0.5625000                 0.072493490
-    ## 8     LUG (1) TFL1                   0.2500000                 0.025000000
-    ## 9      PI (-1) LFY                   0.2246094                 0.044303385
-    ## 10    AP1 (-1) AP1                   0.5312500                 0.071126302
-    ## 11      PI (1) AP1                   0.9687500                 0.128938802
-    ## 12    LFY (-1) AP3                   0.9873047                 0.353027344
-    ## 13     SUP (1) AP1                   0.4843750                 0.064322917
-    ## 14     PI (-1) AP1                   0.2128906                 0.032649740
-    ## 15     EMF1 (1) AG                   0.5000000                 0.072623698
-    ## 16      AG (1) AP1                   0.3125000                 0.046516927
-    ## 17    AP1 (-1) AP3                   0.9873047                 0.353027344
-    ## 18    TFL1 (1) UFO                   0.5156250                 0.062597656
-    ## 19   TFL1 (-1) LUG                   0.5253906                 0.061165365
-    ## 20     UFO (1) LFY                   0.1093750                 0.015397135
-    ## 21      AG (1) LFY                   0.9687500                 0.170817057
-    ## 22      AG (1) LUG                   0.5937500                 0.073561198
-    ## 23    AP1 (-1) SUP                   0.5937500                 0.059505208
-    ## 24   SUP (-1) TFL1                   0.2500000                 0.025000000
-    ## 25     SUP (1) LFY                   0.4843750                 0.097395833
-    ## 26    UFO (1) TFL1                   0.2500000                 0.025000000
-    ## 27   TFL1 (1) EMF1                   1.0000000                 0.127923177
-    ## 28     AP3 (-1) PI                   1.0000000                 0.472753906
-    ## 29     EMF1 (1) PI                   1.0000000                 0.472753906
-    ## 30   TFL1 (-1) SUP                   0.5156250                 0.062597656
-    ## 31    UFO (-1) LUG                   0.5000000                 0.061002604
-    ## 32     PI (-1) AP3                   0.9873047                 0.353027344
-    ## 33    EMF1 (1) LFY                   0.0000000                 0.000000000
-    ## 34     AG (1) EMF1                   0.6250000                 0.116048177
-    ## 35     TFL1 (1) PI                   1.0000000                 0.472753906
-    ## 36     AP3 (-1) AG                   0.0937500                 0.011360677
-    ## 37      AG (-1) PI                   0.9921875                 0.454003906
-    ## 38    LUG (-1) LFY                   0.4843750                 0.099414063
-    ## 39    LFY (-1) AP1                   0.0000000                 0.000000000
-    ## 40    AG (-1) EMF1                   0.5000000                 0.129720052
-    ## 41     LFY (-1) AG                   0.0937500                 0.010188802
-    ## 42     LUG (1) SUP                   0.5000000                 0.054003906
-    ## 43    LFY (-1) LFY                   0.1875000                 0.022298177
-    ## 44    LFY (-1) UFO                   0.5937500                 0.060286458
-    ## 45  EMF1 (-1) TFL1                   0.5000000                 0.050000000
-    ## 46     AP1 (1) LUG                   0.5937500                 0.062890625
-    ## 47     UFO (-1) PI                   1.0000000                 0.472753906
-    ## 48     AP1 (1) SUP                   0.5937500                 0.053938802
-    ## 49    LFY (-1) LUG                   0.5937500                 0.062988281
-    ## 50      UFO (1) AG                   0.0468750                 0.004459635
-    ## 51    LFY (1) TFL1                   0.5000000                 0.050000000
-    ## 52    EMF1 (1) UFO                   0.5000000                 0.055566406
-    ## 53     AP1 (1) AP1                   0.7812500                 0.058235677
-    ## 54    LUG (-1) UFO                   0.5000000                 0.053515625
-    ## 55     LUG (-1) PI                   1.0000000                 0.472753906
-    ## 56     AP1 (-1) PI                   1.0000000                 0.449316406
-    ## 57   LUG (-1) EMF1                   0.5000000                 0.113085938
-    ## 58   AP3 (-1) TFL1                   0.5000000                 0.050000000
-    ## 59   EMF1 (-1) SUP                   0.5000000                 0.055566406
-    ## 60     LUG (1) LFY                   0.1093750                 0.013085937
-    ## 61    SUP (-1) LFY                   0.1093750                 0.015397135
-    ## 62    AP3 (-1) LFY                   0.0781250                 0.010611979
-    ## 63    AP1 (1) TFL1                   0.5000000                 0.050000000
-    ## 64      AP1 (1) PI                   1.0000000                 0.445735677
-    ## 65     SUP (1) LUG                   0.5000000                 0.060904948
-    ## 66     AG (1) TFL1                   0.5000000                 0.050000000
-    ## 67     AG (-1) UFO                   0.5625000                 0.072623698
-    ## 68    SUP (-1) SUP                   1.0000000                 0.056770833
-    ## 69     LFY (-1) PI                   1.0000000                 0.472753906
-    ## 70    LFY (1) EMF1                   0.4687500                 0.116048177
-    ## 71    UFO (-1) AP1                   0.4843750                 0.070865885
-    ## 72    AP1 (-1) UFO                   0.5937500                 0.059505208
-    ## 73     AP3 (1) AP1                   0.2167969                 0.028938802
-    ## 74      PI (1) UFO                   0.5351562                 0.073339844
-    ## 75     AG (-1) LFY                   0.1718750                 0.023046875
-    ## 76   AP3 (-1) EMF1                   0.6191406                 0.116731771
-    ## 77    AP3 (1) TFL1                   0.0000000                 0.000000000
-    ## 78      PI (1) LUG                   0.5175781                 0.062337240
-    ## 79    LUG (-1) LUG                   1.0000000                 0.061490885
-    ## 80     LFY (1) LUG                   0.5937500                 0.062890625
-    ## 81   TFL1 (-1) UFO                   0.5156250                 0.062597656
-    ## 82     UFO (1) AP1                   0.1093750                 0.014322917
-    ## 83       AG (1) AG                   0.0000000                 0.000000000
-    ## 84    TFL1 (1) AP3                   0.9873047                 0.353027344
-    ## 85    LFY (-1) SUP                   0.5937500                 0.063281250
-    ## 86    AP3 (-1) UFO                   0.5390625                 0.070605469
-    ## 87  TFL1 (-1) EMF1                   0.6250000                 0.082291667
-    ## 88   UFO (-1) EMF1                   0.5000000                 0.115397135
-    ## 89    AP3 (-1) AP3                   0.9873047                 0.353027344
-    ## 90       AG (1) PI                   0.9921875                 0.454003906
-    ## 91    AP1 (-1) LUG                   0.5937500                 0.062890625
-    ## 92     PI (-1) UFO                   0.5351562                 0.073339844
-    ## 93     AG (-1) AP3                   0.9873047                 0.353027344
-    ## 94    EMF1 (1) AP3                   0.9873047                 0.353027344
-    ## 95     PI (-1) LUG                   0.5058594                 0.062500000
-    ## 96    UFO (-1) AP3                   0.9873047                 0.353027344
-    ## 97     AP3 (1) LUG                   0.5058594                 0.062500000
-    ## 98    TFL1 (1) LFY                   0.0000000                 0.000000000
-    ## 99    UFO (1) EMF1                   0.5000000                 0.114322917
-    ## 100   TFL1 (1) AP1                   0.0625000                 0.007291667
-    ## 101   UFO (-1) LFY                   0.1093750                 0.014322917
-    ## 102    AP3 (1) UFO                   0.5390625                 0.070605469
-    ## 103     AG (1) UFO                   0.5625000                 0.072493490
-    ## 104    LFY (1) SUP                   0.5937500                 0.060286458
-    ## 105     AP3 (1) AG                   0.1074219                 0.017805990
-    ## 106  LUG (-1) TFL1                   0.2500000                 0.041634115
-    ## 107  UFO (-1) TFL1                   0.2500000                 0.025000000
-    ## 108     AG (1) SUP                   0.5625000                 0.072623698
-    ## 109     PI (-1) PI                   1.0000000                 0.472753906
-    ## 110  TFL1 (-1) AP3                   0.9873047                 0.353027344
-    ## 111    SUP (1) AP3                   0.9873047                 0.353027344
-    ## 112     SUP (1) PI                   1.0000000                 0.472753906
-    ## 113    TFL1 (1) AG                   0.5000000                 0.072623698
-    ## 114   AG (-1) TFL1                   0.0000000                 0.000000000
-    ## 115   PI (-1) TFL1                   0.5000000                 0.050000000
-    ## 116 TFL1 (-1) TFL1                   0.3750000                 0.037500000
-    ## 117  TFL1 (1) TFL1                   0.5000000                 0.041015625
-    ## 118    PI (1) EMF1                   0.4960938                 0.127376302
-    ## 119   TFL1 (1) LUG                   0.5253906                 0.061165365
-    ## 120   EMF1 (1) AP1                   0.2187500                 0.029720052
-    ## 121   AP1 (-1) LFY                   0.0000000                 0.000000000
-    ## 122  EMF1 (-1) AP3                   0.9873047                 0.353027344
-    ## 123    PI (-1) SUP                   0.5527344                 0.074023438
-    ## 124    PI (1) TFL1                   0.0000000                 0.000000000
-    ## 125   SUP (1) TFL1                   0.2500000                 0.025000000
-    ## 126      PI (1) AG                   0.1132812                 0.018489583
-    ## 127     LUG (1) AG                   0.0937500                 0.010188802
-    ## 128    AP1 (1) AP3                   0.9873047                 0.353027344
-    ## 129    SUP (-1) AG                   0.5000000                 0.061946615
-    ## 130    UFO (1) LUG                   0.5000000                 0.061002604
-    ## 131 EMF1 (-1) EMF1                   0.0000000                 0.000000000
-    ## 132     LUG (1) PI                   1.0000000                 0.472753906
-    ## 133    LUG (1) LUG                   1.0000000                 0.061490885
-    ## 134   EMF1 (1) LUG                   0.5000000                 0.061165365
-    ## 135    AP3 (1) LFY                   0.0781250                 0.010611979
-    ## 136   UFO (-1) SUP                   0.5000000                 0.055566406
-    ## 137  AP1 (-1) EMF1                   0.4687500                 0.116048177
-    ## 138   SUP (-1) AP1                   0.4843750                 0.070865885
-    ## 139    LUG (1) AP3                   0.9873047                 0.353027344
-    ## 140  SUP (-1) EMF1                   0.5000000                 0.114322917
-    ## 141     AP1 (1) AG                   0.8876953                 0.090006510
-    ## 142    LFY (1) UFO                   0.5937500                 0.060286458
-    ## 143    UFO (-1) AG                   0.0468750                 0.004459635
-    ## 144   AP3 (-1) SUP                   0.5371094                 0.069531250
-    ## 145  TFL1 (-1) AP1                   0.6875000                 0.071875000
-    ## 146   EMF1 (1) SUP                   0.5000000                 0.055566406
-    ## 147   SUP (1) EMF1                   0.5000000                 0.115397135
-    ## 148     PI (1) LFY                   0.2148438                 0.028157552
-    ## 149     AG (-1) AG                   0.0937500                 0.010188802
-    ## 150  EMF1 (-1) LUG                   0.5000000                 0.061165365
-    ## 151  EMF1 (-1) UFO                   0.5000000                 0.051953125
-    ## 152     PI (-1) AG                   0.1132812                 0.018489583
-    ## 153  AP1 (-1) TFL1                   0.0000000                 0.000000000
-    ## 154    LUG (1) AP1                   0.4843750                 0.065820313
-    ## 155   SUP (-1) LUG                   0.5000000                 0.061002604
-    ## 156    AG (-1) LUG                   0.5937500                 0.073561198
-    ## 157    SUP (1) SUP                   1.0000000                 0.056770833
-    ## 158    UFO (1) UFO                   1.0000000                 0.056770833
-    ## 159     SUP (1) AG                   0.5000000                 0.061946615
-    ## 160    LFY (1) LFY                   0.0625000                 0.008463542
-    ## 161   AP3 (1) EMF1                   0.6191406                 0.116731771
-    ## 162   AP3 (-1) LUG                   0.5175781                 0.062337240
-    ## 163   EMF1 (-1) AG                   0.5000000                 0.050000000
-    ## 164   TFL1 (-1) PI                   1.0000000                 0.472753906
-    ## 165   AP3 (-1) AP1                   0.2167969                 0.028938802
-    ## 166   EMF1 (-1) PI                   1.0000000                 0.472753906
-    ## 167   TFL1 (1) SUP                   0.5156250                 0.062597656
-    ## 168    UFO (1) SUP                   0.5000000                 0.051953125
-    ## 169    SUP (1) UFO                   0.5000000                 0.055566406
-    ## 170   SUP (-1) UFO                   0.5000000                 0.055566406
-    ## 171     PI (1) SUP                   0.5351562                 0.073339844
-    ## 172    AP1 (1) UFO                   0.5937500                 0.053938802
-    ## 173   AP1 (1) EMF1                   0.7187500                 0.129720052
-    ## 174   LUG (-1) SUP                   0.5000000                 0.053515625
-    ## 175    LUG (1) UFO                   0.5000000                 0.053515625
-    ## 176  EMF1 (1) EMF1                   1.0000000                 0.129720052
-    ## 177   UFO (-1) UFO                   0.0000000                 0.000000000
-    ## 178   LUG (1) EMF1                   0.5000000                 0.116634115
+    ## 1    LUG (-1) TFL1                  0.25000000                 0.038085938
+    ## 2     LFY (-1) AP1                  0.21875000                 0.029720052
+    ## 3    EMF1 (1) EMF1                  1.00000000                 0.129720052
+    ## 4      AG (1) TFL1                  0.50000000                 0.079720052
+    ## 5      LFY (1) LFY                  0.78125000                 0.082812500
+    ## 6      PI (-1) SUP                  0.55273438                 0.074023438
+    ## 7     EMF1 (-1) AG                  0.50000000                 0.050000000
+    ## 8        AG (1) AG                  0.94726562                 0.060514323
+    ## 9     AP1 (-1) UFO                  0.59375000                 0.053938802
+    ## 10    SUP (-1) LUG                  0.50000000                 0.060904948
+    ## 11    AP1 (-1) LFY                  0.96875000                 0.212923177
+    ## 12    EMF1 (1) SUP                  0.50000000                 0.055566406
+    ## 13    PI (-1) EMF1                  0.61914062                 0.116731771
+    ## 14     SUP (1) AP1                  0.10937500                 0.015397135
+    ## 15    AG (-1) EMF1                  0.62500000                 0.116048177
+    ## 16   LFY (-1) EMF1                  0.46875000                 0.116048177
+    ## 17    UFO (-1) SUP                  0.50000000                 0.051953125
+    ## 18    TFL1 (1) LFY                  0.21875000                 0.029720052
+    ## 19    TFL1 (-1) PI                  1.00000000                 0.472753906
+    ## 20     SUP (1) LUG                  0.50000000                 0.060904948
+    ## 21    AG (-1) TFL1                  0.00000000                 0.000000000
+    ## 22     AP1 (1) LUG                  0.59375000                 0.062890625
+    ## 23     AG (-1) UFO                  0.56250000                 0.072493490
+    ## 24      PI (1) UFO                  0.53515625                 0.073339844
+    ## 25     SUP (1) AP3                  0.98730469                 0.353027344
+    ## 26      PI (-1) PI                  1.00000000                 0.472753906
+    ## 27   EMF1 (-1) SUP                  0.50000000                 0.055566406
+    ## 28    SUP (-1) LFY                  0.10937500                 0.015397135
+    ## 29    AP3 (-1) AP1                  0.08007812                 0.011197917
+    ## 30      AP1 (1) PI                  1.00000000                 0.449316406
+    ## 31    EMF1 (1) LFY                  0.21875000                 0.029720052
+    ## 32    PI (-1) TFL1                  0.50000000                 0.050000000
+    ## 33  TFL1 (-1) EMF1                  0.62500000                 0.082291667
+    ## 34    LFY (-1) UFO                  0.59375000                 0.063281250
+    ## 35    UFO (-1) AP3                  0.98730469                 0.353027344
+    ## 36     UFO (1) LFY                  0.48437500                 0.097395833
+    ## 37     LFY (1) UFO                  0.59375000                 0.060286458
+    ## 38     SUP (1) SUP                  1.00000000                 0.056770833
+    ## 39     AP1 (1) AP3                  0.98730469                 0.353027344
+    ## 40    AP3 (-1) LUG                  0.50585938                 0.062500000
+    ## 41    LFY (-1) LUG                  0.59375000                 0.062988281
+    ## 42    AP1 (-1) LUG                  0.59375000                 0.062988281
+    ## 43     AP3 (-1) PI                  1.00000000                 0.472753906
+    ## 44     PI (-1) LFY                  0.22460938                 0.044303385
+    ## 45     LFY (-1) AG                  0.00000000                 0.000000000
+    ## 46      AG (1) AP1                  0.92187500                 0.124804687
+    ## 47      PI (1) LUG                  0.51757812                 0.062337240
+    ## 48    LUG (-1) LUG                  0.00000000                 0.000000000
+    ## 49      AP1 (1) AG                  0.00000000                 0.000000000
+    ## 50   UFO (-1) TFL1                  0.25000000                 0.025000000
+    ## 51    TFL1 (1) AP1                  0.68750000                 0.071875000
+    ## 52    AP1 (-1) AP3                  0.98730469                 0.353027344
+    ## 53     AP3 (1) LUG                  0.51757812                 0.062337240
+    ## 54   TFL1 (1) EMF1                  0.62500000                 0.082291667
+    ## 55   TFL1 (-1) AP1                  0.46875000                 0.083626302
+    ## 56     UFO (1) AP1                  0.10937500                 0.014322917
+    ## 57    SUP (-1) UFO                  0.50000000                 0.055566406
+    ## 58     LUG (-1) PI                  1.00000000                 0.472753906
+    ## 59    AP1 (-1) SUP                  0.59375000                 0.059505208
+    ## 60    EMF1 (1) LUG                  0.50000000                 0.061165365
+    ## 61     AP1 (1) SUP                  0.59375000                 0.059505208
+    ## 62      AG (1) SUP                  0.56250000                 0.072623698
+    ## 63      AP3 (1) AG                  0.09375000                 0.011360677
+    ## 64    LUG (-1) AP3                  0.98730469                 0.353027344
+    ## 65     EMF1 (1) PI                  1.00000000                 0.472753906
+    ## 66     AG (-1) SUP                  0.56250000                 0.072623698
+    ## 67     PI (-1) AP3                  0.98730469                 0.353027344
+    ## 68     AP3 (1) AP1                  0.20703125                 0.031770833
+    ## 69      LUG (1) PI                  1.00000000                 0.472753906
+    ## 70    UFO (1) EMF1                  0.50000000                 0.114322917
+    ## 71     AG (-1) AP3                  0.98730469                 0.353027344
+    ## 72    AP3 (-1) SUP                  0.53906250                 0.070605469
+    ## 73     LFY (-1) PI                  1.00000000                 0.472753906
+    ## 74   AP1 (-1) EMF1                  0.46875000                 0.116048177
+    ## 75    UFO (-1) LFY                  0.48437500                 0.097395833
+    ## 76    AP3 (-1) AP3                  0.98730469                 0.353027344
+    ## 77  TFL1 (-1) TFL1                  0.37500000                 0.037500000
+    ## 78    EMF1 (1) AP1                  0.50000000                 0.050000000
+    ## 79  EMF1 (-1) EMF1                  1.00000000                 0.129720052
+    ## 80  EMF1 (-1) TFL1                  0.50000000                 0.050000000
+    ## 81   AP1 (-1) TFL1                  0.21875000                 0.029882813
+    ## 82    AP1 (1) EMF1                  0.71875000                 0.129720052
+    ## 83     PI (-1) LUG                  0.50585938                 0.062500000
+    ## 84    SUP (1) EMF1                  0.50000000                 0.115397135
+    ## 85     AG (-1) LUG                  0.53125000                 0.058886719
+    ## 86   TFL1 (-1) LUG                  0.52539062                 0.061165365
+    ## 87   AP3 (-1) TFL1                  0.09960938                 0.015104167
+    ## 88   SUP (-1) TFL1                  0.25000000                 0.025000000
+    ## 89   UFO (-1) EMF1                  0.50000000                 0.115397135
+    ## 90     AG (1) EMF1                  0.50000000                 0.129720052
+    ## 91   TFL1 (-1) UFO                  0.50976562                 0.057031250
+    ## 92     LUG (1) LUG                  0.00000000                 0.000000000
+    ## 93     AG (-1) LFY                  0.17187500                 0.023046875
+    ## 94     LUG (1) UFO                  0.50000000                 0.054003906
+    ## 95     UFO (1) SUP                  0.50000000                 0.051953125
+    ## 96   TFL1 (1) TFL1                  0.37500000                 0.037500000
+    ## 97    AP3 (-1) UFO                  0.53906250                 0.070605469
+    ## 98     AP3 (1) LFY                  0.26562500                 0.057177734
+    ## 99     AP3 (1) SUP                  0.53710938                 0.069531250
+    ## 100    UFO (1) UFO                  0.00000000                 0.000000000
+    ## 101    TFL1 (1) PI                  1.00000000                 0.472753906
+    ## 102   SUP (1) TFL1                  0.25000000                 0.025000000
+    ## 103     AG (1) LUG                  0.53125000                 0.058886719
+    ## 104   AP1 (1) TFL1                  0.46875000                 0.069173177
+    ## 105     PI (-1) AG                  0.99609375                 0.120670573
+    ## 106   AP3 (-1) LFY                  0.07812500                 0.010611979
+    ## 107      PI (1) AG                  0.99609375                 0.120670573
+    ## 108   LFY (1) EMF1                  0.46875000                 0.116048177
+    ## 109  TFL1 (-1) SUP                  0.50976562                 0.057031250
+    ## 110  TFL1 (-1) AP3                  0.98730469                 0.353027344
+    ## 111    PI (1) EMF1                  0.49609375                 0.127376302
+    ## 112   UFO (-1) UFO                  1.00000000                 0.056770833
+    ## 113   LUG (-1) AP1                  0.10937500                 0.016634115
+    ## 114   LUG (-1) UFO                  0.50000000                 0.053515625
+    ## 115  SUP (-1) EMF1                  0.50000000                 0.114322917
+    ## 116   LFY (1) TFL1                  0.50000000                 0.050000000
+    ## 117   AP1 (-1) AP1                  0.18750000                 0.022298177
+    ## 118   TFL1 (1) UFO                  0.51562500                 0.062597656
+    ## 119     PI (1) LFY                  0.22460938                 0.044303385
+    ## 120  EMF1 (-1) LUG                  0.50000000                 0.061165365
+    ## 121   EMF1 (-1) PI                  1.00000000                 0.472753906
+    ## 122    PI (-1) AP1                  0.21484375                 0.028157552
+    ## 123     SUP (1) AG                  0.50000000                 0.060677083
+    ## 124    SUP (1) LFY                  0.10937500                 0.014322917
+    ## 125    UFO (-1) AG                  0.50000000                 0.061946615
+    ## 126   LUG (1) EMF1                  0.50000000                 0.116634115
+    ## 127   UFO (-1) LUG                  0.50000000                 0.060904948
+    ## 128     AG (1) LFY                  0.12500000                 0.016048177
+    ## 129    LFY (1) SUP                  0.59375000                 0.063281250
+    ## 130   LFY (-1) AP3                  0.98730469                 0.353027344
+    ## 131   LUG (1) TFL1                  0.25000000                 0.038085938
+    ## 132     SUP (1) PI                  1.00000000                 0.472753906
+    ## 133   SUP (-1) SUP                  1.00000000                 0.056770833
+    ## 134   TFL1 (1) LUG                  0.50000000                 0.060742188
+    ## 135    LUG (1) AP3                  0.98730469                 0.353027344
+    ## 136  EMF1 (-1) AP3                  0.98730469                 0.353027344
+    ## 137    LUG (1) LFY                  0.10937500                 0.013085937
+    ## 138    LFY (1) LUG                  0.59375000                 0.062988281
+    ## 139    UFO (-1) PI                  1.00000000                 0.472753906
+    ## 140  LUG (-1) EMF1                  0.50000000                 0.113085938
+    ## 141   SUP (-1) AP1                  0.10937500                 0.014322917
+    ## 142   LFY (-1) LFY                  0.06250000                 0.008463542
+    ## 143    AP1 (1) UFO                  0.59375000                 0.059505208
+    ## 144    SUP (1) UFO                  0.50000000                 0.051953125
+    ## 145     AG (-1) PI                  0.99218750                 0.454003906
+    ## 146     PI (1) SUP                  0.55273438                 0.074023438
+    ## 147   UFO (1) TFL1                  0.25000000                 0.025000000
+    ## 148    PI (-1) UFO                  0.53515625                 0.073339844
+    ## 149    AP1 (-1) PI                  1.00000000                 0.449316406
+    ## 150   AP3 (1) EMF1                  0.49804688                 0.128548177
+    ## 151    LUG (1) SUP                  0.50000000                 0.054003906
+    ## 152    AP1 (1) AP1                  0.18750000                 0.022298177
+    ## 153   LUG (-1) LFY                  0.48437500                 0.119824219
+    ## 154     LUG (1) AG                  0.00000000                 0.000000000
+    ## 155     UFO (1) AG                  0.04687500                 0.004459635
+    ## 156   LFY (-1) SUP                  0.59375000                 0.063281250
+    ## 157  AP3 (-1) EMF1                  0.61914062                 0.116731771
+    ## 158   EMF1 (1) UFO                  0.50000000                 0.051953125
+    ## 159   LUG (-1) SUP                  0.50000000                 0.053515625
+    ## 160   TFL1 (1) AP3                  0.98730469                 0.353027344
+    ## 161    PI (1) TFL1                  0.00000000                 0.000000000
+    ## 162    SUP (-1) AG                  0.50000000                 0.060677083
+    ## 163   TFL1 (1) SUP                  0.51562500                 0.062597656
+    ## 164   UFO (-1) AP1                  0.10937500                 0.014322917
+    ## 165   EMF1 (1) AP3                  0.98730469                 0.353027344
+    ## 166     AG (1) UFO                  0.56250000                 0.072623698
+    ## 167    AP3 (1) UFO                  0.53710938                 0.069531250
+    ## 168     PI (1) AP1                  0.96875000                 0.128938802
+    ## 169    EMF1 (1) AG                  0.09375000                 0.010188802
+    ## 170    LUG (1) AP1                  0.48437500                 0.065820313
+    ## 171    TFL1 (1) AG                  0.00000000                 0.000000000
+    ## 172    UFO (1) LUG                  0.50000000                 0.060904948
+    ## 173  EMF1 (-1) UFO                  0.50000000                 0.051953125
+    ## 174      AG (1) PI                  0.99218750                 0.438509115
+    ## 175     AG (-1) AG                  0.94726562                 0.060514323
+    ## 176    AP3 (-1) AG                  0.09375000                 0.011360677
+    ## 177     AG (1) AP3                  0.98730469                 0.353027344
+    ## 178   AP3 (1) TFL1                  0.00000000                 0.000000000
 
 As shown above, we firstly need to generate a set of initial-states by the function *generateStates*. Then by the function *generateGroups*, we continue to generate three sets of node/edge groups whose their sensitivity would be calculated. Finally, the sensitivity values are stored in the same data frame of node/edge groups. The data frame has one column for group identifiers (lists of nodes/edges), and some next columns containing their sensitivity values according to each set of random update-rules. For example, the mutation *rule-flip* used two sets of Nested Canalyzing rules, thus resulted in two corresponding sets of sensitivity values. RMut automatically generates a file of Boolean logics for each set, or uses existing files in the working directory of RMut. Here, two rule files "*AMRN\_rules\_0*" and "*AMRN\_rules\_1*" are generated. A user can manually create or modify these rule files before the calculation. In addition, the column names which contain the sequence "*macro*" or "*bitws*" denote the macro-distance and bitwise-distance sensitivity measures, respectively.
 
@@ -599,21 +649,21 @@ Finally, the resulted transition network could be exported by the function *outp
 
 The transition network is written as a SIF file (\*.**sif**). The SIF file could be loaded to Cytoscape with the following menu:
 
-*File | Import | Network | File...* or using the shortcut keys *Ctrl/Cmd + L* (*Figure 2(a)*)
+*File | Import | Network | File...* or using the shortcut keys *Ctrl/Cmd + L* (*Figure 7(a)*)
 
 ![Import network (a) and nodes/edges attributes (b) in Cytoscape software](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu.png)
 
-In next steps, we import two CSV files of nodes/edges attributes via *File | Import | Table | File...* menu (*Figure 2(b)*). For the nodes attributes file, we should select *String* data type for the column *NetworkState* (*Figure 3*). For the edges attributes file, we must select *Edge Table Columns* in the drop-down list beside the text *Import Data as:* (*Figure 4*).
+In next steps, we import two CSV files of nodes/edges attributes via *File | Import | Table | File...* menu (*Figure 7(b)*). For the nodes attributes file, we should select *String* data type for the column *NetworkState* (*Figure 8*). For the edges attributes file, we must select *Edge Table Columns* in the drop-down list beside the text *Import Data as:* (*Figure 9*).
 
 ![Nodes attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_node.png)
 
 ![Edges attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_edge.png)
 
-After importing, we select *Style* panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select *Red* color in *Fill Color* property for the nodes that belong to an attractor (*Figure 5(a)*). Regards to edge style, select *Red* color in *Stroke Color* property and change *Width* property to a larger value (optional) for the edges that connect two states of an attractor (*Figure 5(b)*).
+After importing, we select *Style* panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select *Red* color in *Fill Color* property for the nodes that belong to an attractor (*Figure 10(a)*). Regards to edge style, select *Red* color in *Stroke Color* property and change *Width* property to a larger value (optional) for the edges that connect two states of an attractor (*Figure 10(b)*).
 
 ![Nodes (a) and edges (b) style modification](https://github.com/csclab/RMut/blob/master/vignettes/style_node_edge.png)
 
-As a result, *Figure 6* shows the modified transition network with clearer indication of attractor cycles.
+As a result, *Figure 11* shows the modified transition network with clearer indication of attractor cycles.
 
 ![The transition network of AMRN](https://github.com/csclab/RMut/blob/master/vignettes/amrn_attractors.png)
 
@@ -860,22 +910,22 @@ ba_rbns <- calSensitivity(ba_rbns, set1, "knockout")
 ba_rbns <- findFBLs(ba_rbns, maxLength = 10)
 ```
 
-    ## [1] "Number of found FBLs:6"
-    ## [1] "Number of found positive FBLs:1"
-    ## [1] "Number of found negative FBLs:5"
-    ## [1] "Number of found FBLs:3"
-    ## [1] "Number of found positive FBLs:3"
-    ## [1] "Number of found negative FBLs:0"
+    ## [1] "Number of found FBLs:9"
+    ## [1] "Number of found positive FBLs:6"
+    ## [1] "Number of found negative FBLs:3"
+    ## [1] "Number of found FBLs:5"
+    ## [1] "Number of found positive FBLs:2"
+    ## [1] "Number of found negative FBLs:3"
 
 ``` r
 ba_rbns <- findFFLs(ba_rbns)
 ```
 
-    ## [1] "Number of found FFLs:3"
-    ## [1] "Number of found coherent FFLs:2"
+    ## [1] "Number of found FFLs:5"
+    ## [1] "Number of found coherent FFLs:4"
     ## [1] "Number of found incoherent FFLs:1"
-    ## [1] "Number of found FFLs:6"
-    ## [1] "Number of found coherent FFLs:3"
+    ## [1] "Number of found FFLs:5"
+    ## [1] "Number of found coherent FFLs:2"
     ## [1] "Number of found incoherent FFLs:3"
 
 ``` r
@@ -890,85 +940,85 @@ print(ba_rbns)
     ## 
     ## $nodes
     ##    NodeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_A NuFFL_B NuFFL_C Degree
-    ## 1       0     0        0        0     1       0       0       1      2
-    ## 2       1     2        0        2     3       2       0       1      5
-    ## 3       2     5        1        4     2       0       1       1     10
-    ## 4       3     3        0        3     1       0       1       0      5
-    ## 5       4     1        0        1     1       0       1       0      2
+    ## 1       0     7        4        3     2       2       0       0      7
+    ## 2       1     7        4        3     2       0       1       1      6
+    ## 3       2     6        4        2     3       1       1       1      7
+    ## 4       3     3        3        0     0       0       0       0      2
+    ## 5       4     1        1        0     0       0       0       0      2
     ## 6       5     1        1        0     0       0       0       0      2
-    ## 7       6     1        0        1     0       0       0       0      2
-    ## 8       7     1        0        1     0       0       0       0      2
-    ## 9       8     1        0        1     0       0       0       0      2
-    ## 10      9     0        0        0     1       1       0       0      2
+    ## 7       6     0        0        0     1       0       0       1      2
+    ## 8       7     3        0        3     0       0       0       0      2
+    ## 9       8     2        1        1     1       0       1       0      2
+    ## 10      9     1        1        0     0       0       0       0      2
     ##    In_Degree Out_Degree  Closeness Betweenness Stress Eigenvector
-    ## 1          2          0 0.01111111           0      0   0.0000000
-    ## 2          2          3 0.04166667          22     22   0.4150287
-    ## 3          5          5 0.04545455          42     42   0.5533716
-    ## 4          3          2 0.03703704          23     23   0.2766858
-    ## 5          1          1 0.03703704           0      0   0.2766858
-    ## 6          1          1 0.03448276           0      0   0.2766858
-    ## 7          1          1 0.03448276           0      0   0.2766858
-    ## 8          1          1 0.03448276           0      0   0.2766858
-    ## 9          1          1 0.02941176           0      0   0.1383429
-    ## 10         0          2 0.05263158           0      0   0.3458572
+    ## 1          3          4 0.07142857          33     45   0.6107663
+    ## 2          2          4 0.05882353          34     47   0.4102573
+    ## 3          4          3 0.05000000          31     41   0.2928724
+    ## 4          1          1 0.04761905           7     14   0.3178939
+    ## 5          1          1 0.03703704           2      2   0.1524353
+    ## 6          1          1 0.03571429           0      0   0.1524353
+    ## 7          2          0 0.01111111           0      0   0.0000000
+    ## 8          1          1 0.04761905           7     14   0.3178939
+    ## 9          1          1 0.04000000           0      0   0.1524353
+    ## 10         1          1 0.04545455           0      0   0.3178939
     ## 
     ## $edges
     ##      EdgeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_AB NuFFL_BC NuFFL_AC
-    ## 1  1 (-1) 0     0        0        0     1        0        0        1
-    ## 2  1 (-1) 4     1        0        1     1        1        0        0
-    ## 3   1 (1) 2     1        0        1     2        1        0        1
-    ## 4  2 (-1) 0     0        0        0     1        0        1        0
-    ## 5  2 (-1) 6     1        0        1     0        0        0        0
-    ## 6  2 (-1) 7     1        0        1     0        0        0        0
-    ## 7   2 (1) 3     2        0        2     0        0        0        0
-    ## 8   2 (1) 5     1        1        0     0        0        0        0
-    ## 9  3 (-1) 1     2        0        2     1        0        1        0
-    ## 10 3 (-1) 8     1        0        1     0        0        0        0
-    ## 11 4 (-1) 2     1        0        1     1        0        1        0
-    ## 12  5 (1) 2     1        1        0     0        0        0        0
-    ## 13  6 (1) 2     1        0        1     0        0        0        0
-    ## 14  7 (1) 2     1        0        1     0        0        0        0
-    ## 15  8 (1) 3     1        0        1     0        0        0        0
-    ## 16 9 (-1) 1     0        0        0     1        0        0        1
-    ## 17 9 (-1) 3     0        0        0     1        1        0        0
+    ## 1  0 (-1) 8     2        1        1     1        1        0        0
+    ## 2   0 (1) 1     2        1        1     1        0        0        1
+    ## 3   0 (1) 2     2        1        1     2        1        0        1
+    ## 4   0 (1) 9     1        1        0     0        0        0        0
+    ## 5  1 (-1) 6     0        0        0     1        0        1        0
+    ## 6   1 (1) 3     3        3        0     0        0        0        0
+    ## 7   1 (1) 4     1        1        0     0        0        0        0
+    ## 8   1 (1) 7     3        0        3     0        0        0        0
+    ## 9  2 (-1) 5     1        1        0     0        0        0        0
+    ## 10 2 (-1) 6     0        0        0     1        0        0        1
+    ## 11  2 (1) 1     5        3        2     2        1        1        0
+    ## 12  3 (1) 0     3        3        0     0        0        0        0
+    ## 13  4 (1) 2     1        1        0     0        0        0        0
+    ## 14 5 (-1) 2     1        1        0     0        0        0        0
+    ## 15 7 (-1) 0     3        0        3     0        0        0        0
+    ## 16 8 (-1) 2     2        1        1     1        0        1        0
+    ## 17  9 (1) 0     1        1        0     0        0        0        0
     ##    Degree Betweenness
-    ## 1       7           4
-    ## 2       7           8
-    ## 3      15          18
-    ## 4      12           5
-    ## 5      12           8
-    ## 6      12           8
-    ## 7      15          21
-    ## 8      12           8
-    ## 9      10          23
-    ## 10      7           8
-    ## 11     12           8
-    ## 12     12           8
-    ## 13     12           8
-    ## 14     12           8
-    ## 15      7           8
-    ## 16      7           7
-    ## 17      7           2
+    ## 1       9           8
+    ## 2      13          16
+    ## 3      14          10
+    ## 4       9           8
+    ## 5       8           3
+    ## 6       8          15
+    ## 7       8          10
+    ## 8       8          15
+    ## 9       9           8
+    ## 10      9           6
+    ## 11     13          26
+    ## 12      9          16
+    ## 13      9          11
+    ## 14      9           9
+    ## 15      9          16
+    ## 16      9           9
+    ## 17      9           9
     ## 
     ## $network
     ##   NetworkID NuFBL NuPosFBL NuNegFBL NuFFL NuCoFFL NuInCoFFL
-    ## 1  BA_RBN_1     6        1        5     3       2         1
+    ## 1  BA_RBN_1     9        6        3     5       4         1
     ## 
     ## $transitionNetwork
     ## [1] FALSE
     ## 
     ## $Group_1
     ##    GroupID knockout_t1000_r1_macro knockout_t1000_r1_bitws
-    ## 1        1                     0.5                    0.15
-    ## 2        2                     0.0                    0.00
-    ## 3        3                     0.0                    0.00
-    ## 4        5                     0.0                    0.00
-    ## 5        4                     0.5                    0.05
-    ## 6        6                     1.0                    0.10
-    ## 7        9                     0.5                    0.20
-    ## 8        0                     0.5                    0.05
-    ## 9        8                     1.0                    0.10
-    ## 10       7                     1.0                    0.10
+    ## 1        1             0.000000000             0.000000000
+    ## 2        5             1.000000000             0.100000000
+    ## 3        8             1.000000000             0.100000000
+    ## 4        3             0.000000000             0.000000000
+    ## 5        2             0.000000000             0.000000000
+    ## 6        4             0.000000000             0.000000000
+    ## 7        6             1.000000000             0.100000000
+    ## 8        0             0.000000000             0.000000000
+    ## 9        7             0.001953125             0.001757813
+    ## 10       9             0.000000000             0.000000000
     ## 
     ## attr(,"class")
     ## [1] "list"    "NetInfo"
@@ -979,85 +1029,85 @@ print(ba_rbns)
     ## 
     ## $nodes
     ##    NodeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_A NuFFL_B NuFFL_C Degree
-    ## 1       0     3        3        0     3       1       1       1      8
-    ## 2       1     0        0        0     2       0       1       1      3
-    ## 3       2     0        0        0     1       1       0       0      4
-    ## 4       3     2        2        0     1       1       0       0      4
-    ## 5       4     1        1        0     0       0       0       0      4
-    ## 6       5     1        1        0     1       0       1       0      3
-    ## 7       6     0        0        0     0       0       0       0      2
+    ## 1       0     3        1        2     3       2       0       1      6
+    ## 2       1     4        1        3     2       1       1       0      6
+    ## 3       2     3        1        2     3       1       2       0      5
+    ## 4       3     0        0        0     1       0       0       1      2
+    ## 5       4     0        0        0     1       0       0       1      2
+    ## 6       5     2        1        1     1       0       1       0      4
+    ## 7       6     2        1        1     0       0       0       0      3
     ## 8       7     0        0        0     1       0       0       1      2
-    ## 9       8     0        0        0     0       0       0       0      2
-    ## 10      9     0        0        0     0       0       0       0      2
+    ## 9       8     1        1        0     0       0       0       0      2
+    ## 10      9     1        1        0     0       0       0       0      2
     ##    In_Degree Out_Degree  Closeness Betweenness Stress Eigenvector
-    ## 1          4          4 0.02173913        23.0     26   0.4366771
-    ## 2          2          1 0.01234568         0.5      1   0.0000000
-    ## 3          0          4 0.04545455         0.0      0   0.4760523
-    ## 4          2          2 0.02083333         5.5      7   0.4366771
-    ## 5          3          1 0.02000000         6.5      8   0.2698813
-    ## 6          2          1 0.02040816         5.0      5   0.2698813
-    ## 7          1          1 0.02222222         1.0      1   0.1667958
-    ## 8          2          0 0.01111111         0.0      0   0.0000000
-    ## 9          0          2 0.02380952         0.0      0   0.4366771
-    ## 10         1          1 0.02173913         0.5      1   0.1667958
+    ## 1          3          3 0.04761905          28     31   0.2517363
+    ## 2          2          4 0.07142857          21     23   0.6370092
+    ## 3          1          4 0.06250000          19     19   0.4004477
+    ## 4          2          0 0.01111111           0      0   0.0000000
+    ## 5          2          0 0.01111111           0      0   0.0000000
+    ## 6          2          2 0.04347826          13     13   0.2616514
+    ## 7          1          2 0.05000000           5      5   0.4999300
+    ## 8          2          0 0.01111111           0      0   0.0000000
+    ## 9          1          1 0.03846154           2      4   0.1582508
+    ## 10         1          1 0.03225806           0      0   0.1644838
     ## 
     ## $edges
     ##      EdgeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_AB NuFFL_BC NuFFL_AC
-    ## 1  0 (-1) 3     2        2        0     0        0        0        0
-    ## 2  0 (-1) 4     1        1        0     0        0        0        0
-    ## 3  0 (-1) 7     0        0        0     1        0        0        1
-    ## 4   0 (1) 1     0        0        0     2        1        1        0
-    ## 5   1 (1) 7     0        0        0     1        0        1        0
-    ## 6  2 (-1) 9     0        0        0     0        0        0        0
-    ## 7   2 (1) 0     0        0        0     1        1        0        0
-    ## 8   2 (1) 1     0        0        0     1        0        0        1
-    ## 9   2 (1) 6     0        0        0     0        0        0        0
-    ## 10 3 (-1) 0     1        1        0     1        0        0        1
-    ## 11 3 (-1) 5     1        1        0     1        1        0        0
-    ## 12 4 (-1) 0     1        1        0     0        0        0        0
-    ## 13  5 (1) 0     1        1        0     1        0        1        0
-    ## 14 6 (-1) 5     0        0        0     0        0        0        0
-    ## 15 8 (-1) 4     0        0        0     0        0        0        0
-    ## 16  8 (1) 3     0        0        0     0        0        0        0
-    ## 17  9 (1) 4     0        0        0     0        0        0        0
+    ## 1  0 (-1) 3     0        0        0     1        0        0        1
+    ## 2   0 (1) 2     3        1        2     2        2        0        0
+    ## 3   0 (1) 7     0        0        0     1        0        0        1
+    ## 4  1 (-1) 0     1        0        1     1        0        0        1
+    ## 5  1 (-1) 4     0        0        0     1        0        1        0
+    ## 6  1 (-1) 6     2        1        1     0        0        0        0
+    ## 7   1 (1) 5     1        0        1     1        1        0        0
+    ## 8  2 (-1) 7     0        0        0     1        0        1        0
+    ## 9   2 (1) 1     3        1        2     1        1        0        0
+    ## 10  2 (1) 3     0        0        0     1        0        1        0
+    ## 11  2 (1) 4     0        0        0     1        0        0        1
+    ## 12 5 (-1) 0     1        0        1     1        0        1        0
+    ## 13 5 (-1) 9     1        1        0     0        0        0        0
+    ## 14  6 (1) 1     1        0        1     0        0        0        0
+    ## 15  6 (1) 8     1        1        0     0        0        0        0
+    ## 16 8 (-1) 0     1        1        0     0        0        0        0
+    ## 17 9 (-1) 5     1        1        0     0        0        0        0
     ##    Degree Betweenness
-    ## 1      12         9.0
-    ## 2      12         4.5
-    ## 3      10         7.5
-    ## 4      11         7.0
-    ## 5       5         1.5
-    ## 6       6         1.5
-    ## 7      12         3.0
-    ## 8       7         1.5
-    ## 9       6         2.0
-    ## 10     12         5.5
-    ## 11      7         5.0
-    ## 12     12        11.5
-    ## 13     11        10.0
-    ## 14      5         7.0
-    ## 15      6         2.5
-    ## 16      6         3.5
-    ## 17      6         6.5
+    ## 1       8           6
+    ## 2      11          25
+    ## 3       8           6
+    ## 4      12           7
+    ## 5       8           2
+    ## 6       9          11
+    ## 7      10          10
+    ## 8       7           1
+    ## 9      11          21
+    ## 10      7           1
+    ## 11      7           5
+    ## 12     10          16
+    ## 13      6           6
+    ## 14      9           6
+    ## 15      5           8
+    ## 16      8          11
+    ## 17      6           9
     ## 
     ## $network
     ##   NetworkID NuFBL NuPosFBL NuNegFBL NuFFL NuCoFFL NuInCoFFL
-    ## 1  BA_RBN_2     3        3        0     6       3         3
+    ## 1  BA_RBN_2     5        2        3     5       2         3
     ## 
     ## $transitionNetwork
     ## [1] FALSE
     ## 
     ## $Group_1
     ##    GroupID knockout_t1000_r1_macro knockout_t1000_r1_bitws
-    ## 1        1                    0.00              0.00000000
-    ## 2        4                    0.50              0.05000000
-    ## 3        6                    0.50              0.08671875
-    ## 4        2                    0.50              0.17500000
-    ## 5        0                    0.00              0.00000000
-    ## 6        5                    0.25              0.02500000
-    ## 7        3                    0.50              0.07500000
-    ## 8        7                    1.00              0.10000000
-    ## 9        8                    0.50              0.17500000
-    ## 10       9                    0.50              0.05000000
+    ## 1        3                0.953125              0.08183594
+    ## 2        8                1.000000              0.26175130
+    ## 3        1                0.953125              0.17916667
+    ## 4        7                0.953125              0.01878255
+    ## 5        0                0.953125              0.17916667
+    ## 6        4                1.000000              0.08802083
+    ## 7        2                0.953125              0.17916667
+    ## 8        9                1.000000              0.28030599
+    ## 9        5                0.296875              0.08567708
+    ## 10       6                1.000000              0.36822917
     ## 
     ## attr(,"class")
     ## [1] "list"    "NetInfo"
@@ -1098,23 +1148,23 @@ amrn_rbns <- calSensitivity(amrn_rbns, set1, "edge removal")
 amrn_rbns <- findFBLs(amrn_rbns, maxLength = 10)
 ```
 
-    ## [1] "Number of found FBLs:7"
-    ## [1] "Number of found positive FBLs:3"
-    ## [1] "Number of found negative FBLs:4"
-    ## [1] "Number of found FBLs:18"
-    ## [1] "Number of found positive FBLs:13"
+    ## [1] "Number of found FBLs:12"
+    ## [1] "Number of found positive FBLs:7"
     ## [1] "Number of found negative FBLs:5"
+    ## [1] "Number of found FBLs:14"
+    ## [1] "Number of found positive FBLs:7"
+    ## [1] "Number of found negative FBLs:7"
 
 ``` r
 amrn_rbns <- findFFLs(amrn_rbns)
 ```
 
-    ## [1] "Number of found FFLs:20"
-    ## [1] "Number of found coherent FFLs:10"
+    ## [1] "Number of found FFLs:16"
+    ## [1] "Number of found coherent FFLs:9"
+    ## [1] "Number of found incoherent FFLs:7"
+    ## [1] "Number of found FFLs:17"
+    ## [1] "Number of found coherent FFLs:7"
     ## [1] "Number of found incoherent FFLs:10"
-    ## [1] "Number of found FFLs:18"
-    ## [1] "Number of found coherent FFLs:14"
-    ## [1] "Number of found incoherent FFLs:4"
 
 ``` r
 amrn_rbns <- calCentrality(amrn_rbns)
@@ -1128,107 +1178,107 @@ print(amrn_rbns)
     ## 
     ## $nodes
     ##    NodeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_A NuFFL_B NuFFL_C Degree
-    ## 1      AG     4        3        1     6       0       2       4      5
-    ## 2     AP1     6        3        3     6       0       3       3      5
-    ## 3     AP3     6        3        3     9       1       4       4      7
-    ## 4    EMF1     0        0        0     3       3       0       0      3
-    ## 5     LFY     0        0        0    12       9       3       0      8
+    ## 1      AG     5        4        1     6       0       1       5      5
+    ## 2     AP1     9        4        5     6       1       2       3      5
+    ## 3     AP3     6        4        2     7       0       5       2      7
+    ## 4    EMF1     0        0        0     4       4       0       0      3
+    ## 5     LFY    11        7        4    13       7       4       2      8
     ## 6     LUG     0        0        0     0       0       0       0      1
-    ## 7      PI     5        2        3     9       1       3       5      7
+    ## 7      PI     6        3        3     8       2       2       4      7
     ## 8     SUP     0        0        0     1       1       0       0      2
-    ## 9    TFL1     4        1        3     4       1       2       1      4
-    ## 10    UFO     0        0        0     1       1       0       0      2
+    ## 9    TFL1     4        3        1     3       1       2       0      4
+    ## 10    UFO     0        0        0     0       0       0       0      2
     ##    In_Degree Out_Degree  Closeness Betweenness Stress Eigenvector
-    ## 1          4          1 0.01724138         1.5      2   0.1207879
-    ## 2          3          2 0.01785714         4.5      6   0.1950682
-    ## 3          5          2 0.01785714         5.5      8   0.2126736
-    ## 4          0          3 0.02564103         0.0      0   0.4895675
-    ## 5          3          5 0.02222222        10.0     12   0.5285297
-    ## 6          0          1 0.02439024         0.0      0   0.3001782
-    ## 7          5          2 0.01785714         5.0      8   0.1793903
-    ## 8          0          2 0.02040816         0.0      0   0.2226726
-    ## 9          2          2 0.01785714         1.5      2   0.2226726
-    ## 10         0          2 0.02500000         0.0      0   0.4020629
+    ## 1          4          1 0.01923077         2.5      4   0.1333853
+    ## 2          3          2 0.02083333         5.0      6   0.2980483
+    ## 3          5          2 0.02040816         8.0     10   0.2260582
+    ## 4          0          3 0.02564103         0.0      0   0.5058865
+    ## 5          3          5 0.02222222        13.5     15   0.5326012
+    ## 6          0          1 0.02222222         0.0      0   0.1011676
+    ## 7          5          2 0.02083333        11.0     13   0.3717398
+    ## 8          0          2 0.02439024         0.0      0   0.2675320
+    ## 9          2          2 0.02040816         2.0      2   0.1608614
+    ## 10         0          2 0.02500000         0.0      0   0.2383545
     ## 
     ## $edges
     ##           EdgeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_AB NuFFL_BC NuFFL_AC
-    ## 1    AG (-1) AP3     4        3        1     2        0        2        0
-    ## 2    AP1 (-1) AG     2        2        0     2        0        2        0
-    ## 3   AP1 (1) TFL1     4        1        3     1        0        1        0
-    ## 4    AP3 (1) AP1     3        2        1     2        0        1        1
-    ## 5     AP3 (1) PI     3        1        2     4        1        3        0
-    ## 6   EMF1 (-1) AG     0        0        0     2        1        0        1
-    ## 7  EMF1 (-1) AP3     0        0        0     1        0        0        1
-    ## 8   EMF1 (1) LFY     0        0        0     2        2        0        0
-    ## 9  LFY (-1) TFL1     0        0        0     3        2        0        1
-    ## 10    LFY (1) AG     0        0        0     3        1        1        1
-    ## 11   LFY (1) AP1     0        0        0     3        2        0        1
-    ## 12   LFY (1) AP3     0        0        0     4        2        1        1
-    ## 13    LFY (1) PI     0        0        0     4        2        1        1
-    ## 14  LUG (-1) LFY     0        0        0     0        0        0        0
-    ## 15     PI (1) AG     2        1        1     2        0        1        1
-    ## 16    PI (1) AP1     3        1        2     3        1        2        0
+    ## 1    AG (-1) AP1     5        4        1     1        0        1        0
+    ## 2   AP1 (-1) LFY     8        4        4     2        1        1        0
+    ## 3     AP1 (1) AG     1        0        1     2        0        1        1
+    ## 4     AP3 (1) AG     2        2        0     2        0        2        0
+    ## 5     AP3 (1) PI     4        2        2     3        0        3        0
+    ## 6  EMF1 (-1) LFY     0        0        0     3        2        0        1
+    ## 7   EMF1 (-1) PI     0        0        0     2        1        0        1
+    ## 8   EMF1 (1) AP3     0        0        0     2        1        0        1
+    ## 9  LFY (-1) TFL1     4        3        1     2        2        0        0
+    ## 10    LFY (1) AG     1        1        0     3        1        1        1
+    ## 11   LFY (1) AP1     1        0        1     3        1        1        1
+    ## 12   LFY (1) AP3     3        2        1     4        2        1        1
+    ## 13    LFY (1) PI     2        1        1     3        1        1        1
+    ## 14  LUG (-1) AP3     0        0        0     0        0        0        0
+    ## 15    PI (1) AP1     3        0        3     3        1        1        1
+    ## 16    PI (1) LFY     3        3        0     3        1        1        1
     ## 17  SUP (-1) AP3     0        0        0     1        1        0        0
     ## 18   SUP (-1) PI     0        0        0     1        0        0        1
-    ## 19 TFL1 (-1) AP3     2        0        2     2        1        1        0
-    ## 20  TFL1 (-1) PI     2        1        1     2        0        1        1
-    ## 21   UFO (1) LFY     0        0        0     1        1        0        0
-    ## 22    UFO (1) PI     0        0        0     1        0        0        1
+    ## 19  TFL1 (-1) AG     1        1        0     2        0        1        1
+    ## 20 TFL1 (-1) AP3     3        2        1     2        1        1        0
+    ## 21    UFO (1) PI     0        0        0     0        0        0        0
+    ## 22  UFO (1) TFL1     0        0        0     0        0        0        0
     ##    Degree Betweenness
-    ## 1      12         5.5
-    ## 2      10         2.0
-    ## 3       9         6.5
-    ## 4      12         6.5
-    ## 5      14         3.0
-    ## 6       8         1.0
-    ## 7      10         2.0
-    ## 8      11         3.0
-    ## 9      12         4.0
-    ## 10     13         2.5
-    ## 11     13         3.0
-    ## 12     15         3.0
-    ## 13     15         2.5
-    ## 14      9         6.0
+    ## 1      10         7.5
+    ## 2      13         8.5
+    ## 3      10         1.5
+    ## 4      12         4.5
+    ## 5      14         8.5
+    ## 6      11         3.0
+    ## 7      10         1.5
+    ## 8      10         1.5
+    ## 9      12         8.0
+    ## 10     13         2.0
+    ## 11     13         1.5
+    ## 12     15         4.0
+    ## 13     15         3.0
+    ## 14      8         6.0
     ## 15     12         5.0
-    ## 16     12         4.0
+    ## 16     15        11.0
     ## 17      9         2.0
-    ## 18      9         3.0
-    ## 19     11         2.0
+    ## 18      9         4.0
+    ## 19      9         3.5
     ## 20     11         3.5
-    ## 21     10         4.0
-    ## 22      9         2.0
+    ## 21      9         3.0
+    ## 22      6         3.0
     ## 
     ## $network
     ##    NetworkID NuFBL NuPosFBL NuNegFBL NuFFL NuCoFFL NuInCoFFL
-    ## 1 AMRN_RBN_1     7        3        4    20      10        10
+    ## 1 AMRN_RBN_1    12        7        5    16       9         7
     ## 
     ## $transitionNetwork
     ## [1] FALSE
     ## 
     ## $Group_1
     ##          GroupID edgeremoval_t1000_r1_macro edgeremoval_t1000_r1_bitws
-    ## 1     LFY (1) AG                     0.0000                 0.00000000
-    ## 2   TFL1 (-1) PI                     0.0000                 0.00000000
-    ## 3   LUG (-1) LFY                     0.1250                 0.01250000
-    ## 4    AG (-1) AP3                     0.0000                 0.00000000
-    ## 5      PI (1) AG                     0.0000                 0.00000000
-    ## 6    LFY (1) AP1                     0.0000                 0.00000000
-    ## 7    SUP (-1) PI                     0.0000                 0.00000000
-    ## 8     LFY (1) PI                     0.0000                 0.00000000
-    ## 9  TFL1 (-1) AP3                     0.0000                 0.00000000
-    ## 10    PI (1) AP1                     0.1250                 0.01250000
-    ## 11  EMF1 (1) LFY                     0.1250                 0.02701823
-    ## 12  SUP (-1) AP3                     0.0000                 0.00000000
-    ## 13 LFY (-1) TFL1                     0.0000                 0.00000000
-    ## 14   UFO (1) LFY                     0.1250                 0.01250000
-    ## 15   AP1 (-1) AG                     0.0000                 0.00000000
-    ## 16  EMF1 (-1) AG                     0.0000                 0.00000000
-    ## 17    UFO (1) PI                     0.0000                 0.00000000
-    ## 18   LFY (1) AP3                     0.2500                 0.03395996
-    ## 19    AP3 (1) PI                     0.2500                 0.03125000
-    ## 20   AP3 (1) AP1                     0.0000                 0.00000000
-    ## 21 EMF1 (-1) AP3                     0.0625                 0.01875000
-    ## 22  AP1 (1) TFL1                     0.8750                 0.08750000
+    ## 1     PI (1) AP1                   0.000000                 0.00000000
+    ## 2     UFO (1) PI                   0.000000                 0.00000000
+    ## 3  EMF1 (-1) LFY                   0.000000                 0.00000000
+    ## 4    LFY (1) AP3                   0.062500                 0.00625000
+    ## 5     LFY (1) PI                   0.000000                 0.00000000
+    ## 6    LFY (1) AP1                   0.000000                 0.00000000
+    ## 7   AP1 (-1) LFY                   0.000000                 0.00000000
+    ## 8     AP3 (1) PI                   0.109375                 0.01386719
+    ## 9  LFY (-1) TFL1                   0.000000                 0.00000000
+    ## 10  SUP (-1) AP3                   0.000000                 0.00000000
+    ## 11  TFL1 (-1) AG                   0.000000                 0.00000000
+    ## 12    AP3 (1) AG                   0.000000                 0.00000000
+    ## 13  EMF1 (-1) PI                   0.000000                 0.00000000
+    ## 14  EMF1 (1) AP3                   0.000000                 0.00000000
+    ## 15  UFO (1) TFL1                   0.500000                 0.05000000
+    ## 16   AG (-1) AP1                   0.000000                 0.00000000
+    ## 17    LFY (1) AG                   0.000000                 0.00000000
+    ## 18    PI (1) LFY                   0.500000                 0.07500000
+    ## 19   SUP (-1) PI                   0.000000                 0.00000000
+    ## 20 TFL1 (-1) AP3                   0.000000                 0.00000000
+    ## 21    AP1 (1) AG                   0.000000                 0.00000000
+    ## 22  LUG (-1) AP3                   0.000000                 0.00000000
     ## 
     ## attr(,"class")
     ## [1] "list"    "NetInfo"
@@ -1239,107 +1289,107 @@ print(amrn_rbns)
     ## 
     ## $nodes
     ##    NodeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_A NuFFL_B NuFFL_C Degree
-    ## 1      AG     8        7        1     4       0       1       3      5
-    ## 2     AP1     9        4        5     4       2       1       1      5
-    ## 3     AP3    11        7        4     8       0       4       4      7
-    ## 4    EMF1     0        0        0     2       2       0       0      3
-    ## 5     LFY    16       11        5    11       6       3       2      8
+    ## 1      AG     5        2        3     4       0       1       3      5
+    ## 2     AP1     4        2        2     5       0       4       1      5
+    ## 3     AP3    12        6        6     9       2       2       5      7
+    ## 4    EMF1     0        0        0     4       4       0       0      3
+    ## 5     LFY    12        7        5    13       7       4       2      8
     ## 6     LUG     0        0        0     0       0       0       0      1
-    ## 7      PI    13       10        3    10       1       5       4      7
+    ## 7      PI     9        4        5     6       0       3       3      7
     ## 8     SUP     0        0        0     1       1       0       0      2
-    ## 9    TFL1    11        9        2     4       2       1       1      4
+    ## 9    TFL1     8        3        5     5       1       2       2      4
     ## 10    UFO     0        0        0     1       1       0       0      2
     ##    In_Degree Out_Degree  Closeness Betweenness Stress Eigenvector
-    ## 1          4          1 0.01960784         4.5      6   0.1542383
-    ## 2          3          2 0.02083333         8.0     10   0.3780549
-    ## 3          5          2 0.02083333         6.5      9   0.2171642
-    ## 4          0          3 0.02564103         0.0      0   0.2867426
-    ## 5          3          5 0.02222222        11.5     15   0.5952191
-    ## 6          0          1 0.02272727         0.0      0   0.1542383
-    ## 7          5          2 0.02083333         4.5      7   0.3314349
-    ## 8          0          2 0.02380952         0.0      0   0.1515242
-    ## 9          2          2 0.02083333         5.0      7   0.3780549
-    ## 10         0          2 0.02439024         0.0      0   0.2238167
+    ## 1          4          1 0.01886792         2.0      2  0.09294331
+    ## 2          3          2 0.02083333         3.5      4  0.21093770
+    ## 3          5          2 0.02083333        16.5     17  0.38578631
+    ## 4          0          3 0.02564103         0.0      0  0.50229317
+    ## 5          3          5 0.02222222        10.5     13  0.54324582
+    ## 6          0          1 0.02222222         0.0      0  0.09294331
+    ## 7          5          2 0.02040816        11.0     12  0.21093770
+    ## 8          0          2 0.02380952         0.0      0  0.13389596
+    ## 9          2          2 0.02083333         0.5      1  0.33230812
+    ## 10         0          2 0.02439024         0.0      0  0.26292836
     ## 
     ## $edges
     ##           EdgeID NuFBL NuPosFBL NuNegFBL NuFFL NuFFL_AB NuFFL_BC NuFFL_AC
-    ## 1   AG (-1) TFL1     8        7        1     1        0        1        0
-    ## 2   AP1 (-1) LFY     5        0        5     2        1        0        1
-    ## 3     AP1 (1) PI     4        4        0     3        1        1        1
-    ## 4     AP3 (1) AG     5        5        0     3        0        3        0
-    ## 5    AP3 (1) AP1     6        2        4     1        0        1        0
-    ## 6  EMF1 (-1) AP3     0        0        0     2        1        0        1
-    ## 7   EMF1 (-1) PI     0        0        0     1        1        0        0
-    ## 8    EMF1 (1) AG     0        0        0     1        0        0        1
-    ## 9  LFY (-1) TFL1     3        2        1     2        1        0        1
-    ## 10    LFY (1) AG     3        2        1     2        1        0        1
-    ## 11   LFY (1) AP1     3        2        1     2        1        0        1
-    ## 12   LFY (1) AP3     4        3        1     4        2        1        1
-    ## 13    LFY (1) PI     3        2        1     4        1        2        1
-    ## 14  LUG (-1) AP1     0        0        0     0        0        0        0
-    ## 15    PI (1) AP3     7        4        3     4        0        3        1
-    ## 16    PI (1) LFY     6        6        0     3        1        2        0
+    ## 1     AG (-1) PI     5        2        3     1        0        1        0
+    ## 2    AP1 (-1) AG     2        1        1     2        0        2        0
+    ## 3    AP1 (1) AP3     2        1        1     2        0        2        0
+    ## 4    AP3 (1) LFY     6        5        1     3        1        1        1
+    ## 5   AP3 (1) TFL1     6        1        5     3        1        1        1
+    ## 6  EMF1 (-1) AP1     0        0        0     2        1        0        1
+    ## 7  EMF1 (-1) LFY     0        0        0     3        2        0        1
+    ## 8   EMF1 (1) AP3     0        0        0     2        1        0        1
+    ## 9  LFY (-1) TFL1     2        2        0     3        1        1        1
+    ## 10    LFY (1) AG     2        1        1     2        1        0        1
+    ## 11   LFY (1) AP1     4        2        2     3        2        1        0
+    ## 12   LFY (1) AP3     2        1        1     3        1        1        1
+    ## 13    LFY (1) PI     2        1        1     4        2        1        1
+    ## 14   LUG (-1) PI     0        0        0     0        0        0        0
+    ## 15     PI (1) AG     1        0        1     1        0        1        0
+    ## 16    PI (1) AP3     8        4        4     2        0        2        0
     ## 17   SUP (-1) AG     0        0        0     1        0        0        1
-    ## 18  SUP (-1) AP3     0        0        0     1        1        0        0
-    ## 19 TFL1 (-1) LFY     5        5        0     2        1        0        1
-    ## 20  TFL1 (-1) PI     6        4        2     3        1        1        1
+    ## 18  SUP (-1) AP1     0        0        0     1        1        0        0
+    ## 19 TFL1 (-1) LFY     6        2        4     2        1        1        0
+    ## 20  TFL1 (-1) PI     2        1        1     2        0        1        1
     ## 21   UFO (1) AP3     0        0        0     1        0        0        1
     ## 22    UFO (1) PI     0        0        0     1        1        0        0
     ##    Degree Betweenness
-    ## 1       9         9.5
-    ## 2      13         8.5
-    ## 3      12         4.5
-    ## 4      12         4.0
-    ## 5      12         7.5
-    ## 6      10         2.0
-    ## 7      10         2.0
-    ## 8       8         2.0
-    ## 9      12         4.5
-    ## 10     13         4.5
-    ## 11     13         3.5
-    ## 12     15         3.0
-    ## 13     15         1.0
-    ## 14      6         6.0
-    ## 15     14         4.0
-    ## 16     15         5.5
-    ## 17      7         3.0
-    ## 18      9         3.0
-    ## 19     12         6.5
-    ## 20     11         3.5
-    ## 21      9         3.5
-    ## 22      9         2.5
+    ## 1      12         7.0
+    ## 2      10         2.5
+    ## 3      12         6.0
+    ## 4      15        13.5
+    ## 5      11         8.0
+    ## 6       8         1.5
+    ## 7      11         3.0
+    ## 8      10         1.5
+    ## 9      12         1.5
+    ## 10     13         3.0
+    ## 11     13         7.0
+    ## 12     15         1.5
+    ## 13     15         2.5
+    ## 14      8         6.0
+    ## 15     12         3.5
+    ## 16     14        12.5
+    ## 17      7         2.0
+    ## 18      7         4.0
+    ## 19     12         3.0
+    ## 20     11         2.5
+    ## 21      9         4.0
+    ## 22      9         2.0
     ## 
     ## $network
     ##    NetworkID NuFBL NuPosFBL NuNegFBL NuFFL NuCoFFL NuInCoFFL
-    ## 1 AMRN_RBN_2    18       13        5    18      14         4
+    ## 1 AMRN_RBN_2    14        7        7    17       7        10
     ## 
     ## $transitionNetwork
     ## [1] FALSE
     ## 
     ## $Group_1
     ##          GroupID edgeremoval_t1000_r1_macro edgeremoval_t1000_r1_bitws
-    ## 1   AP1 (-1) LFY                 0.00390625                0.002148438
-    ## 2     AP1 (1) PI                 0.02148438                0.008463542
-    ## 3    EMF1 (1) AG                 0.00000000                0.000000000
-    ## 4    AP3 (1) AP1                 0.00000000                0.000000000
-    ## 5   EMF1 (-1) PI                 0.00000000                0.000000000
-    ## 6    LFY (1) AP1                 0.00000000                0.000000000
-    ## 7   TFL1 (-1) PI                 0.00000000                0.000000000
-    ## 8    SUP (-1) AG                 0.00000000                0.000000000
-    ## 9   SUP (-1) AP3                 0.00000000                0.000000000
-    ## 10  LUG (-1) AP1                 0.00000000                0.000000000
-    ## 11 EMF1 (-1) AP3                 0.00000000                0.000000000
-    ## 12   UFO (1) AP3                 0.00000000                0.000000000
-    ## 13    UFO (1) PI                 0.00000000                0.000000000
-    ## 14    LFY (1) PI                 0.02929688                0.008203125
-    ## 15 TFL1 (-1) LFY                 0.00000000                0.000000000
-    ## 16  AG (-1) TFL1                 0.00000000                0.000000000
-    ## 17    PI (1) AP3                 0.12500000                0.012500000
-    ## 18    PI (1) LFY                 0.76562500                0.208170573
-    ## 19    AP3 (1) AG                 0.00000000                0.000000000
-    ## 20    LFY (1) AG                 0.50000000                0.100000000
-    ## 21 LFY (-1) TFL1                 0.00000000                0.000000000
-    ## 22   LFY (1) AP3                 0.00000000                0.000000000
+    ## 1   AP3 (1) TFL1                1.000000000               0.1000000000
+    ## 2  EMF1 (-1) AP1                0.250000000               0.0500000000
+    ## 3   EMF1 (1) AP3                0.001953125               0.0005859375
+    ## 4  LFY (-1) TFL1                0.000000000               0.0000000000
+    ## 5    LFY (1) AP3                0.000000000               0.0000000000
+    ## 6   SUP (-1) AP1                0.250000000               0.0250000000
+    ## 7  EMF1 (-1) LFY                0.001953125               0.0009765625
+    ## 8  TFL1 (-1) LFY                0.000000000               0.0000000000
+    ## 9     UFO (1) PI                0.000000000               0.0000000000
+    ## 10   UFO (1) AP3                0.000000000               0.0000000000
+    ## 11   LUG (-1) PI                0.000000000               0.0000000000
+    ## 12    PI (1) AP3                0.000000000               0.0000000000
+    ## 13   AP1 (1) AP3                0.000000000               0.0000000000
+    ## 14    LFY (1) PI                0.500000000               0.0750000000
+    ## 15   AP3 (1) LFY                0.500000000               0.1000000000
+    ## 16     PI (1) AG                0.000000000               0.0000000000
+    ## 17   AP1 (-1) AG                0.250000000               0.0250000000
+    ## 18   LFY (1) AP1                0.000000000               0.0000000000
+    ## 19  TFL1 (-1) PI                0.000000000               0.0000000000
+    ## 20    LFY (1) AG                0.000000000               0.0000000000
+    ## 21   SUP (-1) AG                0.250000000               0.0250000000
+    ## 22    AG (-1) PI                0.000000000               0.0000000000
     ## 
     ## attr(,"class")
     ## [1] "list"    "NetInfo"
