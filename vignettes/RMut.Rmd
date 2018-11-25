@@ -159,7 +159,7 @@ All original network files (Tab-separated values text files) could be downloaded
 
 ## WikiPathways network files conversion
 
-A user could retrieve pathways in WikiPathways database [https://www.wikipathways.org/index.php/WikiPathways](https://www.wikipathways.org) as a SIF file by wikiPathways plugin [http://apps.cytoscape.org/apps/wikipathways](wikipathways plugin) of the  Cytoscape software [https://cytoscape.org/](https://cytoscape.org/). The version of Cytoscape should be greater than or equal 3.6.1. 
+A user could retrieve pathways in WikiPathways database [(https://www.wikipathways.org)](https://www.wikipathways.org/index.php/WikiPathways) as a SIF file by the [wikiPathways plugin](http://apps.cytoscape.org/apps/wikipathways) of the [Cytoscape software](https://cytoscape.org/). The version of Cytoscape should be greater than or equal 3.6.1. 
 
 Firstly, the pathway could be loaded into Cytoscape by some steps indicated in the Figure 2 and 3. 
 
