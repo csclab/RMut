@@ -9,7 +9,7 @@ License: Apache License 2.0
 LazyData: TRUE
 Depends:
     rJava (>= 0.9-8)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
