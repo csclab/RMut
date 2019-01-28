@@ -23,7 +23,16 @@ The JDK is available at:
 
 [http://www.oracle.com/technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
-The version of JDK should be greater than or equal to 8.
+Two following kinds of JDK can be used alternatively:
+
+* Old series
+
+    Java SE 8u201 / Java SE 8u202 
+    
+* New series
+
+    Java SE 11.0.2(LTS) or higher version
+    
 
 ## RMut package
 
@@ -32,6 +41,9 @@ Firstly, the _devtools_ package must be installed by typing the following comman
 _> install.packages("devtools")_
 
 More details about the _devtools_ package could be found in the website [https://github.com/r-lib/devtools](https://github.com/r-lib/devtools).
+
+Make sure you have Java Development Kit installed and correctly registered in R.
+If in doubt, run the command _R CMD javareconf_ as root or administrator permission.
 
 Next, the _RMut_ package should be properly installed into the R environment by typing the following commands:
 
@@ -55,25 +67,19 @@ In order to utilize the full computing power of multi-core central processing un
     
     OpenCL support is included in the latest drivers, in the driver CD or available at 
     
-    [www.nvidia.com/drivers](www.nvidia.com/drivers).
+    [https://www.nvidia.com/Download/index.aspx?lang=en-us](https://www.nvidia.com/Download/index.aspx?lang=en-us)
     
 * AMD graphics cards
 
-    The OpenCL GPU runtime library is included in the AMD Catalyst drivers of your AMD cards. We should install the latest version of the Catalyst drivers to take advantage of the AMD GPU's capabilities with OpenCL. The drivers could be in the driver CD or available at
+    The OpenCL GPU runtime library is included in the drivers of your AMD cards. The drivers could be in the driver CD or available at
     
-    [http://support.amd.com/en-us/download](http://support.amd.com/en-us/download)
+    [https://www.amd.com/en/support](https://www.amd.com/en/support)
 
 * CPU devices only (No graphics cards)
     
-     The "AMD APP SDK" tool is provided to the developer community to accelerate the programming in a heterogeneous environment. It contains the OpenCL runtime library for CPU hardware. Install the latest SDK from:
+    At the time of developing this R package, CPU devices from AMD are no longer supported as OpenCL device. For Intel CPU devices, the OpenCL runtime library is available at:
     
-    [http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/](http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/) 
-    
-    
-    Figure 1 shows some important setup steps (SDK version v3.0). As shown in the figure, we could install the SDK from Internet connection directly and select _Complete_ setup type.
-    
-    ![AMD APP SDK installation guide](https://github.com/csclab/RMut/blob/master/vignettes/amd_sdk.png)
-    
+    [https://software.intel.com/en-us/articles/opencl-drivers](https://software.intel.com/en-us/articles/opencl-drivers)
     
 After installation, OpenCL information can be outputed via the function _showOpencl_. Then we can enable OpenCL computation on a CPU/GPU device via the function _setOpencl_:
 
@@ -161,14 +167,14 @@ All original network files (Tab-separated values text files) could be downloaded
 
 A user could retrieve pathways in WikiPathways database [(https://www.wikipathways.org)](https://www.wikipathways.org/index.php/WikiPathways) as a SIF file by the [wikiPathways plugin](http://apps.cytoscape.org/apps/wikipathways) of the [Cytoscape software](https://cytoscape.org/). The version of Cytoscape should be greater than or equal 3.6.1. 
 
-Firstly, the pathway could be loaded into Cytoscape by some steps indicated in the Figure 2 and 3. 
+Firstly, the pathway could be loaded into Cytoscape by some steps indicated in the Figure 1 and 2. 
 
 ![Import network from public databases](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_1.png)
 
 ![Select and import a pathway from WikiPathways database](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_2.png)
 
 
-After that, we select the "Edge Table" tab and detach it for easy modification (Figure 4). 
+After that, we select the "Edge Table" tab and detach it for easy modification (Figure 3). 
 
 ![Select and detach the "Edge Table" tab](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_3.png)
 
@@ -187,12 +193,12 @@ There does not exist relationship types in the attribute or column _interaction_
 
     In case both the corresponding columns _WP.type_ and _Source Arrow Shape_ has the value "Line", or the corresponding column _WP.type_ is empty.
 
-For each type of interaction, we select the rows or interactions that satisfy the above conditions, and then modify the values of the column _interaction_ as a way like Figure 5. 
+For each type of interaction, we select the rows or interactions that satisfy the above conditions, and then modify the values of the column _interaction_ as a way like Figure 4. 
 
 ![Update relationship types in the attribute "interaction"](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_4_5.png)
 
 
-To repeat this step for other types, we deselect edges by clicking in the empty space of the network visualization panel. Finally,  we export the pathway to SIF file format by the following menu: _File | Export | Network..._ . We might need to remove wrong rows of interactions (missing the interaction type) in the SIF file by a spreadsheet software like Microsoft Excel (Figure 6).
+To repeat this step for other types, we deselect edges by clicking in the empty space of the network visualization panel. Finally,  we export the pathway to SIF file format by the following menu: _File | Export | Network..._ . We might need to remove wrong rows of interactions (missing the interaction type) in the SIF file by a spreadsheet software like Microsoft Excel (Figure 5).
 
 ![Remove wrong rows of interactions which have not an interaction type)](https://github.com/csclab/RMut/blob/master/vignettes/wikiPath2SIF_6.png)
 
@@ -301,21 +307,21 @@ Finally, the resulted transition network could be exported by the function _outp
 
 The transition network is written as a SIF file (*.__sif__). The SIF file could be loaded to Cytoscape with the following menu:
 
-_File | Import | Network | File..._ or using the shortcut keys _Ctrl/Cmd + L_ (_Figure 7(a)_)
+_File | Import | Network | File..._ or using the shortcut keys _Ctrl/Cmd + L_ (_Figure 6(a)_)
 
 ![Import network (a) and nodes/edges attributes (b) in Cytoscape software](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu.png)
 
-In next steps, we import two CSV files of nodes/edges attributes via _File | Import | Table | File..._ menu (_Figure 7(b)_). For the nodes attributes file, we should select _String_ data type for the column _NetworkState_ (_Figure 8_). For the edges attributes file, we must select _Edge Table Columns_ in the drop-down list beside the text _Import Data as:_ (_Figure 9_).
+In next steps, we import two CSV files of nodes/edges attributes via _File | Import | Table | File..._ menu (_Figure 6(b)_). For the nodes attributes file, we should select _String_ data type for the column _NetworkState_ (_Figure 7_). For the edges attributes file, we must select _Edge Table Columns_ in the drop-down list beside the text _Import Data as:_ (_Figure 8_).
 
 ![Nodes attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_node.png)
 
 ![Edges attributes importing dialog](https://github.com/csclab/RMut/blob/master/vignettes/transition_menu_attr_edge.png)
 
-After importing, we select _Style_ panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in _Fill Color_ property for the nodes that belong to an attractor (_Figure 10(a)_). Regards to edge style, select _Red_ color in _Stroke Color_ property and change _Width_ property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 10(b)_). 
+After importing, we select _Style_ panel and modify the node and edge styles a little to highlight all attractor cycles. For node style, select _Red_ color in _Fill Color_ property for the nodes that belong to an attractor (_Figure 9(a)_). Regards to edge style, select _Red_ color in _Stroke Color_ property and change _Width_ property to a larger value (optional) for the edges that connect two states of an attractor (_Figure 9(b)_). 
 
 ![Nodes (a) and edges (b) style modification](https://github.com/csclab/RMut/blob/master/vignettes/style_node_edge.png)
 
-As a result, _Figure 11_ shows the modified transition network with clearer indication of attractor cycles.
+As a result, _Figure 10_ shows the modified transition network with clearer indication of attractor cycles.
 
 ![The transition network of AMRN](https://github.com/csclab/RMut/blob/master/vignettes/amrn_attractors.png)
 
