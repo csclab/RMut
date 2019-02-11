@@ -27,7 +27,7 @@ Two following kinds of JDK can be used alternatively:
 
 * Old series
 
-    Java SE 8u201 / Java SE 8u202 
+    Java SE 8u201 / Java SE 8u202 or higher version
     
 * New series
 
